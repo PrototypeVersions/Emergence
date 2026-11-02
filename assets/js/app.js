@@ -135,6 +135,36 @@
   }
   const lastClose = (st) => st.forecasts.map((id) => S.data.fc.horizons[S.data.byId[id].primary].closes).sort().pop();
 
+  const INTRO = "Emergence reads AI, cybersecurity, elections, world politics and markets side by side, to spot what news covering one topic at a time tends to miss.";
+  function nextUpdate() {
+    const d = new Date(); const day = d.getDay();
+    const add = day === 1 && d.getHours() < 7 ? 0 : (8 - day) % 7 || 7;
+    const n = new Date(d.getFullYear(), d.getMonth(), d.getDate() + add);
+    return n.toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" });
+  }
+  /** Timeline of upcoming decision dates; dates within 2 days of each other are grouped. */
+  function ribbon() {
+    const t = todayISO();
+    const ups = upcoming();
+    if (!ups.length) return "";
+    const days = (a, b) => (new Date(b + "T12:00:00") - new Date(a + "T12:00:00")) / 864e5;
+    const groups = [];
+    for (const e of ups) {
+      const g = groups[groups.length - 1];
+      if (g && days(g[g.length - 1].date, e.date) <= 2) g.push(e); else groups.push([e]);
+    }
+    const label = (g) => g.length === 1 ? g[0].short : g.every((e) => /certif/i.test(e.short)) ? "Certification deadlines" : `${g[0].short} and more`;
+    const when = (g) => g.length === 1 ? fmtShort(g[0].date) : `${fmtShort(g[0].date)}–${new Date(g[g.length - 1].date + "T12:00:00").getDate()}`;
+    const steps = groups.slice(0, 6);
+    return `<a class="ribbon" href="#/calendar" aria-label="When things actually get decided: ${esc(steps.map((g) => `${when(g)} ${label(g)}`).join("; "))}. Open the calendar.">
+      <span class="rb-title">When it actually gets decided</span>
+      <span class="rb-track">
+        <span class="rb-step rb-today" style="--i:0"><i></i><b>Today</b><span>${fmtShort(t)}</span></span>
+        ${steps.map((g, k) => `<span class="rb-step" style="--i:${k + 1}"><i></i><b>${when(g)}</b><span>${esc(label(g))}</span></span>`).join("")}
+      </span>
+    </a>`;
+  }
+
   function viewPulse() {
     const { hero, second, over } = pulsePicks();
     const B = S.data.stories.brief;
@@ -146,9 +176,10 @@
         <span class="why">${why(f)}</span></a>` : "";
     return `
       <section class="brief" aria-labelledby="brief-title">
-        <p class="intro">Emergence reads AI, cybersecurity, elections, world politics and markets side by side, to spot what news covering one topic at a time tends to miss. New every Monday.</p>
-        <p class="brief-date">This week's brief, ${fmtDate(B.date)}</p>
+        <p class="intro intro-mobile">${INTRO}</p>
+        <div class="kicker"><span>This week's brief, ${fmtDate(B.date)}</span><span>Next update ${nextUpdate()}</span></div>
         <h1 id="brief-title" class="brief-title">${esc(B.title)}</h1>
+        ${ribbon()}
         ${B.changes && B.changes.length ? `<div class="changes"><h2>What changed since last week</h2><ul>${B.changes.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
         <div class="brief-body">${B.paragraphs.map((x) => `<p>${esc(x)}</p>`).join("")}</div>
       </section>
@@ -677,7 +708,7 @@
       default: html = notFound(); c = [["Not found"]];
     }
     view.innerHTML = html;
-    document.body.classList.toggle("no-horizon", true);
+    document.body.classList.toggle("on-home", top === "pulse");
     crumbs(c);
     document.querySelectorAll(".nav a").forEach((el) => { if (el.dataset.nav === nav) el.setAttribute("aria-current", "page"); else el.removeAttribute("aria-current"); });
     document.title = (c[c.length - 1][0] === "This week" ? "" : c[c.length - 1][0] + " | ") + "Emergence";

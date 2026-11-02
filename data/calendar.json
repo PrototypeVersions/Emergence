@@ -16,7 +16,8 @@
         "E021"
       ],
       "done": false,
-      "outcome": null
+      "outcome": null,
+      "short": "Election Day"
     },
     {
       "date": "2026-11-08",
@@ -36,7 +37,8 @@
         "E021"
       ],
       "done": false,
-      "outcome": null
+      "outcome": null,
+      "short": "Five days later"
     },
     {
       "date": "2026-11-11",
@@ -54,7 +56,8 @@
         "E030"
       ],
       "done": false,
-      "outcome": null
+      "outcome": null,
+      "short": "Israel's mandate"
     },
     {
       "date": "2026-11-17",
@@ -73,7 +76,8 @@
         "E023"
       ],
       "done": false,
-      "outcome": null
+      "outcome": null,
+      "short": "Texas certifies"
     },
     {
       "date": "2026-11-19",
@@ -91,7 +95,8 @@
         "E024"
       ],
       "done": false,
-      "outcome": null
+      "outcome": null,
+      "short": "Arizona certifies"
     },
     {
       "date": "2026-11-20",
@@ -108,7 +113,8 @@
         "E021"
       ],
       "done": false,
-      "outcome": null
+      "outcome": null,
+      "short": "Georgia certifies"
     },
     {
       "date": "2026-12-01",
@@ -130,7 +136,8 @@
         "E029"
       ],
       "done": false,
-      "outcome": null
+      "outcome": null,
+      "short": "Georgia runoffs"
     },
     {
       "date": "2026-12-03",
@@ -145,7 +152,8 @@
         "E023"
       ],
       "done": false,
-      "outcome": null
+      "outcome": null,
+      "short": "California certifies"
     }
   ]
 }

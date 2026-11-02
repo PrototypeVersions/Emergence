@@ -22,7 +22,7 @@ Also:
 
 - **Brief.** Move the current `brief` into `brief_archive` (newest first), then write a new brief. Fill `brief.changes` with 2–5 one-line entries saying what changed since last week: stories that gained or lost support, the biggest number moves and why, and verdicts given.
 - **Connections.** Refresh `links.json → connections`: add new sets of separately reported events that may be linked, re-rate existing ones as evidence arrives, and retire ones that turned out to be coincidence. Keep four to eight.
-- **Calendar.** Mark past dates `done: true` with a one-sentence `outcome`, but only once the day has ended (US Central) or the outcome is known. Add new decision dates for the next 30 days. Keep 4–10 upcoming entries.
+- **Calendar.** Mark past dates `done: true` with a one-sentence `outcome`, but only once the day has ended (US Central) or the outcome is known. Add new decision dates for the next 30 days, each with a `short` label of 22 characters or fewer for the home-page timeline. Keep 4–10 upcoming entries.
 - **Verdicts and postmortems.** Give a verdict to every story whose forecasts have all resolved, and write a 2–4 sentence postmortem: what it got right, what it got wrong, and why. Be candid about misses.
 - **Windows.** Each horizon in `forecasts.json → horizons` rolls only when it has closed. If the 7-day window has closed, open a new one from the run date. Open a new 30-day window only once the current one has closed. Never shorten or extend a window that is still open. Resolve the old window first. Forecasts carried into a new window get a number for that window and a history entry saying so.
 

@@ -165,7 +165,8 @@ if (!stories.brief.title || !stories.brief.paragraphs?.length) fail("brief: titl
 for (const e of calendar.entries) {
   const tag = `calendar ${e.date}`;
   if (!/^\d{4}-\d{2}-\d{2}$/.test(e.date)) fail(`${tag}: date must be YYYY-MM-DD`);
-  for (const k of ["title", "hype", "reality"]) if (!e[k]) fail(`${tag}: missing ${k}`);
+  for (const k of ["title", "short", "hype", "reality"]) if (!e[k]) fail(`${tag}: missing ${k}`);
+  if (e.short && e.short.length > 22) fail(`${tag}: short label must be 22 characters or fewer`);
   for (const f of e.forecasts) if (!fIds.has(f)) fail(`${tag}: forecast ${f} does not exist`);
   for (const x of e.stories) if (!sIds.has(x)) fail(`${tag}: story ${x} does not exist`);
   for (const x of e.evidence) if (!evIds.has(x)) fail(`${tag}: evidence ${x} does not exist`);
