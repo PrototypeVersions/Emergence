@@ -42,6 +42,52 @@ The goal is a fast check that usually changes nothing.
 3. **Major surprise check.** Do one quick headline scan. If something happened that clearly changes three or more open forecasts (for example, strikes resumed, a major breach, a race call that resolves a forecast early, a government formed), do the same short update for those forecasts.
 4. **Otherwise, stop.** Make no commit and end with a one-line note that nothing was due.
 
+## Research modes (weekly runs)
+
+Check `data/run-config.json` at the start of every weekly run.
+
+### Standard: scan wide, read deep
+
+- **Scan** at least 200 headlines or feed items across the beat checklist below. Headlines and summaries are enough at this stage.
+- **Read in full** the 30–60 items that matter most, favoring primary sources (agency advisories, official results pages, court filings, company disclosures, market pages).
+- **Always cover** every open forecast's research question and the biggest unknown in `links.json`.
+
+**Beat checklist:** US elections and courts; AI labs, agents and AI security; cybersecurity advisories and breaches; crypto; Iran, Israel and the Gulf; Russia–Ukraine; China–Taiwan; shipping and energy; foreign elections and negotiations; cloud and internet infrastructure; prediction markets.
+
+### Parallel (trial)
+
+When `research_mode` is `parallel` and `parallel_runs_remaining` is above 0, launch these five research helpers (subagents) at the same time, each with its own brief:
+
+1. US elections, courts and certification
+2. AI labs, AI agents and AI security
+3. Cybersecurity advisories, breaches and crypto theft
+4. Geopolitics: Iran, Israel and the Gulf, Russia–Ukraine, China–Taiwan, shipping and energy
+5. Infrastructure and markets: cloud and internet outages, undersea cables, prediction markets
+
+Give each helper:
+- today's date
+- the open forecasts and research questions in its beat
+- the current stories
+- the safety boundary
+
+Ask each one to:
+- scan at least 60 headlines or items
+- read the 10–15 most important in full, favoring primary sources
+- return a structured report:
+  - counts of items scanned and read
+  - candidate evidence records (claim, source, URL, date, confirmed or reported, suggested reliability)
+  - developments affecting each relevant open forecast
+  - loose ends and hyped moments in its beat
+  - unreachable sources
+
+Helpers only research. They don't edit files. The main run merges their reports, de-duplicates sources into independence clusters, verifies anything surprising itself, and then continues the normal protocol.
+
+After the run, set `parallel_runs_remaining` to its value minus 1. If it reaches 0, set `research_mode` back to `standard`. The final report must say which mode ran, plus the counts.
+
+### Coverage line
+
+Every weekly brief records `brief.coverage`: `{ "mode": "standard" | "parallel", "scanned": n, "read": n, "added": n }`. Use honest approximate counts. The site shows it under the brief.
+
 ## Guardrails (all runs)
 
 - **Start clean.** Clone or pull the latest `main` before doing anything.

@@ -182,6 +182,7 @@
         </div>
         ${B.changes && B.changes.length ? `<div class="changes"><h2>What changed since last week</h2><ul>${B.changes.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
         <div class="brief-body">${B.paragraphs.map((x) => `<p>${esc(x)}</p>`).join("")}</div>
+        ${B.coverage ? `<p class="coverage">This week's research: about ${B.coverage.scanned} headlines scanned, ${B.coverage.read} sources read in full, ${B.coverage.added} added as evidence.</p>` : ""}
       </section>
       <section class="stories-sec" aria-labelledby="stories-h">
         <h2 id="stories-h">The stories behind this week</h2>

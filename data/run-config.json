@@ -1,0 +1,5 @@
+{
+  "research_mode": "parallel",
+  "parallel_runs_remaining": 1,
+  "note": "One-time trial of parallel research helpers for the next weekly update. The run sets parallel_runs_remaining to 0 and research_mode to standard when done, so later runs use the standard sweep unless this file is changed again."
+}
