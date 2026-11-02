@@ -139,7 +139,8 @@
       "summary": "Attackers are compromising AI gateways, agent frameworks and AI coding tools to harvest AI-provider and cloud keys.",
       "evidence": [
         "E005",
-        "E006"
+        "E006",
+        "E027"
       ],
       "label_side": "r"
     },
@@ -154,7 +155,9 @@
       "weight": 2,
       "summary": "North Korea-attributed groups just executed the largest crypto theft on record.",
       "evidence": [
-        "E007"
+        "E007",
+        "E025",
+        "E028"
       ],
       "label_side": "r"
     },
@@ -239,8 +242,8 @@
       "label": "Election-week process stress",
       "state": "elevated",
       "confidence": "medium",
-      "x": 32,
-      "y": 92,
+      "x": 34,
+      "y": 82,
       "weight": 2,
       "summary": "Load on election officials from disinformation, cyber threats and uncertain federal support during the Nov 3 midterms.",
       "evidence": [
@@ -261,7 +264,8 @@
       "weight": 3,
       "summary": "War since Feb 28, 2026. Talks are under way, but the US has signalled possible further strikes after the midterms.",
       "evidence": [
-        "E015"
+        "E015",
+        "E026"
       ],
       "label_side": "b"
     },
@@ -318,7 +322,7 @@
       "label": "Hospital operations",
       "state": "elevated",
       "confidence": "medium",
-      "x": 55,
+      "x": 62,
       "y": 94,
       "weight": 1,
       "summary": "Cyberattacks continue to force ambulance diversions and cancelled procedures.",
@@ -339,6 +343,39 @@
       "summary": "Internet-exposed industrial controllers at US utilities; a known target class for state-linked actors.",
       "evidence": [],
       "label_side": "r"
+    },
+    {
+      "id": "N_COUNT_TIMING",
+      "domain": "elections",
+      "label": "Slow counts, recounts & runoffs",
+      "state": "high",
+      "confidence": "high",
+      "x": 16,
+      "y": 95,
+      "weight": 2,
+      "label_side": "r",
+      "summary": "Ranked-choice tabulation in Alaska and Maine, Georgia's majority rule, and late-arriving mail ballots mean several races cannot be called on election night.",
+      "evidence": [
+        "E020",
+        "E021"
+      ]
+    },
+    {
+      "id": "N_CERTIFICATION",
+      "domain": "elections",
+      "label": "Post-election certification",
+      "state": "elevated",
+      "confidence": "medium",
+      "x": 42,
+      "y": 96,
+      "weight": 2,
+      "label_side": "r",
+      "summary": "Certification is legally mandatory, but local boards have refused or delayed it in recent cycles, and a suit to block certification is already filed in Texas.",
+      "evidence": [
+        "E022",
+        "E023",
+        "E024"
+      ]
     }
   ],
   "edges": [
@@ -670,6 +707,64 @@
         "E001"
       ],
       "note": "Voluntary guidance; slow to change practice."
+    },
+    {
+      "id": "L25",
+      "from": "N_COUNT_TIMING",
+      "to": "N_ELECTION_STRESS",
+      "type": "INCREASES",
+      "strength": 0.6,
+      "confidence": "high",
+      "lag": "days",
+      "basis": "historical",
+      "evidence": [
+        "E021"
+      ],
+      "note": "Days of uncalled races add pressure on officials."
+    },
+    {
+      "id": "L26",
+      "from": "N_COUNT_TIMING",
+      "to": "N_INFO_OPS",
+      "type": "INFORMATION_CHANNEL",
+      "strength": 0.5,
+      "confidence": "medium",
+      "lag": "days",
+      "basis": "judgmental",
+      "evidence": [
+        "E013",
+        "E021"
+      ],
+      "note": "An information vacuum while races are uncalled is when fabricated 'evidence' spreads fastest."
+    },
+    {
+      "id": "L27",
+      "from": "N_ELECTION_STRESS",
+      "to": "N_CERTIFICATION",
+      "type": "INCREASES",
+      "strength": 0.5,
+      "confidence": "medium",
+      "lag": "weeks",
+      "basis": "historical",
+      "evidence": [
+        "E023",
+        "E024"
+      ],
+      "note": ""
+    },
+    {
+      "id": "L28",
+      "from": "N_INFO_OPS",
+      "to": "N_CERTIFICATION",
+      "type": "AMPLIFIES",
+      "strength": 0.3,
+      "confidence": "low",
+      "lag": "weeks",
+      "basis": "judgmental",
+      "evidence": [
+        "E022"
+      ],
+      "note": "Claims of AI or foreign interference are already cited in a certification suit."
     }
   ]
 }

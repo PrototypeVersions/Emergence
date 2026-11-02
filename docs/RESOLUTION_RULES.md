@@ -13,12 +13,16 @@
 - **Brier score** for each binary forecast: (p − outcome)², with p as a fraction.
 - **Calibration** (bins of 10 points) is shown only after at least 20 forecasts have resolved.
 - Each forecast is scored on its **primary** horizon. Secondary horizons are recorded but scored separately.
+- The number scored is the one **first published** for that window. Later revisions are shown in the forecast's history, but they can't improve its score.
 
 ## `data/resolutions.json` entry format
+
+`cycle` is the cycle where that window's number was first published.
 
 ```json
 {
   "forecast": "F02",
+  "title": "A single crypto theft of $100 million or more",
   "cycle": "2026-11-01-1800",
   "horizon": "30d",
   "p": 33,

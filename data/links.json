@@ -7,76 +7,322 @@
   },
   "paths": [
     {
+      "id": "P6",
+      "title": "The waiting period is the danger zone",
+      "tagline": "Slow counts → information vacuum → fakes → certification fights",
+      "domains": [
+        "elections",
+        "ai",
+        "geopolitics"
+      ],
+      "forecasts": [
+        "F14",
+        "F06",
+        "F13"
+      ],
+      "why_hidden": "Slow counts are covered as a process story, synthetic media as a tech story, and certification as a legal story. They happen in the same two weeks, and each feeds the next.",
+      "steps": [
+        {
+          "node": "N_COUNT_TIMING",
+          "text": "Ranked-choice, runoff and mail-ballot rules leave races uncalled for days",
+          "status": "observed",
+          "evidence": [
+            "E020",
+            "E021"
+          ]
+        },
+        {
+          "node": "N_INFO_OPS",
+          "text": "A Russian-linked network is already pushing AI-manipulated videos",
+          "status": "observed",
+          "evidence": [
+            "E013"
+          ]
+        },
+        {
+          "node": "N_INFO_OPS",
+          "text": "Fabricated 'evidence' about the count fills the gap",
+          "status": "hypothetical",
+          "evidence": []
+        },
+        {
+          "node": "N_ELECTION_STRESS",
+          "text": "Officials must publicly debunk specific fakes",
+          "status": "partial",
+          "evidence": [
+            "E014",
+            "E018"
+          ]
+        },
+        {
+          "node": "N_CERTIFICATION",
+          "text": "Claims of AI or foreign interference are cited to delay certification",
+          "status": "partial",
+          "evidence": [
+            "E022"
+          ]
+        }
+      ]
+    },
+    {
       "id": "P1",
       "title": "War at sea becomes an internet outage",
       "tagline": "Geopolitics → undersea cables → Gulf cloud regions",
-      "domains": ["geopolitics", "internet", "markets"],
-      "forecasts": ["F08", "F09", "F01"],
+      "domains": [
+        "geopolitics",
+        "internet",
+        "markets"
+      ],
+      "forecasts": [
+        "F08",
+        "F09",
+        "F01"
+      ],
       "why_hidden": "Shipping, cable threats and cloud outages are covered by different desks. Each looks contained on its own.",
       "steps": [
-        { "node": "N_IRAN_WAR", "text": "The US signals possible strikes after Nov 3; talks continue", "status": "observed", "evidence": ["E015"] },
-        { "node": "N_ENERGY_SHIPPING", "text": "Vessels near Hormuz keep being attacked or disabled", "status": "observed", "evidence": ["E015"] },
-        { "node": "N_GULF_INFRA", "text": "A cable is cut, deliberately or by a dragging anchor", "status": "hypothetical", "evidence": [] },
-        { "node": "N_GULF_INFRA", "text": "Gulf cloud regions, already impaired since March, lose more capacity", "status": "partial", "evidence": ["E011"] },
-        { "node": "N_CLOUD_FRAGILITY", "text": "Regional banking, government and airline apps fail over or go down", "status": "hypothetical", "evidence": [] }
+        {
+          "node": "N_IRAN_WAR",
+          "text": "The US signals possible strikes after Nov 3; talks continue",
+          "status": "observed",
+          "evidence": [
+            "E015"
+          ]
+        },
+        {
+          "node": "N_ENERGY_SHIPPING",
+          "text": "Vessels near Hormuz keep being attacked or disabled",
+          "status": "observed",
+          "evidence": [
+            "E015"
+          ]
+        },
+        {
+          "node": "N_GULF_INFRA",
+          "text": "A cable is cut, deliberately or by a dragging anchor",
+          "status": "hypothetical",
+          "evidence": []
+        },
+        {
+          "node": "N_GULF_INFRA",
+          "text": "Gulf cloud regions, already impaired since March, lose more capacity",
+          "status": "partial",
+          "evidence": [
+            "E011"
+          ]
+        },
+        {
+          "node": "N_CLOUD_FRAGILITY",
+          "text": "Regional banking, government and airline apps fail over or go down",
+          "status": "hypothetical",
+          "evidence": []
+        }
       ]
     },
     {
       "id": "P2",
       "title": "The developer laptop is the new front door",
       "tagline": "One weakness behind a record theft, an AI-tool hijack and an agent incident",
-      "domains": ["ai", "cyber", "markets"],
-      "forecasts": ["F02", "F03", "F04"],
+      "domains": [
+        "ai",
+        "cyber",
+        "markets"
+      ],
+      "forecasts": [
+        "F02",
+        "F03",
+        "F04"
+      ],
       "why_hidden": "Three October stories (Binance, LiteLLM, the Pentagon-network agent) were reported as unrelated. All three start with trusted access sitting on an engineer's machine or in an agent working on their behalf.",
       "model_inference": true,
       "steps": [
-        { "node": "N_AGENT_AUTONOMY", "text": "Engineers and their agents hold production keys locally", "status": "observed", "evidence": ["E004", "E019"] },
-        { "node": "N_AGENT_PRIVILEGE", "text": "A compromised laptop reached Binance's withdrawal service", "status": "observed", "evidence": ["E008"] },
-        { "node": "N_AI_SUPPLY_CHAIN", "text": "Stolen developer tokens published a poisoned LiteLLM", "status": "observed", "evidence": ["E005"] },
-        { "node": "N_AGENT_PRIVILEGE", "text": "That malware steals the very files coding agents read", "status": "observed", "evidence": ["E006"] },
-        { "node": "N_CRYPTO_STRESS", "text": "Harvested keys open the next exchange, cloud account or package", "status": "hypothetical", "evidence": [] }
+        {
+          "node": "N_AGENT_AUTONOMY",
+          "text": "Engineers and their agents hold production keys locally",
+          "status": "observed",
+          "evidence": [
+            "E004",
+            "E019"
+          ]
+        },
+        {
+          "node": "N_AGENT_PRIVILEGE",
+          "text": "A compromised laptop reached Binance's withdrawal service",
+          "status": "observed",
+          "evidence": [
+            "E008"
+          ]
+        },
+        {
+          "node": "N_AI_SUPPLY_CHAIN",
+          "text": "Stolen developer tokens published a poisoned LiteLLM",
+          "status": "observed",
+          "evidence": [
+            "E005"
+          ]
+        },
+        {
+          "node": "N_AGENT_PRIVILEGE",
+          "text": "That malware steals the very files coding agents read",
+          "status": "observed",
+          "evidence": [
+            "E006"
+          ]
+        },
+        {
+          "node": "N_AI_SUPPLY_CHAIN",
+          "text": "Last time, stolen keys resurfaced in a 153GB dump five months later",
+          "status": "observed",
+          "evidence": [
+            "E027"
+          ]
+        },
+        {
+          "node": "N_CRYPTO_STRESS",
+          "text": "Harvested keys open the next exchange, cloud account or package",
+          "status": "hypothetical",
+          "evidence": []
+        }
       ]
     },
     {
       "id": "P3",
       "title": "From test environment to real victim",
       "tagline": "AI capability → evaluation leaks → provider pullback",
-      "domains": ["ai", "cyber"],
-      "forecasts": ["F04", "F05", "F10"],
+      "domains": [
+        "ai",
+        "cyber"
+      ],
+      "forecasts": [
+        "F04",
+        "F05",
+        "F10"
+      ],
       "why_hidden": "The summer eval escapes were treated as a lab-safety story. The same capability is now being deployed with weaker containment.",
       "steps": [
-        { "node": "N_FRONTIER_CYBER", "text": "Models found and used real exploits during cyber evaluations", "status": "observed", "evidence": ["E002"] },
-        { "node": "N_PROVIDER_CONTROLS", "text": "One lab paused training over cyber capability", "status": "partial", "evidence": ["E003"] },
-        { "node": "N_AGENT_AUTONOMY", "text": "Similar models are deployed as agents with live credentials", "status": "observed", "evidence": ["E004"] },
-        { "node": "N_GOV_GUIDANCE", "text": "Federal guidance names 'control incidents' as a category", "status": "observed", "evidence": ["E001"] },
-        { "node": "N_PROVIDER_CONTROLS", "text": "A deployed incident forces a public feature restriction", "status": "hypothetical", "evidence": [] }
+        {
+          "node": "N_FRONTIER_CYBER",
+          "text": "Models found and used real exploits during cyber evaluations",
+          "status": "observed",
+          "evidence": [
+            "E002"
+          ]
+        },
+        {
+          "node": "N_PROVIDER_CONTROLS",
+          "text": "One lab paused training over cyber capability",
+          "status": "partial",
+          "evidence": [
+            "E003"
+          ]
+        },
+        {
+          "node": "N_AGENT_AUTONOMY",
+          "text": "Similar models are deployed as agents with live credentials",
+          "status": "observed",
+          "evidence": [
+            "E004"
+          ]
+        },
+        {
+          "node": "N_GOV_GUIDANCE",
+          "text": "Federal guidance names 'control incidents' as a category",
+          "status": "observed",
+          "evidence": [
+            "E001"
+          ]
+        },
+        {
+          "node": "N_PROVIDER_CONTROLS",
+          "text": "A deployed incident forces a public feature restriction",
+          "status": "hypothetical",
+          "evidence": []
+        }
       ]
     },
     {
       "id": "P4",
       "title": "Election week under two kinds of pressure",
       "tagline": "Synthetic media + wartime cyber → official response",
-      "domains": ["elections", "geopolitics", "cyber", "ai"],
-      "forecasts": ["F06", "F07"],
+      "domains": [
+        "elections",
+        "geopolitics",
+        "cyber",
+        "ai"
+      ],
+      "forecasts": [
+        "F06",
+        "F07"
+      ],
       "why_hidden": "Coverage treats foreign disinformation and the Iran war separately. Both are pointed at the same week and the same thin local offices.",
       "steps": [
-        { "node": "N_INFO_OPS", "text": "A Russian-linked network pushes AI-manipulated videos about Senate races", "status": "observed", "evidence": ["E013"] },
-        { "node": "N_IRAN_WAR", "text": "An active war gives a second state actor a motive", "status": "observed", "evidence": ["E015"] },
-        { "node": "N_IRAN_CYBER", "text": "Hacktivist-style disruption of county election sites", "status": "hypothetical", "evidence": [] },
-        { "node": "N_ELECTION_STRESS", "text": "Officials must respond publicly, with uncertain federal backup", "status": "partial", "evidence": ["E014", "E018"] }
+        {
+          "node": "N_INFO_OPS",
+          "text": "A Russian-linked network pushes AI-manipulated videos about Senate races",
+          "status": "observed",
+          "evidence": [
+            "E013"
+          ]
+        },
+        {
+          "node": "N_IRAN_WAR",
+          "text": "An active war gives a second state actor a motive",
+          "status": "observed",
+          "evidence": [
+            "E015"
+          ]
+        },
+        {
+          "node": "N_IRAN_CYBER",
+          "text": "Hacktivist-style disruption of county election sites",
+          "status": "hypothetical",
+          "evidence": []
+        },
+        {
+          "node": "N_ELECTION_STRESS",
+          "text": "Officials must respond publicly, with uncertain federal backup",
+          "status": "partial",
+          "evidence": [
+            "E014",
+            "E018"
+          ]
+        }
       ]
     },
     {
       "id": "P5",
       "title": "Retaliation that lands on a water plant",
       "tagline": "Renewed strikes → Iran-linked cyber → US utilities",
-      "domains": ["geopolitics", "cyber", "infrastructure"],
-      "forecasts": ["F08", "F12"],
+      "domains": [
+        "geopolitics",
+        "cyber",
+        "infrastructure"
+      ],
+      "forecasts": [
+        "F08",
+        "F12"
+      ],
       "why_hidden": "Public attention is on missiles and shipping. Cheap, deniable retaliation against exposed US controllers has precedent but no current coverage.",
       "steps": [
-        { "node": "N_IRAN_WAR", "text": "Strikes resume after the midterms", "status": "hypothetical", "evidence": ["E015"] },
-        { "node": "N_IRAN_CYBER", "text": "Iran-linked actors look for deniable retaliation", "status": "hypothetical", "evidence": [] },
-        { "node": "N_US_CRIT_INFRA", "text": "Exposed controllers at a utility are tampered with, forcing manual operation", "status": "hypothetical", "evidence": [] }
+        {
+          "node": "N_IRAN_WAR",
+          "text": "Strikes resume after the midterms",
+          "status": "hypothetical",
+          "evidence": [
+            "E015"
+          ]
+        },
+        {
+          "node": "N_IRAN_CYBER",
+          "text": "Iran-linked actors look for deniable retaliation",
+          "status": "hypothetical",
+          "evidence": []
+        },
+        {
+          "node": "N_US_CRIT_INFRA",
+          "text": "Exposed controllers at a utility are tampered with, forcing manual operation",
+          "status": "hypothetical",
+          "evidence": []
+        }
       ]
     }
   ],
@@ -84,40 +330,68 @@
     {
       "id": "S1",
       "title": "AI keys have become the loot",
-      "text": "About 6 of 22 October supply-chain incidents went after AI-provider or AI-tool credentials, not just cloud or source code.",
-      "domains": ["ai", "cyber"],
-      "evidence": ["E005", "E006"],
+      "text": "About 6 of 22 October supply-chain incidents went after AI-provider or AI-tool credentials. Last time this happened, the stolen keys resurfaced five months later.",
+      "domains": [
+        "ai",
+        "cyber"
+      ],
+      "evidence": [
+        "E005",
+        "E006",
+        "E027"
+      ],
       "kind": "observed"
     },
     {
       "id": "S2",
       "title": "One weakness, three domains",
       "text": "Binance, LiteLLM and the Pentagon-network agent all trace back to trusted access on a developer's machine. This is a model inference, not a reported finding.",
-      "domains": ["ai", "cyber", "markets"],
-      "evidence": ["E004", "E005", "E008"],
+      "domains": [
+        "ai",
+        "cyber",
+        "markets"
+      ],
+      "evidence": [
+        "E004",
+        "E005",
+        "E008"
+      ],
       "kind": "inference"
     },
     {
       "id": "S3",
       "title": "Gulf internet risk without matching coverage",
       "text": "Two Gulf cloud regions are listed as impaired since March, and Iran now threatens seabed cables. There is little reporting connecting the two.",
-      "domains": ["internet", "geopolitics"],
-      "evidence": ["E011", "E015"],
+      "domains": [
+        "internet",
+        "geopolitics"
+      ],
+      "evidence": [
+        "E011",
+        "E015"
+      ],
       "kind": "observed"
     },
     {
       "id": "S4",
       "title": "Test environments keep leaking",
       "text": "Three labs disclosed models touching real external systems during evaluations within about three weeks.",
-      "domains": ["ai"],
-      "evidence": ["E002"],
+      "domains": [
+        "ai"
+      ],
+      "evidence": [
+        "E002"
+      ],
       "kind": "observed"
     }
   ],
   "biggest_unknown": {
     "title": "Is Iran conducting cyber operations against US targets right now?",
     "text": "Three forecasts (F07, F12 and part of F09) lean on Iran-linked cyber activity, and no current public evidence for it was collected this cycle. Precedent alone is carrying those nodes.",
-    "forecasts": ["F07", "F12"],
+    "forecasts": [
+      "F07",
+      "F12"
+    ],
     "node": "N_IRAN_CYBER"
   }
 }

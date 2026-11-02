@@ -1,7 +1,7 @@
 {
-  "cycle": "2026-11-01-1800",
-  "published": "2026-11-01T18:00:00-06:00",
-  "engine_version": "1.0.0",
+  "cycle": "2026-11-01-1930",
+  "published": "2026-11-01T19:30:00-06:00",
+  "engine_version": "1.1.0",
   "horizons": {
     "7d": {
       "label": "7 days",
@@ -114,7 +114,13 @@
           },
           "reason": "Initial publication"
         }
-      ]
+      ],
+      "expected": {
+        "value": 20,
+        "basis": "judgment",
+        "note": "Outages feel routine; most readers would guess roughly this."
+      },
+      "tactic": "base-rate"
     },
     {
       "id": "F02",
@@ -220,7 +226,13 @@
           },
           "reason": "Initial publication"
         }
-      ]
+      ],
+      "expected": {
+        "value": 15,
+        "basis": "judgment",
+        "note": "A record theft reads as a one-off, not the start of a run."
+      },
+      "tactic": "precedent"
     },
     {
       "id": "F03",
@@ -325,7 +337,14 @@
           },
           "reason": "Initial publication"
         }
-      ]
+      ],
+      "expected": {
+        "value": 30,
+        "basis": "judgment",
+        "note": "AI-tool compromises rarely reach general news, so few people expect another one this month."
+      },
+      "tactic": "base-rate",
+      "surprise_note": "These attacks get little mainstream coverage, so most people would guess they are rare. In 2026 they have been close to monthly."
     },
     {
       "id": "F04",
@@ -432,7 +451,13 @@
           },
           "reason": "Initial publication"
         }
-      ]
+      ],
+      "expected": {
+        "value": 25,
+        "basis": "judgment",
+        "note": "Agent incidents are newsworthy but feel occasional."
+      },
+      "tactic": "base-rate"
     },
     {
       "id": "F05",
@@ -528,7 +553,13 @@
           },
           "reason": "Initial publication"
         }
-      ]
+      ],
+      "expected": {
+        "value": 20,
+        "basis": "judgment",
+        "note": ""
+      },
+      "tactic": "base-rate"
     },
     {
       "id": "F06",
@@ -631,7 +662,13 @@
           },
           "reason": "Initial publication"
         }
-      ]
+      ],
+      "expected": {
+        "value": 55,
+        "basis": "judgment",
+        "note": "Readers expect deepfakes; fewer expect officials to publicly name a specific one."
+      },
+      "tactic": "precedent"
     },
     {
       "id": "F07",
@@ -728,7 +765,13 @@
           },
           "reason": "Initial publication"
         }
-      ]
+      ],
+      "expected": {
+        "value": 45,
+        "basis": "judgment",
+        "note": "Public worry about election hacking runs ahead of how often a disruption is officially confirmed."
+      },
+      "tactic": "precedent"
     },
     {
       "id": "F08",
@@ -740,17 +783,17 @@
       ],
       "primary": "30d",
       "p": {
-        "7d": 12,
-        "30d": 40
+        "7d": 14,
+        "30d": 45
       },
       "range": {
         "7d": [
-          5,
-          22
+          6,
+          24
         ],
         "30d": [
-          20,
-          62
+          25,
+          65
         ]
       },
       "confidence": "low",
@@ -777,6 +820,13 @@
           "evidence": [
             "E015"
           ]
+        },
+        {
+          "label": "Prediction markets price a ceasefire break as likely by year-end",
+          "delta": 5,
+          "evidence": [
+            "E026"
+          ]
         }
       ],
       "pathway": [
@@ -793,7 +843,7 @@
       ],
       "skeptic": "Statements reserving strikes are partly leverage for the talks. Actual strikes would derail a process both sides are investing in.",
       "escalation": "Officials named specific remaining targets, and Iran's attacks on shipping continue. One incident could end the pause.",
-      "adjudicator": "Genuinely uncertain. The wide range is the honest answer. Prediction-market odds should be checked next cycle.",
+      "adjudicator": "Markets lean more hawkish than the talks suggest. The model moves partway toward them, but stays below because a ceasefire break is a broader event than strikes on Iran.",
       "resolution": {
         "condition": "The US or Israeli military conducts at least one strike (air, missile or drone) on targets inside Iran's internationally recognized territory within the window, as reported by at least two of Reuters, AP, Bloomberg or BBC, or confirmed by either government.",
         "sources": [
@@ -808,13 +858,14 @@
           "Cyber operations alone do not count."
         ]
       },
-      "research_question": "What do Polymarket and Kalshi currently price for this, and how do their resolution rules differ?",
+      "research_question": "Is there a market or bucket that resolves on US or Israeli strikes on Iranian territory by Dec 1 specifically?",
       "evidence": [
-        "E015"
+        "E015",
+        "E026"
       ],
       "market": {
-        "status": "to-check",
-        "note": "Markets on US strikes on Iran exist; current odds were not retrieved this cycle."
+        "status": "checked",
+        "note": "Polymarket 'US–Iran ceasefire continues through…' series (Oct 29): about 88% through the midterms, about 25% through Dec 31. No Dec 1 bucket was retrieved; a ceasefire break also counts Iranian action, so it is not identical to this question."
       },
       "history": [
         {
@@ -824,8 +875,22 @@
             "30d": 40
           },
           "reason": "Initial publication"
+        },
+        {
+          "at": "2026-11-01T19:30:00-06:00",
+          "p": {
+            "7d": 14,
+            "30d": 45
+          },
+          "reason": "+5 (30d): first prediction-market check shows traders expect a ceasefire break by year-end. +2 (7d): the same signal, discounted for the US saying strikes are unlikely before Nov 3."
         }
-      ]
+      ],
+      "expected": {
+        "value": 55,
+        "basis": "market",
+        "note": "Polymarket (Oct 29) priced a US–Iran ceasefire break by Dec 31 at about 75%; interpolated, that implies roughly 55% by Dec 1. A ceasefire break is broader than strikes on Iranian territory."
+      },
+      "tactic": "scenario"
     },
     {
       "id": "F09",
@@ -930,7 +995,13 @@
           },
           "reason": "Initial publication"
         }
-      ]
+      ],
+      "expected": {
+        "value": 5,
+        "basis": "judgment",
+        "note": "Few people connect the shipping attacks to internet cables."
+      },
+      "tactic": "precedent"
     },
     {
       "id": "F10",
@@ -1035,7 +1106,13 @@
           },
           "reason": "Initial publication"
         }
-      ]
+      ],
+      "expected": {
+        "value": 25,
+        "basis": "judgment",
+        "note": ""
+      },
+      "tactic": "base-rate"
     },
     {
       "id": "F11",
@@ -1126,7 +1203,14 @@
           },
           "reason": "Initial publication"
         }
-      ]
+      ],
+      "expected": {
+        "value": 25,
+        "basis": "judgment",
+        "note": "Hospital cyber diversions usually make only local news, so most people would guess they are rare."
+      },
+      "tactic": "base-rate",
+      "surprise_note": "Cyberattacks forcing ambulance diversions happen more than once a month in the US, but almost always as local news."
     },
     {
       "id": "F12",
@@ -1229,6 +1313,214 @@
           "p": {
             "7d": 4,
             "30d": 13
+          },
+          "reason": "Initial publication"
+        }
+      ],
+      "expected": {
+        "value": 15,
+        "basis": "judgment",
+        "note": ""
+      },
+      "tactic": "precedent"
+    },
+    {
+      "id": "F13",
+      "title": "A county election board refuses or fails to certify midterm results on time",
+      "short": "County certification fight",
+      "domains": [
+        "elections"
+      ],
+      "primary": "30d",
+      "p": {
+        "7d": 8,
+        "30d": 65
+      },
+      "range": {
+        "7d": [
+          3,
+          15
+        ],
+        "30d": [
+          45,
+          80
+        ]
+      },
+      "confidence": "medium",
+      "impact": 50,
+      "newsworthiness": 75,
+      "attention": "low",
+      "expected": {
+        "value": 25,
+        "basis": "judgment",
+        "note": "Most people assume certification is an automatic formality once votes are counted."
+      },
+      "tactic": "precedent",
+      "surprise_note": "Certification feels automatic, but a local board refused or missed its deadline after two of the last three general elections. A lawsuit to block certification is already filed in Texas.",
+      "summary": "After the votes are counted, thousands of county boards must formally certify them. Refusals have become a recurring feature since 2020, even though courts have always ordered certification in the end. This forecast is about the process, not who wins.",
+      "why_now": [
+        "Suit to block certification filed in Texas (Oct 27)",
+        "Two of the last three general elections had a refusal or missed deadline",
+        "Deadlines fall Nov 17–Dec 3 in key states"
+      ],
+      "base_rate": {
+        "text": "In 2020 (Wayne County MI deadlock) and 2022 (Cochise County AZ) a county board voted against certifying or missed its deadline; 2024's general election had no comparable case. Two of three, shrunk toward even for the small sample: 60%.",
+        "value": 60,
+        "evidence": [
+          "E023",
+          "E024"
+        ]
+      },
+      "adjustments": [
+        {
+          "label": "Organized challenges are already filed before Election Day",
+          "delta": 5,
+          "evidence": [
+            "E022"
+          ]
+        }
+      ],
+      "pathway": [
+        "N_ELECTION_STRESS",
+        "N_CERTIFICATION"
+      ],
+      "increase_if": [
+        "Close or uncalled races in states with contested local boards",
+        "New suits seeking to delay certification"
+      ],
+      "decrease_if": [
+        "Lopsided results reduce the stakes",
+        "Courts dismiss pending suits quickly and decisively"
+      ],
+      "skeptic": "States tightened certification law after 2022 and officials now face criminal consequences, so boards may comply rather than refuse.",
+      "escalation": "It takes only one of more than 3,000 county boards, and challenges are already organized before a single vote is counted.",
+      "adjudicator": "The one-of-thousands point is strong, and the 2024 general's clean record is the main counterweight. 65% reflects both.",
+      "resolution": {
+        "condition": "Between Nov 3 and Dec 1, a county (or equivalent local) canvassing board in any US state votes against certifying, deadlocks on, or misses its statutory deadline to certify results of the Nov 3, 2026 general election, as reported by AP, Reuters, Votebeat, or another major national outlet.",
+        "sources": [
+          "AP",
+          "Reuters",
+          "Votebeat",
+          "State election offices"
+        ],
+        "ambiguous": [
+          "Delays caused only by ongoing counting, recounts, or court-ordered hand counts do not count.",
+          "A deadlock that is reversed the same day still counts if reported."
+        ]
+      },
+      "research_question": "Did any county board refuse or miss a deadline after the November 2024 general election? That would firm up the base rate.",
+      "evidence": [
+        "E022",
+        "E023",
+        "E024"
+      ],
+      "market": {
+        "status": "none",
+        "note": ""
+      },
+      "history": [
+        {
+          "at": "2026-11-01T19:30:00-06:00",
+          "p": {
+            "7d": 8,
+            "30d": 65
+          },
+          "reason": "Initial publication"
+        }
+      ]
+    },
+    {
+      "id": "F14",
+      "title": "At least one US Senate race is still uncalled five days after Election Day",
+      "short": "Senate race still uncalled",
+      "domains": [
+        "elections"
+      ],
+      "primary": "7d",
+      "p": {
+        "7d": 82,
+        "30d": null
+      },
+      "range": {
+        "7d": [
+          68,
+          92
+        ],
+        "30d": null
+      },
+      "confidence": "high",
+      "impact": 40,
+      "newsworthiness": 65,
+      "attention": "medium",
+      "expected": {
+        "value": 35,
+        "basis": "judgment",
+        "note": "Most people expect results on election night or the morning after."
+      },
+      "tactic": "calendar",
+      "surprise_note": "Election-night results are the expectation, but the rules almost guarantee a wait: ranked-choice counting in Alaska and Maine, Georgia's majority requirement, and mail ballots that can arrive for a week.",
+      "summary": "This one follows from the rules, not from any prediction about who wins. Several states' counting rules make a days-long wait likely somewhere. That wait is also when misleading claims spread fastest, which links this forecast to the election-fakes and certification forecasts.",
+      "why_now": [
+        "Ranked-choice tabulation in Alaska and Maine",
+        "Georgia needs a majority or goes to a Dec 1 runoff",
+        "California mail ballots accepted through Nov 10"
+      ],
+      "base_rate": {
+        "text": "In each of the last four general elections (2018, 2020, 2022, 2024), at least one Senate race was still uncalled five days later. Shrunk for small sample: 80%. Race-call dates come from AP's public records and will be linked as evidence next cycle.",
+        "value": 80,
+        "evidence": [
+          "E021"
+        ]
+      },
+      "adjustments": [
+        {
+          "label": "Alaska's ranked-choice count is expected to be slow and contested",
+          "delta": 2,
+          "evidence": [
+            "E020"
+          ]
+        }
+      ],
+      "pathway": [
+        "N_COUNT_TIMING",
+        "N_ELECTION_STRESS"
+      ],
+      "increase_if": [
+        "Any Senate race within about 2 points",
+        "A third-party or write-in candidate pushing a ranked-choice race below 50%"
+      ],
+      "decrease_if": [
+        "A wave election with comfortable margins everywhere"
+      ],
+      "skeptic": "In a lopsided year, the AP can call even slow-counting states early, and ranked-choice rounds aren't needed if someone clears 50%.",
+      "escalation": "Three independent mechanisms (ranked choice, runoff rules, late mail) each only need one close race to trigger.",
+      "adjudicator": "Four for four in recent cycles with multiple independent triggers. Hold high.",
+      "resolution": {
+        "condition": "As of 11:59 p.m. Central on Nov 8, 2026, the Associated Press has not declared a winner in at least one 2026 regular or special US Senate general election, including races headed to a runoff or ranked-choice tabulation.",
+        "sources": [
+          "AP race calls",
+          "AP election results pages"
+        ],
+        "ambiguous": [
+          "A race the AP calls as 'advancing to a runoff' counts as uncalled.",
+          "Retracted AP calls count as uncalled."
+        ]
+      },
+      "research_question": "Which Senate races have polling within 3 points, and in which of them could ranked-choice or runoff rules apply?",
+      "evidence": [
+        "E020",
+        "E021"
+      ],
+      "market": {
+        "status": "not-checked",
+        "note": ""
+      },
+      "history": [
+        {
+          "at": "2026-11-01T19:30:00-06:00",
+          "p": {
+            "7d": 82,
+            "30d": null
           },
           "reason": "Initial publication"
         }

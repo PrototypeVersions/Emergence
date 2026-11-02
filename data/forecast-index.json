@@ -1,5 +1,5 @@
 {
-  "active": "2026-11-01-1800",
+  "active": "2026-11-01-1930",
   "snapshots": [
     {
       "cycle": "2026-11-01-1800",
@@ -9,6 +9,15 @@
       "engine_version": "1.0.0",
       "change_type": "Initial publication",
       "reason": "First research cycle and forecast set."
+    },
+    {
+      "cycle": "2026-11-01-1930",
+      "published": "2026-11-01T19:30:00-06:00",
+      "file": "forecasts/2026-11-01-1930.json",
+      "count": 14,
+      "engine_version": "1.1.0",
+      "change_type": "Model engine change + forecast update",
+      "reason": "Engine: added public-expectation estimates, the gap ranking and discovery tactics. Forecasts: added F13 and F14; F08 moved after a prediction-market check."
     }
   ]
 }

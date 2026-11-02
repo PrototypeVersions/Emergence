@@ -17,7 +17,7 @@ const map = read("data/world-map.json");
 const ev = read("data/evidence.json");
 const links = read("data/links.json");
 const index = read("data/forecast-index.json");
-read("data/resolutions.json");
+const resolutions = read("data/resolutions.json");
 if (errors.length) { report(); }
 
 const dupes = (arr, what) => {
@@ -94,6 +94,16 @@ for (const f of fc.forecasts) {
   if (!res || !res.sources || !res.sources.length) fail(`${tag}: resolution sources missing`);
   if (!res || !Array.isArray(res.ambiguous)) fail(`${tag}: ambiguous cases list missing`);
   if (!f.research_question) fail(`${tag}: research question missing`);
+  // public expectation and discovery tactic (engine 1.1)
+  const TACTICS = ["base-rate", "lagged-consequence", "calendar", "precedent", "disjunction", "look-back", "reverse-gap", "scenario"];
+  if (!f.expected || !Number.isInteger(f.expected.value) || f.expected.value < 1 || f.expected.value > 99) fail(`${tag}: expected.value must be an integer 1–99`);
+  else {
+    if (!["market", "judgment"].includes(f.expected.basis)) fail(`${tag}: expected.basis must be market or judgment`);
+    const gap = f.p[f.primary] - f.expected.value;
+    if (f.p[f.primary] >= 55 && gap >= 20 && !f.surprise_note) fail(`${tag}: likely and under the radar (gap +${gap}) but no surprise_note explaining why people would miss it`);
+    if (f.expected.basis === "market" && f.market.status !== "checked") fail(`${tag}: expected is market-based but market.status is not "checked"`);
+  }
+  if (!TACTICS.includes(f.tactic)) fail(`${tag}: tactic must be one of ${TACTICS.join(", ")}`);
   const last = f.history[f.history.length - 1];
   if (!last || last.p[f.primary] !== f.p[f.primary]) fail(`${tag}: latest history entry does not match current probability`);
 }
@@ -123,6 +133,21 @@ if (actives.length === 1 && existsSync(actives[0].file)) {
   const snap = JSON.parse(readFileSync(actives[0].file, "utf8"));
   const cur = Object.fromEntries(fc.forecasts.map((f) => [f.id, JSON.stringify(f.p)]));
   for (const f of snap.forecasts) if (cur[f.id] !== JSON.stringify(f.p)) fail(`Active snapshot disagrees with forecasts.json for ${f.id}. Publish a new snapshot instead of editing.`);
+}
+
+// ---- resolutions ----
+const snapCache = {};
+for (const r of resolutions.resolutions) {
+  const tag = `resolution ${r.forecast}@${r.cycle}`;
+  const s = index.snapshots.find((x) => x.cycle === r.cycle);
+  if (!s) { fail(`${tag}: cycle not in forecast-index`); continue; }
+  snapCache[s.file] ||= JSON.parse(readFileSync(s.file, "utf8"));
+  const f = snapCache[s.file].forecasts.find((x) => x.id === r.forecast);
+  if (!f) { fail(`${tag}: forecast not in that snapshot`); continue; }
+  if (f.p[r.horizon] !== r.p) fail(`${tag}: p ${r.p} does not match the frozen snapshot (${f.p[r.horizon]})`);
+  if (![0, 1, null].includes(r.outcome)) fail(`${tag}: outcome must be 1, 0 or null (ambiguous)`);
+  if (!r.title || !r.resolved_on || !r.note) fail(`${tag}: title, resolved_on and note are required`);
+  if (r.outcome !== null && !/^https?:\/\//.test(r.source || "")) fail(`${tag}: a source URL is required`);
 }
 
 // ---- immutability: published snapshots may be added, never changed ----

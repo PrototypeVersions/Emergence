@@ -13,7 +13,18 @@ For each forecast whose window has closed, apply `RESOLUTION_RULES.md` and appen
 - Add new records to `data/evidence.json` with the next free ID. Assign an independence cluster. If a new article repeats an existing report, reuse that report's cluster.
 - Check prediction markets for any forecast whose `market.status` is `to-check`.
 
-## 3. Implied-event challenge (mandatory)
+## 3. Gap search (mandatory)
+
+Run each tactic in `METHODOLOGY.md` against the current evidence. At minimum:
+
+- **Lagged consequences:** for every major event in the last 30 days, list what must follow (money moves, keys get used, reports are promised, deadlines start running) and when.
+- **Calendar:** list every deadline, scheduled release, court date and statutory step inside the next 30 days.
+- **Precedent:** for each major event, find the closest past case and write down what happened in the 30 days after it.
+- **Reverse gap:** check prediction markets and the most-covered stories, and flag anything the model doubts.
+
+Keep candidates with p ≥ 55 and a real gap. Each needs a resolvable condition and a `surprise_note`. Update `expected` on existing forecasts when markets or coverage move.
+
+## 3b. Implied-event challenge (mandatory)
 
 Ask: *What important event is not on the list but follows naturally from two or more currently active conditions?* Generate at least 20 candidates. Red-team them. Keep only candidates with a coherent mechanism, real evidence, nontrivial probability, clear newsworthiness and a resolvable condition. Then ask the counter-consensus questions: which heavily covered event is overestimated, and which ignored event is underestimated?
 

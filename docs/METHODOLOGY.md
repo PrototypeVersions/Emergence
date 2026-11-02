@@ -27,6 +27,39 @@ The validator enforces that `base_rate.value + sum(adjustments.delta)` equals th
 
 v1 uses **7 days** and **30 days** only. Updates are manual, so 24-hour and 72-hour forecasts would be stale most of the time. A forecast may leave a horizon `null` when the question only makes sense in one window (for example, election week).
 
+## Likely, and under the radar (engine 1.1)
+
+The site leads with forecasts that are probably true and that most people aren't expecting.
+
+Each forecast has an `expected` block. It holds the probability a typical informed news reader would assign, for the forecast's primary window:
+
+- `basis: "market"` uses prediction-market prices. Note any mismatch between the market's question and ours.
+- `basis: "judgment"` is the forecaster's labeled estimate. It's a judgment, not a survey, and the site says so.
+
+```
+gap      = p(primary) − expected
+surprise = gap × (0.5 + 0.5·newsworthiness)
+```
+
+**Likely, and under the radar** means p ≥ 55 and gap ≥ 20. Each one needs a `surprise_note` explaining why people would miss it. The validator enforces this. **Expected, but may not happen** means gap ≤ −5.
+
+### Discovery tactics
+
+Each forecast records the `tactic` that produced it:
+
+| Tactic | Question it asks |
+|---|---|
+| `lagged-consequence` | What has already happened whose consequences haven't arrived yet? |
+| `calendar` | What do rules, deadlines and procedures force to happen? |
+| `precedent` | What followed the most similar past event? |
+| `disjunction` | Which group of separate modest risks makes "at least one" likely? |
+| `look-back` | Imagine the window has closed and everyone says "obviously." What happened? |
+| `reverse-gap` | What does everyone expect that the evidence doesn't support? |
+| `base-rate` | The plain frequency, when that alone is surprising |
+| `scenario` | Judgment where no base rate exists |
+
+Most real edge comes from `lagged-consequence` and `calendar`. Specialists usually already know about obviously likely events. The overlooked ones are where consequences lag the news, or where rules force an outcome nobody is watching.
+
 ## Signal score
 
 ```

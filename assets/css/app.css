@@ -504,3 +504,29 @@ body.analyst .briefing-only { display: none; }
 .pbody .st .link { color: var(--blue); font-weight: 600; }
 .maphint { display: none; margin-top: .6rem; }
 @media (max-width: 860px) { .maphint { display: block; } }
+
+/* ---------- model vs. expectation ---------- */
+body.no-horizon #horizon { display: none; }
+.gapbar { position: relative; height: 64px; max-width: 34rem; margin: .5rem 0 1.5rem; }
+.gapbar .g-axis { position: absolute; left: 0; right: 0; top: 30px; height: 2px; background: var(--line-strong); border-radius: 2px; }
+.gapbar .g-span { position: absolute; top: 28px; height: 6px; border-radius: 3px; }
+.gapbar .g-span.up { background: linear-gradient(90deg, rgba(141,154,181,.35), var(--blue)); }
+.gapbar .g-span.down { background: linear-gradient(90deg, var(--amber), rgba(141,154,181,.35)); }
+.g-mark { position: absolute; top: 0; bottom: 0; width: 0; }
+.g-mark i { position: absolute; left: -6px; top: 25px; width: 12px; height: 12px; border-radius: 50%; }
+.g-mark em { position: absolute; font-style: normal; font-size: var(--t-xs); white-space: nowrap; transform: translateX(-50%); }
+.g-exp i { background: var(--abyss); border: 2px solid var(--mute); }
+.g-exp em { bottom: 0; color: var(--mute); }
+.g-mod i { background: var(--blue); box-shadow: 0 0 10px rgba(90,176,255,.6); }
+.g-mod em { top: 0; color: var(--ink); font-weight: 600; }
+.g-mark.el em { transform: translateX(-8px); }
+.g-mark.er em { transform: translateX(calc(-100% + 8px)); }
+.trace-label { font-size: var(--t-xs); color: var(--mute); margin-bottom: .5rem; }
+.scorecards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; margin-bottom: 1rem; max-width: 46rem; }
+.scorecards div { display: grid; }
+.scorecards b { font-family: var(--serif); font-size: var(--t-2xl); font-weight: 500; line-height: 1.05; }
+.scorecards span { font-size: var(--t-xs); color: var(--mute); }
+.outcome { font-weight: 600; }
+.outcome[data-o="1"] { color: var(--green); }
+.outcome[data-o="0"] { color: var(--red); }
+@media (max-width: 520px) { .scorecards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

@@ -10,7 +10,7 @@
   const S = {
     horizon: store.get("horizon", "7d"),
     mode: store.get("mode", "briefing"),
-    sort: "signal",
+    sort: "radar",
     evFilter: "all",
     data: null,
   };
@@ -23,15 +23,15 @@
 
   // ---------- data ----------
   async function load() {
-    const files = ["forecasts", "world-map", "evidence", "links", "forecast-index"];
+    const files = ["forecasts", "world-map", "evidence", "links", "forecast-index", "resolutions"];
     const out = await Promise.all(files.map((f) => fetch(`data/${f}.json`, { cache: "no-cache" }).then((r) => { if (!r.ok) throw new Error(`data/${f}.json returned ${r.status}`); return r.json(); })));
-    const [fc, map, ev, links, index] = out;
+    const [fc, map, ev, links, index, res] = out;
     const nodes = Object.fromEntries(map.nodes.map((n) => [n.id, n]));
     const evidence = Object.fromEntries(ev.records.map((e) => [e.id, e]));
     const forecasts = fc.forecasts;
     const byId = Object.fromEntries(forecasts.map((f) => [f.id, f]));
     const paths = Object.fromEntries(links.paths.map((p) => [p.id, p]));
-    S.data = { fc, map, nodes, ev, evidence, forecasts, byId, links, paths, index };
+    S.data = { fc, map, nodes, ev, evidence, forecasts, byId, links, paths, index, res };
   }
 
   // ---------- model helpers ----------
@@ -53,16 +53,33 @@
     const s = 100 * Math.sqrt(p / 100) * (f.impact / 100) * (0.5 + 0.5 * f.newsworthiness / 100) * (1 + 0.1 * (d - 1)) * ATTN[f.attention] * (0.6 + 0.4 * activation(f));
     return Math.round(s);
   }
-  function rank(h) {
-    const fs = S.data.forecasts.filter((f) => pAt(f, h) !== null);
-    const taken = new Set();
-    const pick = (arr) => { const f = arr.find((x) => !taken.has(x.id)); if (f) taken.add(f.id); return f; };
-    const bySig = [...fs].sort((a, b) => signal(b, h) - signal(a, h));
-    const hero = pick(bySig.filter((f) => f.domains.length >= 3)) || pick(bySig);
-    const likely = pick([...fs].filter((f) => f.newsworthiness >= 50).sort((a, b) => pAt(b, h) - pAt(a, h)));
-    const tail = pick([...fs].filter((f) => pAt(f, h) <= 20 && f.impact >= 70).sort((a, b) => b.impact * b.newsworthiness - a.impact * a.newsworthiness));
-    const under = pick(bySig.filter((f) => f.attention === "low"));
-    return { hero, likely, under, tail };
+  // Public expectation is estimated for each forecast's main (primary) window.
+  const pp = (f) => f.p[f.primary];
+  const gap = (f) => pp(f) - f.expected.value;
+  /** Surprise score: the gap, weighted by how much it would be news. */
+  const surprise = (f) => Math.round(gap(f) * (0.5 + 0.5 * f.newsworthiness / 100));
+  const isUnderRadar = (f) => pp(f) >= 55 && gap(f) >= 20;
+  const isOverexpected = (f) => gap(f) <= -5;
+  function pulsePicks() {
+    const fs = S.data.forecasts;
+    const bySurprise = [...fs].sort((a, b) => surprise(b) - surprise(a));
+    const under = bySurprise.filter(isUnderRadar);
+    const hero = under[0] || bySurprise[0];
+    const second = under.find((f) => f !== hero);
+    const over = fs.filter(isOverexpected).sort((a, b) => gap(a) - gap(b))[0];
+    const tail = fs.filter((f) => pp(f) <= 20 && f.impact >= 70 && f !== over).sort((a, b) => b.impact * b.newsworthiness - a.impact * a.newsworthiness)[0];
+    return { hero, second, over, tail, underCount: under.length };
+  }
+  const gapText = (f) => { const g = gap(f); return `${f.expected.basis === "market" ? "Markets" : "Most people"} ~${f.expected.value}% (${g > 0 ? "+" : ""}${g} pts)`; };
+  function gapBar(f) {
+    const p = pp(f), e = f.expected.value, lo = Math.min(p, e), hi = Math.max(p, e);
+    const who = f.expected.basis === "market" ? "Markets" : "Most people";
+    const edge = (v) => (v < 10 ? " el" : v > 90 ? " er" : "");
+    return `<div class="gapbar" role="img" aria-label="Model ${p} percent; ${who.toLowerCase()} about ${e} percent">
+      <span class="g-axis"></span><span class="g-span ${p >= e ? "up" : "down"}" style="left:${lo}%;width:${hi - lo}%"></span>
+      <span class="g-mark g-exp${edge(e)}" style="left:${e}%"><i></i><em>${who} ~${e}%</em></span>
+      <span class="g-mark g-mod${edge(p)}" style="left:${p}%"><i></i><em>Model ${p}%</em></span>
+    </div>`;
   }
   function lastMove(f) {
     const h = f.history; if (!h || h.length < 2) return null;
@@ -96,43 +113,42 @@
 
   // ---------- views ----------
   function viewPulse() {
-    const h = S.horizon;
-    const { hero, likely, under, tail } = rank(h);
+    const { hero, second, over, tail, underCount } = pulsePicks();
     const L = S.data.links;
-    const n = S.data.forecasts.length;
-    const emergent = S.data.forecasts.filter((f) => f.domains.length >= 3).length;
-    const tails = S.data.forecasts.filter((f) => (pAt(f, "30d") ?? 100) <= 20 && f.impact >= 70).length;
+    const hh = hero.primary;
     const trace = hero.pathway.map((id, i) => {
       const nd = S.data.nodes[id];
       return `<span class="trace-step">${i ? `<span class="trace-link" style="--i:${i}" aria-hidden="true"></span>` : ""}<button type="button" class="trace-node" style="--i:${i};--c:${domColor(nd.domain)}" data-node="${id}"><span class="dot" aria-hidden="true"></span>${esc(nd.label)}</button></span>`;
     }).join("");
     const pickHTML = (f, kind, label, why) => f ? `<a class="pick" data-kind="${kind}" href="#/forecast/${f.id}">
         <span class="kind">${label}</span>
-        <span class="num">${pAt(f, h)}%<small>in ${hLabel(h)}</small></span>
+        <span class="num">${pp(f)}%<small>in ${hLabel(f.primary)}</small></span>
         <span class="t">${esc(f.title)}</span>
         <span class="why">${why(f)}</span></a>` : "";
     return `
       <h1 class="pulse-q">What could become tomorrow’s headline?</h1>
       <section class="hero" aria-labelledby="hero-title">
         <div>
-          <div class="hero-num">${pAt(hero, h)}<sup>%</sup></div>
-          <p class="hero-when">chance in the next ${hLabel(h)}<br>by ${closes(h)}</p>
+          <div class="hero-num">${pp(hero)}<sup>%</sup></div>
+          <p class="hero-when">chance within ${hLabel(hh)}<br>by ${closes(hh)}</p>
         </div>
         <div class="hero-body">
-          <p class="hero-tag">Top emergent forecast, crossing ${hero.domains.length} domains</p>
+          <p class="hero-tag">${isUnderRadar(hero) ? "Likely, and under the radar" : "Biggest gap from expectations"}</p>
           <h2 id="hero-title">${esc(hero.title)}</h2>
-          <p class="summary">${esc(hero.summary)}</p>
-          <div class="trace" aria-label="How it could happen">${trace}</div>
+          <p class="summary">${esc(hero.surprise_note || hero.summary)}</p>
+          ${gapBar(hero)}
+          <p class="trace-label">How it connects</p>
+          <div class="trace" aria-label="How it connects">${trace}</div>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#/forecast/${hero.id}">Explore this forecast</a>
-            <span class="small muted">Signal score ${signal(hero, h)}, ${esc(hero.confidence)} confidence</span>
+            <span class="small muted">${esc(hero.confidence[0].toUpperCase() + hero.confidence.slice(1))} confidence</span>
           </div>
         </div>
       </section>
       <section class="trio" aria-label="Other ways in">
-        ${pickHTML(likely, "likely", "Most likely", (f) => `Newsworthy and the highest probability on the board.`)}
-        ${pickHTML(under, "underwatched", "Most underwatched", (f) => `High signal, little public attention.`)}
-        ${pickHTML(tail, "tail", "Highest-impact tail", (f) => `Unlikely, but impact ${f.impact}/100.`)}
+        ${pickHTML(second, "likely", "Also likely, under the radar", (f) => `Most people would guess about ${f.expected.value}%.`)}
+        ${pickHTML(over, "underwatched", "Expected, but may not happen", (f) => `${f.expected.basis === "market" ? "Markets imply" : "Most people would guess"} about ${f.expected.value}%. The model is less sure.`)}
+        ${pickHTML(tail, "tail", "Long shot", (f) => `Unlikely, but impact ${f.impact}/100.`)}
       </section>
       <section class="pulse-lower">
         <div>
@@ -151,9 +167,9 @@
             <p style="margin-top:1rem"><button type="button" class="link" data-node="${L.biggest_unknown.node}">See the node</button></p>
           </div>
           <div class="tally">
-            <div><b>${n}</b><span>open forecasts</span></div>
-            <div><b>${emergent}</b><span>cross 3+ domains</span></div>
-            <div><b>${tails}</b><span>tail risks</span></div>
+            <div><b>${S.data.forecasts.length}</b><span>open forecasts</span></div>
+            <div><b>${underCount}</b><span>likely, under the radar</span></div>
+            <div><b>${S.data.links.paths.length}</b><span>hidden links</span></div>
             <div><b>${S.data.ev.records.length}</b><span>evidence records</span></div>
           </div>
           <p class="small" style="margin-top:2rem"><a class="link" href="#/method">How these numbers are made</a></p>
@@ -162,7 +178,9 @@
   }
 
   const SORTS = {
-    signal: { label: "Emergent", note: "Ranked by Signal score: probability, impact, newsworthiness, how many domains a forecast crosses, and how little attention it's getting. Higher means more worth noticing, not more likely.", fn: (h) => (a, b) => signal(b, h) - signal(a, h) },
+    radar: { label: "Under the radar", note: "Ranked by the gap between the model's probability and what most people would expect, weighted by how newsworthy the event would be. Gaps use each forecast's main window.", fn: () => (a, b) => surprise(b) - surprise(a) },
+    over: { label: "Overexpected", note: "Events most people, or prediction markets, think are more likely than the model does.", filter: (f) => isOverexpected(f), fn: () => (a, b) => gap(a) - gap(b) },
+    signal: { label: "Cross-domain", note: "Ranked by Signal score: probability, impact, newsworthiness, how many domains a forecast crosses, and how little attention it's getting. Higher means more worth noticing, not more likely.", fn: (h) => (a, b) => signal(b, h) - signal(a, h) },
     likely: { label: "Most likely", note: "Highest probability first.", fn: (h) => (a, b) => pAt(b, h) - pAt(a, h) },
     important: { label: "Most important", note: "Probability × impact.", fn: (h) => (a, b) => pAt(b, h) * b.impact - pAt(a, h) * a.impact },
     underwatched: { label: "Underwatched", note: "Forecasts with low public attention, ranked by Signal score. Low attention is not evidence that an event is likely.", filter: (f) => f.attention === "low", fn: (h) => (a, b) => signal(b, h) - signal(a, h) },
@@ -178,7 +196,7 @@
         <h3>${esc(f.title)}</h3>
         ${chips(f.domains)}
         ${chain(f.pathway)}
-        <span class="delta">${p === null ? `Only forecast for ${hLabel(f.primary)}` : mv ? `${mv.delta > 0 ? "+" : ""}${mv.delta} pts since last cycle` : `New this cycle. Closes ${closes(h)}.`}</span>
+        <span class="delta">${p === null ? `Only forecast for ${hLabel(f.primary)}.` : `${gapText(f)}${f.primary !== h ? ` over ${hLabel(f.primary)}` : ""}. ${mv ? `${mv.delta > 0 ? "+" : ""}${mv.delta} pts since last cycle.` : `Closes ${closes(h)}.`}`}</span>
       </div>
       ${meters(f, h)}
     </a>`;
@@ -204,7 +222,8 @@
     const f = S.data.byId[id];
     if (!f) return notFound();
     tab = FTABS.some(([k]) => k === tab) ? tab : "overview";
-    const h = effH(f, S.horizon);
+    const h = f.primary; // a forecast page always leads with its main window
+
     const other = h === "7d" ? "30d" : "7d";
     const po = pAt(f, other);
     const head = `
@@ -217,6 +236,7 @@
             <span>Within <b>${hLabel(h)}</b>, by ${closes(h)}</span>
             <span>80% range <b>${f.range[h][0]}–${f.range[h][1]}%</b></span>
             <span>Confidence <b>${esc(f.confidence)}</b></span>
+            <span>${f.expected.basis === "market" ? "Markets" : "Most people"} <b>~${f.expected.value}%</b></span>
             ${po !== null ? `<span>${hLabel(other)}: <b>${po}%</b></span>` : `<span>Election week only</span>`}
             <span class="analyst-only-inline">Signal <b>${signal(f, h)}</b></span>
           </div>
@@ -231,6 +251,7 @@
     return `<div class="cols">
       <div>
         <div class="block"><h2>In plain terms</h2><p class="lede">${esc(f.summary)}</p></div>
+        ${f.surprise_note ? `<div class="block"><h2>Why most people would miss this</h2><p>${esc(f.surprise_note)}</p>${gapBar(f)}</div>` : ""}
         <div class="block"><h2>Why now</h2><ul class="bullets">${f.why_now.map((w) => `<li>${esc(w)}</li>`).join("")}</ul></div>
         <div class="block analyst-only"><h2>Three views of this number</h2>
           <div class="debate">
@@ -293,7 +314,11 @@
         ${[0, 25, 50, 75, 100].map((t) => `<span class="tk" style="left:${t}%">${t}</span>`).join("")}
       </div>
     </div>
-    <div class="block"><h2>Market check</h2><p class="small">${f.market.status === "none" ? "No prediction market covers this question." : f.market.status === "to-check" ? esc(f.market.note) : "Not checked this cycle."}</p></div>`;
+    <div class="block"><h2>Model vs. ${f.expected.basis === "market" ? "the market" : "most people"}</h2>
+      <p class="small">${f.expected.basis === "market" ? "Taken from prediction-market prices." : "The forecaster's estimate of what a typical, informed news reader would guess. A judgment, not a survey."} ${esc(f.expected.note)}</p>
+      ${gapBar(f)}
+    </div>
+    <div class="block"><h2>Market check</h2><p class="small">${f.market.status === "none" ? "No prediction market covers this question." : f.market.status === "not-checked" ? "Not checked this cycle." : esc(f.market.note)}</p></div>`;
   }
 
   function fEvidence(f) {
@@ -448,19 +473,38 @@
 
   function viewRecord() {
     const fs = S.data.forecasts;
-    const resolved = fs.filter((f) => f.outcome !== undefined && f.outcome !== null).length;
+    const R = S.data.res.resolutions;
+    const scored = R.filter((r) => r.outcome !== null);
+    const brier = (r) => (r.p / 100 - r.outcome) ** 2;
+    const avg = scored.length ? scored.reduce((t, r) => t + brier(r), 0) / scored.length : null;
+    const today = new Date().toISOString().slice(0, 10);
+    const resolvedIds = new Set(R.map((r) => `${r.forecast}|${r.horizon}`));
+    const awaiting = fs.filter((f) => S.data.fc.horizons[f.primary].closes < today && !resolvedIds.has(`${f.id}|${f.primary}`));
+    const open = fs.filter((f) => !awaiting.includes(f) && !resolvedIds.has(`${f.id}|${f.primary}`));
     const idx = S.data.index;
-    return `<header class="page-head"><h1>Track record</h1><p>Where the model's past calls are checked against what happened. Forecasts are frozen when published and scored when they close.</p></header>
-      <div class="cal"><h2 style="font-size:var(--t-md)">Calibration</h2>
-        <p style="margin-top:.5rem">${resolved} of 20 resolved forecasts needed before calibration is shown. Until then, any accuracy claim would be noise.</p>
-        <div class="prog-bar"><span style="width:${Math.min(resolved / 20 * 100, 100)}%"></span></div>
-        <p class="xs muted">The first 7-day forecasts close on ${closes("7d")}.</p></div>
+    const bins = Array.from({ length: 10 }, (_, i) => ({ lo: i * 10, n: 0, sp: 0, so: 0 }));
+    for (const r of scored) { const b = bins[Math.min(9, Math.floor(r.p / 10))]; b.n++; b.sp += r.p; b.so += r.outcome; }
+    const outcome = (r) => r.outcome === 1 ? "Yes" : r.outcome === 0 ? "No" : "Ambiguous";
+    return `<header class="page-head"><h1>Track record</h1><p>Where the model's past calls are checked against what happened. Each forecast is scored on the number first published for its window, so later revisions can't improve the score.</p></header>
+      <div class="scorecards">
+        <div><b>${scored.length}</b><span>resolved</span></div>
+        <div><b>${avg === null ? "—" : avg.toFixed(3)}</b><span>average Brier score</span></div>
+        <div><b>${awaiting.length}</b><span>awaiting resolution</span></div>
+        <div><b>${open.length}</b><span>still open</span></div>
+      </div>
+      <p class="small muted" style="max-width:44em">The Brier score runs from 0 (perfect) to 1. Always answering 50% earns 0.25, so anything well below 0.25 means the forecasts carry real information.</p>
+      <section class="section"><h2>Calibration</h2>${scored.length >= 20 ? `<div class="tablewrap"><table class="table"><thead><tr><th>Forecast range</th><th class="num">Forecasts</th><th class="num">Average forecast</th><th class="num">Actually happened</th></tr></thead><tbody>${bins.filter((b) => b.n).map((b) => `<tr><td>${b.lo}–${b.lo + 10}%</td><td class="num">${b.n}</td><td class="num">${Math.round(b.sp / b.n)}%</td><td class="num">${Math.round(b.so / b.n * 100)}%</td></tr>`).join("")}</tbody></table></div>` : `<div class="cal">
+        <p>Calibration needs 20 resolved forecasts; ${scored.length} so far. Until then, any accuracy claim would be noise.</p>
+        <div class="prog-bar"><span style="width:${Math.min(scored.length / 20 * 100, 100)}%"></span></div>
+        <p class="xs muted">The first 7-day window closes on ${closes("7d")}.</p></div>`}</section>
+      ${awaiting.length ? `<section class="section"><h2>Awaiting resolution</h2><p class="small muted" style="margin-bottom:1rem">These windows have closed. Outcomes are checked against the named sources during the next update.</p><div class="tablewrap"><table class="table"><thead><tr><th>Forecast</th><th>Closed</th><th class="num">Forecast</th></tr></thead><tbody>${awaiting.map((f) => `<tr><td><a href="#/forecast/${f.id}/resolution">${esc(f.title)}</a></td><td>${closes(f.primary)}</td><td class="num">${pp(f)}%</td></tr>`).join("")}</tbody></table></div></section>` : ""}
+      <section class="section"><h2>Resolved</h2>${R.length ? `<div class="tablewrap"><table class="table"><thead><tr><th>Forecast</th><th>Closed</th><th class="num">Forecast</th><th>Outcome</th><th class="num">Brier</th></tr></thead><tbody>${R.map((r) => `<tr><td>${esc(r.title)}<div class="xs muted">${esc(r.note)}${r.source ? ` <a class="link" href="${esc(r.source)}" target="_blank" rel="noopener">Source</a>` : ""}</div></td><td>${fmtShort(r.resolved_on)}</td><td class="num">${r.p}%</td><td><span class="outcome" data-o="${r.outcome}">${outcome(r)}</span></td><td class="num">${r.outcome === null ? "—" : brier(r).toFixed(3)}</td></tr>`).join("")}</tbody></table></div>` : `<p class="muted">Nothing has resolved yet. The first forecasts close on ${closes("7d")}.</p>`}</section>
       <section class="section"><h2>Open forecasts</h2><div class="tablewrap"><table class="table">
-        <thead><tr><th>Forecast</th><th>Window</th><th>Closes</th><th class="num">Published</th><th>Status</th></tr></thead>
-        <tbody>${fs.map((f) => `<tr><td><a href="#/forecast/${f.id}">${esc(f.title)}</a></td><td>${hLabel(f.primary)}</td><td>${closes(f.primary)}</td><td class="num">${f.p[f.primary]}%</td><td>Open</td></tr>`).join("")}</tbody></table></div></section>
+        <thead><tr><th>Forecast</th><th>Window</th><th>Closes</th><th class="num">Model</th><th class="num">Most people</th></tr></thead>
+        <tbody>${open.map((f) => `<tr><td><a href="#/forecast/${f.id}">${esc(f.title)}</a></td><td>${hLabel(f.primary)}</td><td>${closes(f.primary)}</td><td class="num">${pp(f)}%</td><td class="num">~${f.expected.value}%</td></tr>`).join("")}</tbody></table></div></section>
       <section class="section"><h2>Published snapshots</h2><div class="tablewrap"><table class="table">
-        <thead><tr><th>Cycle</th><th>Published</th><th>Forecasts</th><th>Change type</th><th>File</th></tr></thead>
-        <tbody>${idx.snapshots.map((s) => `<tr><td>${esc(s.cycle)}${s.cycle === idx.active ? ' <span class="pill">Current</span>' : ""}</td><td>${fmtDate(s.published)}</td><td>${s.count}</td><td>${esc(s.change_type)}</td><td><a href="${esc(s.file)}">${esc(s.file)}</a></td></tr>`).join("")}</tbody></table></div></section>`;
+        <thead><tr><th>Cycle</th><th>Published</th><th class="num">Forecasts</th><th>Change</th><th>File</th></tr></thead>
+        <tbody>${[...idx.snapshots].reverse().map((s) => `<tr><td>${esc(s.cycle)}${s.cycle === idx.active ? ' <span class="pill">Current</span>' : ""}</td><td>${fmtDate(s.published)}</td><td class="num">${s.count}</td><td>${esc(s.change_type)}<div class="xs muted">${esc(s.reason || "")}</div></td><td><a href="${esc(s.file)}">${esc(s.file.split("/").pop())}</a></td></tr>`).join("")}</tbody></table></div></section>`;
   }
 
   function viewMethod() {
@@ -469,6 +513,19 @@
       <h2>Where the numbers come from</h2>
       <p>Each forecast starts from a base rate: how often events like this have actually happened. A short list of adjustments for current conditions is then added or subtracted, each tied to evidence. Every step is shown on the forecast's "Why this number" tab. When there's no honest base rate, the forecast says so and is marked low confidence.</p>
       <p>These are structured judgments, not measurements. The 80% range is the forecaster's own uncertainty.</p>
+      <h2>Likely, and under the radar</h2>
+      <p>The most useful forecast is one that's probably true and that most people aren't expecting. Each forecast carries an estimate of what a typical informed news reader would guess. It comes from prediction markets where one exists; otherwise it's the forecaster's labeled judgment. The site leads with the biggest gaps between that guess and the model:</p>
+      <div class="formula">Surprise = (model probability − what most people expect) × (½ + ½ newsworthiness)</div>
+      <p>A forecast counts as "likely, and under the radar" when the model gives it at least 55% and that's at least 20 points above the expected guess. The reverse also matters: when most people or markets expect something the model doubts, it appears under "Expected, but may not happen."</p>
+      <h2>How likely-but-overlooked events are found</h2>
+      <ul>
+        <li><b>Already happened, not yet visible.</b> An event has occurred, but its consequences haven't arrived. Stolen money has to move; stolen keys get used later.</li>
+        <li><b>Calendars and mechanical triggers.</b> Rules, deadlines and procedures that force an outcome, like vote-counting rules or certification deadlines.</li>
+        <li><b>What followed last time.</b> The sequence after the most similar past event.</li>
+        <li><b>At least one of.</b> Several modest, separate risks that together make "at least one happens" likely.</li>
+        <li><b>Looking back from the future.</b> Imagine the window has closed and everyone says "obviously that happened." What was it?</li>
+        <li><b>The reverse gap.</b> Widely expected events the evidence doesn't support.</li>
+      </ul>
       <h2>Signal score</h2>
       <p>Probability alone is a poor guide to what matters. A 70% chance of something routine is less interesting than a 12% chance of something that would reshape a field. The Signal score ranks forecasts by how worth noticing they are:</p>
       <div class="formula">Signal = 100 × √probability × impact × (½ + ½ newsworthiness) × (1 + 0.1 per extra domain) × attention × (0.6 + 0.4 × share of path with evidence)</div>
@@ -540,6 +597,7 @@
       default: html = notFound(); c = [["Not found"]];
     }
     view.innerHTML = html;
+    document.body.classList.toggle("no-horizon", top === "pulse" || top === "forecast");
     crumbs(c);
     document.querySelectorAll(".nav a").forEach((el) => { if (el.dataset.nav === nav) el.setAttribute("aria-current", "page"); else el.removeAttribute("aria-current"); });
     document.title = (c[c.length - 1][0] === "Pulse" ? "" : c[c.length - 1][0] + " | ") + "Emergence";
