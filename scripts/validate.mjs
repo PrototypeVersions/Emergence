@@ -18,6 +18,7 @@ const ev = read("data/evidence.json");
 const links = read("data/links.json");
 const index = read("data/forecast-index.json");
 const stories = read("data/stories.json");
+const calendar = read("data/calendar.json");
 const resolutions = read("data/resolutions.json");
 if (errors.length) { report(); }
 
@@ -144,9 +145,22 @@ for (const st of stories.stories) {
   if (st.path && !pIds.has(st.path)) fail(`${tag}: path ${st.path} does not exist`);
   if (!["open", "held", "partly", "wrong"].includes(st.status)) fail(`${tag}: status must be open, held, partly or wrong`);
   if (st.status !== "open" && !st.verdict) fail(`${tag}: a closed story needs a verdict note`);
+  if (st.status !== "open" && !st.postmortem) fail(`${tag}: a closed story needs a postmortem`);
 }
 for (const id of stories.brief.stories) if (!sIds.has(id)) fail(`brief: story ${id} does not exist`);
 if (!stories.brief.title || !stories.brief.paragraphs?.length) fail("brief: title and paragraphs are required");
+
+// ---- calendar ----
+for (const e of calendar.entries) {
+  const tag = `calendar ${e.date}`;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(e.date)) fail(`${tag}: date must be YYYY-MM-DD`);
+  for (const k of ["title", "hype", "reality"]) if (!e[k]) fail(`${tag}: missing ${k}`);
+  for (const f of e.forecasts) if (!fIds.has(f)) fail(`${tag}: forecast ${f} does not exist`);
+  for (const x of e.stories) if (!sIds.has(x)) fail(`${tag}: story ${x} does not exist`);
+  for (const x of e.evidence) if (!evIds.has(x)) fail(`${tag}: evidence ${x} does not exist`);
+  if (e.done && !e.outcome) fail(`${tag}: a completed date needs an outcome`);
+}
+for (const b of stories.brief_archive || []) if (!b.date || !b.title || !b.paragraphs?.length) fail("brief_archive: each brief needs date, title and paragraphs");
 
 // ---- snapshots ----
 const actives = index.snapshots.filter((s) => s.cycle === index.active);
@@ -170,6 +184,7 @@ for (const r of resolutions.resolutions) {
   const f = snapCache[s.file].forecasts.find((x) => x.id === r.forecast);
   if (!f) { fail(`${tag}: forecast not in that snapshot`); continue; }
   if (f.p[r.horizon] !== r.p) fail(`${tag}: p ${r.p} does not match the frozen snapshot (${f.p[r.horizon]})`);
+  if (snapCache[s.file].horizons[r.horizon]?.closes !== r.closes) fail(`${tag}: closes ${r.closes} does not match that snapshot's ${r.horizon} window`);
   if (![0, 1, null].includes(r.outcome)) fail(`${tag}: outcome must be 1, 0 or null (ambiguous)`);
   if (!r.title || !r.resolved_on || !r.note) fail(`${tag}: title, resolved_on and note are required`);
   if (r.outcome !== null && !/^https?:\/\//.test(r.source || "")) fail(`${tag}: a source URL is required`);
@@ -185,7 +200,7 @@ if (base) {
 }
 
 // ---- browser assets ----
-for (const p of ["index.html", "assets/css/app.css", "assets/js/app.js", "assets/favicon.svg"]) if (!existsSync(p)) fail(`Missing asset ${p}`);
+for (const p of ["index.html", "assets/css/app.css", "assets/js/app.js", "assets/favicon.svg", "scripts/build-feed.mjs"]) if (!existsSync(p)) fail(`Missing asset ${p}`);
 
 report();
 

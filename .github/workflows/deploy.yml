@@ -42,10 +42,14 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
       - name: Assemble site
         run: |
           mkdir -p _site
           cp -r index.html assets data forecasts _site/
+          node scripts/build-feed.mjs > _site/feed.xml
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

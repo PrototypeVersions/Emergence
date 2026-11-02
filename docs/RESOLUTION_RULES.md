@@ -17,7 +17,7 @@
 
 ## `data/resolutions.json` entry format
 
-`cycle` is the cycle where that window's number was first published.
+`cycle` is the cycle where that window's number was first published. `closes` is the window's close date, which identifies the window when a forecast is carried into later windows.
 
 ```json
 {
@@ -25,6 +25,7 @@
   "title": "A single crypto theft of $100 million or more",
   "cycle": "2026-11-01-1800",
   "horizon": "30d",
+  "closes": "2026-12-01",
   "p": 33,
   "outcome": 1,
   "resolved_on": "2026-12-01",

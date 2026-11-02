@@ -35,7 +35,8 @@
       "S2",
       "S3",
       "S4"
-    ]
+    ],
+    "changes": []
   },
   "stories": [
     {
@@ -101,7 +102,8 @@
       "status": "open",
       "verdict": null,
       "published": "2026-11-01",
-      "lead_time": null
+      "lead_time": null,
+      "postmortem": null
     },
     {
       "id": "S2",
@@ -147,7 +149,8 @@
       "status": "open",
       "verdict": null,
       "published": "2026-11-01",
-      "lead_time": null
+      "lead_time": null,
+      "postmortem": null
     },
     {
       "id": "S3",
@@ -201,7 +204,8 @@
       "status": "open",
       "verdict": null,
       "published": "2026-11-01",
-      "lead_time": null
+      "lead_time": null,
+      "postmortem": null
     },
     {
       "id": "S4",
@@ -265,7 +269,9 @@
       "status": "open",
       "verdict": null,
       "published": "2026-11-01",
-      "lead_time": null
+      "lead_time": null,
+      "postmortem": null
     }
-  ]
+  ],
+  "brief_archive": []
 }

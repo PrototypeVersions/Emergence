@@ -23,16 +23,16 @@
 
   // ---------- data ----------
   async function load() {
-    const files = ["forecasts", "world-map", "evidence", "links", "forecast-index", "resolutions", "stories"];
+    const files = ["forecasts", "world-map", "evidence", "links", "forecast-index", "resolutions", "stories", "calendar"];
     const out = await Promise.all(files.map((f) => fetch(`data/${f}.json`, { cache: "no-cache" }).then((r) => { if (!r.ok) throw new Error(`data/${f}.json returned ${r.status}`); return r.json(); })));
-    const [fc, map, ev, links, index, res, stories] = out;
+    const [fc, map, ev, links, index, res, stories, calendar] = out;
     const nodes = Object.fromEntries(map.nodes.map((n) => [n.id, n]));
     const evidence = Object.fromEntries(ev.records.map((e) => [e.id, e]));
     const forecasts = fc.forecasts;
     const byId = Object.fromEntries(forecasts.map((f) => [f.id, f]));
     const paths = Object.fromEntries(links.paths.map((p) => [p.id, p]));
     const storyById = Object.fromEntries(stories.stories.map((x) => [x.id, x]));
-    S.data = { fc, map, nodes, ev, evidence, forecasts, byId, links, paths, index, res, stories, storyById };
+    S.data = { fc, map, nodes, ev, evidence, forecasts, byId, links, paths, index, res, stories, storyById, calendar };
   }
 
   // ---------- model helpers ----------
@@ -146,6 +146,7 @@
       <section class="brief" aria-labelledby="brief-title">
         <p class="brief-date">Weekly brief, ${fmtDate(B.date)}</p>
         <h1 id="brief-title" class="brief-title">${esc(B.title)}</h1>
+        ${B.changes && B.changes.length ? `<div class="changes"><h2>What changed since last week</h2><ul>${B.changes.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
         <div class="brief-body">${B.paragraphs.map((x) => `<p>${esc(x)}</p>`).join("")}</div>
       </section>
       <section class="stories-sec" aria-labelledby="stories-h">
@@ -165,11 +166,32 @@
           <p style="margin-top:1rem"><button type="button" class="link" data-node="${L.biggest_unknown.node}">See the node</button></p>
         </div>
         <div class="foot-links">
-          <p>${S.data.stories.stories.length} stories, ${S.data.forecasts.length} open forecasts and ${S.data.ev.records.length} evidence records, published ${fmtDate(S.data.fc.published)}.</p>
+          <h3 class="foot-h">Next dates when things actually get decided</h3>
+          <div class="nextdates">${upcoming().slice(0, 3).map((e) => `<a href="#/calendar"><b>${fmtShort(e.date)}</b><span>${esc(e.title)}</span></a>`).join("") || '<p class="muted">No dates scheduled.</p>'}</div>
+          <p><a class="link" href="#/calendar">See the full calendar</a></p>
           <p><a class="link" href="#/predictions">See every forecast</a></p>
           <p><a class="link" href="#/method">How these stories and numbers are made</a></p>
+          <p><a class="link" href="feed.xml">Follow by RSS</a></p>
         </div>
       </section>`;
+  }
+
+  const todayISO = () => { const d = new Date(); return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10); };
+  const upcoming = () => S.data.calendar.entries.filter((e) => e.date >= todayISO()).sort((a, b) => a.date.localeCompare(b.date));
+  function viewCalendar() {
+    const t = todayISO();
+    const es = [...S.data.calendar.entries].sort((a, b) => a.date.localeCompare(b.date));
+    const next = es.find((e) => e.date >= t);
+    return `<header class="page-head"><h1>When we'll actually know</h1><p>News builds up to moments. This is the calendar of when things are actually decided, with what the coverage implies next to what's really scheduled. Updates to the site land on these dates.</p></header>
+      <ol class="cal-list">${es.map((e) => { const past = e.date < t; return `<li class="cal-item${past ? " past" : ""}${e === next ? " next" : ""}">
+        <div class="cal-date"><b>${new Date(e.date + "T12:00:00").toLocaleDateString("en-US", { month: "short" })}</b><span>${new Date(e.date + "T12:00:00").getDate()}</span></div>
+        <div class="cal-body">
+          ${e === next ? '<span class="cal-next">Next</span>' : ""}
+          <h3>${esc(e.title)}</h3>
+          <div class="contrast"><p><span>What the coverage implies</span>${esc(e.hype)}</p><p><span>What's actually scheduled</span>${esc(e.reality)}</p></div>
+          ${e.outcome ? `<p class="cal-outcome"><b>What happened:</b> ${esc(e.outcome)}</p>` : ""}
+          <div class="receipts">${e.forecasts.map((id) => { const f = S.data.byId[id]; return f ? `<a class="rc" href="#/forecast/${f.id}"><b>${pp(f)}%</b>${esc(f.short)}</a>` : ""; }).join("")}${e.stories.map((id) => `<a class="rc rc-story" href="#/story/${id}">${esc(S.data.storyById[id].title.split(".")[0])}</a>`).join("")}</div>
+        </div></li>`; }).join("")}</ol>`;
   }
 
   function viewStories() {
@@ -209,6 +231,7 @@
           ${path ? `<div class="block"><h2>The chain underneath</h2><div class="linked"><a href="#/links/${path.id}"><b>${path.steps.filter((x) => x.status === "observed").length}/${path.steps.length}</b><span>${esc(path.title)}</span></a></div></div>` : ""}
         </div>
       </div>
+      ${st.postmortem ? `<section class="section postmortem"><h2>Postmortem</h2><p>${esc(st.postmortem)}</p></section>` : ""}
       <section class="section analyst-only"><h2>Why this made the cut</h2>
         <dl class="tests">
           <div><dt>People already care</dt><dd>${esc(st.tests.cares)}</dd></div>
@@ -522,9 +545,10 @@
     const brier = (r) => (r.p / 100 - r.outcome) ** 2;
     const avg = scored.length ? scored.reduce((t, r) => t + brier(r), 0) / scored.length : null;
     const today = new Date().toISOString().slice(0, 10);
-    const resolvedIds = new Set(R.map((r) => `${r.forecast}|${r.horizon}`));
-    const awaiting = fs.filter((f) => S.data.fc.horizons[f.primary].closes < today && !resolvedIds.has(`${f.id}|${f.primary}`));
-    const open = fs.filter((f) => !awaiting.includes(f) && !resolvedIds.has(`${f.id}|${f.primary}`));
+    const key = (id, h) => `${id}|${h}|${S.data.fc.horizons[h].closes}`;
+    const resolvedIds = new Set(R.map((r) => `${r.forecast}|${r.horizon}|${r.closes}`));
+    const awaiting = fs.filter((f) => S.data.fc.horizons[f.primary].closes < today && !resolvedIds.has(key(f.id, f.primary)));
+    const open = fs.filter((f) => !awaiting.includes(f) && !resolvedIds.has(key(f.id, f.primary)));
     const idx = S.data.index;
     const bins = Array.from({ length: 10 }, (_, i) => ({ lo: i * 10, n: 0, sp: 0, so: 0 }));
     for (const r of scored) { const b = bins[Math.min(9, Math.floor(r.p / 10))]; b.n++; b.sp += r.p; b.so += r.outcome; }
@@ -537,7 +561,7 @@
         <div><b>${open.length}</b><span>still open</span></div>
       </div>
       <p class="small muted" style="max-width:44em">The Brier score runs from 0 (perfect) to 1. Always answering 50% earns 0.25, so anything well below 0.25 means the forecasts carry real information.</p>
-      <section class="section"><h2>Story verdicts</h2><p class="small muted" style="margin-bottom:1rem">Each story is judged once all of its forecasts close. Lead time records how far ahead of mainstream coverage a story was, when coverage later caught up.</p><div class="tablewrap"><table class="table"><thead><tr><th>Story</th><th>Published</th><th class="num">Forecasts resolved</th><th>Verdict</th><th>Lead time</th></tr></thead><tbody>${S.data.stories.stories.map((st) => { const done = st.forecasts.filter((id) => R.some((r) => r.forecast === id)).length; return `<tr><td><a href="#/story/${st.id}">${esc(st.title)}</a></td><td>${fmtShort(st.published)}</td><td class="num">${done} of ${st.forecasts.length}</td><td>${st.status === "open" ? "Open" : { held: "Held up", partly: "Partly held up", wrong: "Wrong" }[st.status]}</td><td>${st.lead_time ? esc(st.lead_time) : "—"}</td></tr>`; }).join("")}</tbody></table></div></section>
+      <section class="section"><h2>Story verdicts</h2><p class="small muted" style="margin-bottom:1rem">Each story is judged once all of its forecasts close. Lead time records how far ahead of mainstream coverage a story was, when coverage later caught up.</p><div class="tablewrap"><table class="table"><thead><tr><th>Story</th><th>Published</th><th class="num">Forecasts resolved</th><th>Verdict</th><th>Lead time</th></tr></thead><tbody>${S.data.stories.stories.map((st) => { const done = st.forecasts.filter((id) => R.some((r) => r.forecast === id && r.closes <= lastClose(st))).length; return `<tr><td><a href="#/story/${st.id}">${esc(st.title)}</a></td><td>${fmtShort(st.published)}</td><td class="num">${done} of ${st.forecasts.length}</td><td>${st.status === "open" ? "Open" : { held: "Held up", partly: "Partly held up", wrong: "Wrong" }[st.status]}</td><td>${st.lead_time ? esc(st.lead_time) : "—"}</td></tr>`; }).join("")}</tbody></table></div></section>
       <section class="section"><h2>Calibration</h2>${scored.length >= 20 ? `<div class="tablewrap"><table class="table"><thead><tr><th>Forecast range</th><th class="num">Forecasts</th><th class="num">Average forecast</th><th class="num">Actually happened</th></tr></thead><tbody>${bins.filter((b) => b.n).map((b) => `<tr><td>${b.lo}–${b.lo + 10}%</td><td class="num">${b.n}</td><td class="num">${Math.round(b.sp / b.n)}%</td><td class="num">${Math.round(b.so / b.n * 100)}%</td></tr>`).join("")}</tbody></table></div>` : `<div class="cal">
         <p>Calibration needs 20 resolved forecasts; ${scored.length} so far. Until then, any accuracy claim would be noise.</p>
         <div class="prog-bar"><span style="width:${Math.min(scored.length / 20 * 100, 100)}%"></span></div>
@@ -588,8 +612,10 @@
       <p>Forecasts are frozen when published and never rewritten. Each update cycle saves a new snapshot and explains every move. Once 20 forecasts have resolved, calibration is shown: do 30% forecasts come true about 30% of the time?</p>
       <h2>What this site won't do</h2>
       <p>Emergence is a defensive analysis project. It describes threats as categories, public incidents and probabilities. It never publishes exploit details, attack steps, or targeting guidance. It forecasts whether election processes come under strain, never who should win. It forecasts by category rather than naming a company as a likely victim, unless the question itself is about that company.</p>
+      <h2>Follow along</h2>
+      <p>Subscribe to the <a class="link" href="feed.xml">RSS feed</a> to get each weekly brief and new story.</p>
       <h2>Updates</h2>
-      <p>Updates are manual. The forecasts change only during an explicit update cycle, with fresh research. The current cycle was published ${fmtDate(S.data.fc.published)}.</p>
+      <p>The site updates itself on a schedule: a full update every Monday morning, and a short update on the decision dates in the calendar or after a major surprise. Each update follows a written protocol, and a validator must pass before anything is published. The current cycle was published ${fmtDate(S.data.fc.published)}.</p>
     </div>`;
   }
 
@@ -640,6 +666,7 @@
       case "predictions": html = viewPredictions(); c = [["Predictions"]]; break;
       case "forecast": { const f = S.data.byId[a]; html = viewForecast(a, b); nav = "predictions"; c = [["Predictions", "#/predictions"], [f ? f.short : "Not found"]]; if (f && b && b !== "overview") { const t = FTABS.find(([k]) => k === b); if (t) c = [["Predictions", "#/predictions"], [f.short, `#/forecast/${f.id}`], [t[1]]]; } break; }
       case "stories": html = viewStories(); c = [["Stories"]]; break;
+      case "calendar": html = viewCalendar(); c = [["Calendar"]]; break;
       case "story": { const st = S.data.storyById[a]; html = viewStory(a); nav = "stories"; c = [["Stories", "#/stories"], [st ? stype(st) : "Not found"]]; break; }
       case "links": nav = "stories"; if (a) { const p = S.data.paths[a]; html = viewLink(a); c = [["Stories", "#/stories"], [p ? p.title : "Not found"]]; } else { html = viewLinks(); c = [["Stories", "#/stories"], ["Chains"]]; } break;
       case "map": html = viewMap(); c = [["World map"]]; break;
@@ -649,7 +676,7 @@
       default: html = notFound(); c = [["Not found"]];
     }
     view.innerHTML = html;
-    document.body.classList.toggle("no-horizon", ["pulse", "forecast", "stories", "story", "links"].includes(top));
+    document.body.classList.toggle("no-horizon", ["pulse", "forecast", "stories", "story", "links", "calendar"].includes(top));
     crumbs(c);
     document.querySelectorAll(".nav a").forEach((el) => { if (el.dataset.nav === nav) el.setAttribute("aria-current", "page"); else el.removeAttribute("aria-current"); });
     document.title = (c[c.length - 1][0] === "Pulse" ? "" : c[c.length - 1][0] + " | ") + "Emergence";
@@ -684,7 +711,7 @@
   syncControls();
   load().then(() => {
     const fc = S.data.fc;
-    $("#rail-foot").innerHTML = `<strong>Forecast cycle ${esc(fmtDate(fc.published))}</strong>Updated manually. Next 7-day forecasts close ${esc(closes("7d"))}.`;
+    $("#rail-foot").innerHTML = `<strong>Forecast cycle ${esc(fmtDate(fc.published))}</strong>Updates every Monday morning and on decision dates. Next 7-day forecasts close ${esc(closes("7d"))}.`;
     route();
   }).catch((err) => {
     view.innerHTML = `<div class="page-head"><h1>The forecast data didn't load</h1><p>${esc(err.message)}. If you opened this file directly from disk, serve the folder over HTTP instead (for example, <code>python3 -m http.server</code>) and reload.</p></div>`;

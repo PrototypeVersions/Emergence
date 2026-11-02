@@ -1,0 +1,151 @@
+{
+  "updated": "2026-11-01",
+  "entries": [
+    {
+      "date": "2026-11-03",
+      "title": "US Election Day",
+      "hype": "We'll know the results tonight.",
+      "reality": "Several races, and possibly Senate control, stay open for days under ranked-choice, runoff and mail-ballot rules.",
+      "stories": [
+        "S1"
+      ],
+      "forecasts": [
+        "F14"
+      ],
+      "evidence": [
+        "E021"
+      ],
+      "done": false,
+      "outcome": null
+    },
+    {
+      "date": "2026-11-08",
+      "title": "Five days after the vote",
+      "hype": "The midterms are settled.",
+      "reality": "The model expects at least one Senate race still uncalled. The election-week forecasts close tonight and are scored.",
+      "stories": [
+        "S1"
+      ],
+      "forecasts": [
+        "F14",
+        "F06",
+        "F07"
+      ],
+      "evidence": [
+        "E020",
+        "E021"
+      ],
+      "done": false,
+      "outcome": null
+    },
+    {
+      "date": "2026-11-11",
+      "title": "Israel's mandate deadline",
+      "hype": "Israel's next leader is about to be named.",
+      "reality": "The president names someone to try to form a government. That starts a 28-day clock, extendable to 42. The new Knesset sits Nov 10.",
+      "stories": [
+        "S2"
+      ],
+      "forecasts": [
+        "F15"
+      ],
+      "evidence": [
+        "E029",
+        "E030"
+      ],
+      "done": false,
+      "outcome": null
+    },
+    {
+      "date": "2026-11-17",
+      "title": "Texas local certification deadline",
+      "hype": "Certification is a formality.",
+      "reality": "County boards across many states certify this week. After two of the last three general elections, at least one refused or missed its deadline.",
+      "stories": [
+        "S1",
+        "S3"
+      ],
+      "forecasts": [
+        "F13"
+      ],
+      "evidence": [
+        "E022",
+        "E023"
+      ],
+      "done": false,
+      "outcome": null
+    },
+    {
+      "date": "2026-11-19",
+      "title": "Arizona county canvass deadline",
+      "hype": "Nothing to see here.",
+      "reality": "Arizona's counties must certify by today; the 2022 refusal happened at this step. The statewide canvass follows Nov 23.",
+      "stories": [
+        "S1"
+      ],
+      "forecasts": [
+        "F13"
+      ],
+      "evidence": [
+        "E023",
+        "E024"
+      ],
+      "done": false,
+      "outcome": null
+    },
+    {
+      "date": "2026-11-20",
+      "title": "Georgia certification deadline",
+      "hype": "Georgia is done.",
+      "reality": "Georgia certifies the general election; any race without a majority goes to the Dec 1 runoff.",
+      "stories": [
+        "S1"
+      ],
+      "forecasts": [
+        "F13"
+      ],
+      "evidence": [
+        "E021"
+      ],
+      "done": false,
+      "outcome": null
+    },
+    {
+      "date": "2026-12-01",
+      "title": "Georgia runoffs and the 30-day checks",
+      "hype": "The election is long over.",
+      "reality": "Any Georgia runoff is held today. The model's 30-day forecasts close, including whether Israel still has no new government.",
+      "stories": [
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "forecasts": [
+        "F15",
+        "F13",
+        "F08"
+      ],
+      "evidence": [
+        "E021",
+        "E029"
+      ],
+      "done": false,
+      "outcome": null
+    },
+    {
+      "date": "2026-12-03",
+      "title": "California county certification",
+      "hype": "California counted long ago.",
+      "reality": "California's counties finish certifying; the statewide result is certified Dec 11.",
+      "stories": [
+        "S1"
+      ],
+      "forecasts": [],
+      "evidence": [
+        "E023"
+      ],
+      "done": false,
+      "outcome": null
+    }
+  ]
+}
