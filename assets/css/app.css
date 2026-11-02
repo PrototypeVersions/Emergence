@@ -625,7 +625,7 @@ a.rc:hover { border-color: var(--line-strong); color: var(--ink); }
 .reasoning .tests { margin-top: 1rem; }
 @media (max-width: 520px) { .row { grid-template-columns: minmax(0, 1fr); } }
 .bar-brand { display: none; font-family: var(--serif); font-size: var(--t-md); text-decoration: none; }
-@media (max-width: 860px) { .bar-brand { display: inline; } .bar { justify-content: space-between; } }
+@media (max-width: 860px) { .bar-brand { display: inline-flex; align-items: center; gap: .55rem; } .bar { justify-content: space-between; } }
 @media (max-width: 520px) { .crumbs { display: none; } }
 
 /* ---------- connections ---------- */
@@ -686,3 +686,4 @@ a.rc:hover { border-color: var(--line-strong); color: var(--ink); }
 .cover .kicker { margin-bottom: 1.5rem; max-width: 56rem; }
 .cover .ribbon { background: rgba(13,21,39,.6); backdrop-filter: blur(6px); }
 @media (max-width: 860px) { .cover { margin-top: -1.5rem; padding-top: 1.75rem; } }
+.bar-brand .brand-mark { width: 1.35rem; height: 1.35rem; }
