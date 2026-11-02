@@ -2,7 +2,7 @@
 
 ## What the site is for
 
-Emergence publishes **stories**: claims about what's really going on that coverage misses because each newsroom beat sees only part of the picture. Forecasts are the receipts that make each story checkable. Most of this document describes the receipts. The section below describes the stories.
+Emergence shows **how the news will actually play out**. It takes stories already in the news and forecasts where they're really heading: when they'll actually be decided, what the next chapter will look like, what will turn out bigger or smaller than the coverage suggests. Often that's not where the coverage implies, because each newsroom beat sees only part of the picture. Every call gets a probability and is scored when it's due. Forecasts are the receipts that make each story checkable. Most of this document describes the receipts. The section below describes the stories.
 
 ## Focus on likely events
 
