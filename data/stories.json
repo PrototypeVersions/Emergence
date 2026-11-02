@@ -37,11 +37,11 @@
       "S4"
     ],
     "changes": [
+      "We now focus on likely outcomes. Eight lower-probability predictions were retired; their published numbers stay in the record.",
+      "New: no comprehensive US–Iran deal by Dec 1 (90%), Eisenkot gets the first try in Israel (80%), Binance explains its theft (75%), and no confirmed hack of an election system this week (62%).",
       "Senate race still uncalled on Nov 8: 82% to 85%. Alaska won't run its ranked-choice count until Nov 18.",
       "County certification fight: 65% to 72%. A county missed its deadline in 2024 too, and federal pressure on certification is new this cycle.",
-      "Hospital diverts ambulances after a cyberattack: 73% to 42%. A careful count found far fewer cases than our first estimate. We got that base rate wrong.",
-      "Officials name a specific election fake: 73% to 62%. Federal agencies have gone quiet on foreign influence this year.",
-      "Iran-linked hit on US utilities: 13% to 18%. US agencies already confirmed such disruptions twice this year."
+      "Officials name a specific election fake: 73% to 62%. Federal agencies have gone quiet on foreign influence this year."
     ]
   },
   "stories": [
@@ -70,9 +70,8 @@
           "forecast": "F13"
         },
         {
-          "text": "A confirmed cyber disruption of an official election system: less likely than the coverage implies",
-          "forecast": "F07",
-          "expect": "no"
+          "text": "No confirmed cyberattack on an official election system this week: the hacking fears are bigger than the likely reality",
+          "forecast": "F16"
         }
       ],
       "wrong": [
@@ -83,7 +82,7 @@
         "F14",
         "F06",
         "F13",
-        "F07"
+        "F16"
       ],
       "evidence": [
         "E013",
@@ -130,6 +129,10 @@
           "forecast": "F15"
         },
         {
+          "text": "Gadi Eisenkot gets the first try at forming a government",
+          "forecast": "F19"
+        },
+        {
           "text": "Who gets the mandate by Nov 11, and whether anyone crosses bloc lines",
           "forecast": null
         }
@@ -138,7 +141,8 @@
         "A unity government is sworn in before Dec 1"
       ],
       "forecasts": [
-        "F15"
+        "F15",
+        "F19"
       ],
       "evidence": [
         "E029",
@@ -182,8 +186,8 @@
           "forecast": "F13"
         },
         {
-          "text": "Damage to a Gulf or Red Sea undersea cable",
-          "forecast": "F09"
+          "text": "No comprehensive US–Iran deal by Dec 1",
+          "forecast": "F18"
         }
       ],
       "wrong": [
@@ -192,7 +196,7 @@
       "forecasts": [
         "F08",
         "F13",
-        "F09"
+        "F18"
       ],
       "evidence": [
         "E015",
@@ -240,14 +244,6 @@
         {
           "text": "Another AI developer tool ships a malicious version",
           "forecast": "F03"
-        },
-        {
-          "text": "A US agency issues guidance on AI-agent security",
-          "forecast": "F10"
-        },
-        {
-          "text": "An AI provider pulls back a live capability after an incident",
-          "forecast": "F05"
         }
       ],
       "wrong": [
@@ -256,9 +252,7 @@
       ],
       "forecasts": [
         "F04",
-        "F03",
-        "F10",
-        "F05"
+        "F03"
       ],
       "evidence": [
         "E001",

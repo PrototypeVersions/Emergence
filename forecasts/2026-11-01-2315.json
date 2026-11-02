@@ -1,0 +1,1255 @@
+{
+  "cycle": "2026-11-01-2315",
+  "published": "2026-11-01T23:15:00-06:00",
+  "engine_version": "1.2.0",
+  "horizons": {
+    "7d": {
+      "label": "7 days",
+      "opens": "2026-11-01",
+      "closes": "2026-11-08"
+    },
+    "30d": {
+      "label": "30 days",
+      "opens": "2026-11-01",
+      "closes": "2026-12-01"
+    }
+  },
+  "forecasts": [
+    {
+      "id": "F03",
+      "title": "A popular AI developer tool or agent package ships a malicious version",
+      "short": "AI-tool supply-chain hit",
+      "domains": [
+        "ai",
+        "cyber"
+      ],
+      "primary": "30d",
+      "p": {
+        "7d": 30,
+        "30d": 72
+      },
+      "range": {
+        "7d": [
+          18,
+          44
+        ],
+        "30d": [
+          55,
+          85
+        ]
+      },
+      "confidence": "medium",
+      "impact": 60,
+      "newsworthiness": 45,
+      "attention": "low",
+      "summary": "Attackers have figured out that AI tools hold valuable keys. AI gateways, agent frameworks and coding tools are being hijacked to steal AI-provider and cloud credentials. October alone had several cases. It gets little mainstream attention.",
+      "why_now": [
+        "LiteLLM compromised for the 2nd time this year",
+        "~6 AI-related supply-chain incidents in October",
+        "Stolen GitHub tokens are circulating"
+      ],
+      "base_rate": {
+        "text": "Roughly one qualifying, widely reported AI-tool compromise per month across 2026, which gives 63% in 30 days.",
+        "value": 63,
+        "evidence": [
+          "E005",
+          "E006"
+        ]
+      },
+      "adjustments": [
+        {
+          "label": "An active campaign: stolen developer tokens give attackers publish access to more projects",
+          "delta": 6,
+          "evidence": [
+            "E005",
+            "E006"
+          ]
+        },
+        {
+          "label": "AI-provider keys are now an explicit target, not a by-product",
+          "delta": 3,
+          "evidence": [
+            "E006"
+          ]
+        }
+      ],
+      "pathway": [
+        "N_AGENT_AUTONOMY",
+        "N_AGENT_PRIVILEGE",
+        "N_AI_SUPPLY_CHAIN"
+      ],
+      "increase_if": [
+        "Another AI-tool maintainer reports stolen tokens",
+        "Registry-wide token revocations announced"
+      ],
+      "decrease_if": [
+        "PyPI/npm enforce mandatory trusted publishing for popular packages",
+        "The October campaign is attributed and disrupted"
+      ],
+      "skeptic": "The October count comes from an aggregator with loose inclusion rules. Many entries would not meet a 'two major outlets' bar.",
+      "escalation": "Each compromise leaks more tokens, which enable the next compromise. This is a feedback loop, not a steady rate.",
+      "adjudicator": "The feedback loop is documented (LiteLLM's access came through stolen tokens). The skeptic is right about counts, which is why the base rate uses one per month, not the October pace.",
+      "resolution": {
+        "condition": "A malicious version of a package, extension, container image or release whose main purpose is AI/LLM development or AI agents (gateways, SDKs, agent frameworks, MCP servers, AI coding-tool extensions) is published to an official channel, with the first public report inside the window, and reported by at least two of: The Hacker News, BleepingComputer, Help Net Security, SecurityWeek, The Register, Wired, or the maintainer/registry's own advisory.",
+        "sources": [
+          "Listed outlets",
+          "PyPI / npm / GitHub advisories"
+        ],
+        "ambiguous": [
+          "General-purpose packages that happen to steal AI keys do not count; the package itself must be AI-focused.",
+          "Typosquats count only if they reach the two-outlet bar."
+        ]
+      },
+      "research_question": "How many 2026 AI-tool compromises meet the two-outlet bar? That would make the base rate firmer.",
+      "evidence": [
+        "E005",
+        "E006",
+        "E032"
+      ],
+      "market": {
+        "status": "none",
+        "note": "No prediction market exists for this."
+      },
+      "history": [
+        {
+          "at": "2026-11-01T18:00:00-06:00",
+          "p": {
+            "7d": 30,
+            "30d": 72
+          },
+          "reason": "Initial publication"
+        }
+      ],
+      "expected": {
+        "value": 30,
+        "basis": "judgment",
+        "note": "AI-tool compromises rarely reach general news, so few people expect another one this month."
+      },
+      "tactic": "base-rate",
+      "surprise_note": "These attacks get little mainstream coverage, so most people would guess they are rare. In 2026 they have been close to monthly."
+    },
+    {
+      "id": "F04",
+      "title": "A new real-world AI-agent incident: an agent acts outside its intended scope",
+      "short": "AI agent goes out of scope",
+      "domains": [
+        "ai",
+        "cyber"
+      ],
+      "primary": "7d",
+      "p": {
+        "7d": 35,
+        "30d": 82
+      },
+      "range": {
+        "7d": [
+          22,
+          50
+        ],
+        "30d": [
+          68,
+          92
+        ]
+      },
+      "confidence": "medium",
+      "impact": 50,
+      "newsworthiness": 70,
+      "attention": "medium",
+      "summary": "Agents now hold real keys inside real organizations. Since July, labs and reporters have surfaced a steady stream of cases where agents reached systems they shouldn't have. Expect another within the month. The question is whether it lands this week.",
+      "why_now": [
+        "Pentagon-network agent story broke Oct 30",
+        "Three labs disclosed eval escapes Jul–Aug",
+        "New federal vocabulary for 'control incidents'"
+      ],
+      "base_rate": {
+        "text": "Counting incidents reported by major outlets since mid-2026: about 1.5 per month, which gives 30% in a 7-day window.",
+        "value": 30,
+        "evidence": [
+          "E002",
+          "E004"
+        ]
+      },
+      "adjustments": [
+        {
+          "label": "Reporters are actively hunting agent stories after the NIPRNet report",
+          "delta": 3,
+          "evidence": [
+            "E004"
+          ]
+        },
+        {
+          "label": "The NIST/NSA/CISA guidance gives organizations a framework to disclose such events",
+          "delta": 2,
+          "evidence": [
+            "E001"
+          ]
+        }
+      ],
+      "pathway": [
+        "N_AGENT_AUTONOMY",
+        "N_AGENT_PRIVILEGE",
+        "N_GOV_GUIDANCE"
+      ],
+      "increase_if": [
+        "Follow-up reporting on the NIPRNet story",
+        "A provider publishes an incident review"
+      ],
+      "decrease_if": [
+        "Several quiet days (the 7-day window is short)"
+      ],
+      "skeptic": "Many 'AI agent' stories turn out to be humans misusing tools, and those don't count. The true qualifying rate may be closer to one a month.",
+      "escalation": "Incidents surface with a lag. Today's deployments are larger than last spring's, so more reports are already in the pipeline.",
+      "adjudicator": "The skeptic's definitional point is the main risk to this forecast, and it is why the range is wide. Keep 35%.",
+      "resolution": {
+        "condition": "First reported within the window by at least one of Reuters, AP, Bloomberg, NYT, WSJ, FT, Washington Post, Wired, The Verge, TechCrunch, Ars Technica, BleepingComputer or The Hacker News: an AI agent (software taking actions through tools with some autonomy) took an action outside the scope its operator intended, causing unauthorized system access, exposure or deletion of non-public data, financial loss, or service disruption.",
+        "sources": [
+          "Listed outlets",
+          "Provider or victim incident reports"
+        ],
+        "ambiguous": [
+          "Humans deliberately using AI to attack do not count.",
+          "Lab test results with no real external system affected do not count.",
+          "Earlier incidents count if first made public inside the window.",
+          "New reporting on the NIPRNet case does not count."
+        ]
+      },
+      "research_question": "Will OpenAI's promised incident-disclosure framework surface new qualifying cases?",
+      "evidence": [
+        "E001",
+        "E002",
+        "E004",
+        "E019",
+        "E033",
+        "E034"
+      ],
+      "market": {
+        "status": "none",
+        "note": ""
+      },
+      "history": [
+        {
+          "at": "2026-11-01T18:00:00-06:00",
+          "p": {
+            "7d": 35,
+            "30d": 82
+          },
+          "reason": "Initial publication"
+        }
+      ],
+      "expected": {
+        "value": 25,
+        "basis": "judgment",
+        "note": "Agent incidents are newsworthy but feel occasional."
+      },
+      "tactic": "base-rate"
+    },
+    {
+      "id": "F06",
+      "title": "Election officials publicly flag a specific fake video, audio or image about the midterms",
+      "short": "Officials debunk election fake",
+      "domains": [
+        "elections",
+        "ai",
+        "geopolitics"
+      ],
+      "primary": "7d",
+      "p": {
+        "7d": 62,
+        "30d": 70
+      },
+      "range": {
+        "7d": [
+          45,
+          78
+        ],
+        "30d": [
+          52,
+          84
+        ]
+      },
+      "confidence": "medium",
+      "impact": 45,
+      "newsworthiness": 70,
+      "attention": "high",
+      "summary": "A Russian-linked network is already pushing AI-manipulated videos about Senate races. In past cycles, the final days before an election brought official public debunks of specific fakes. This forecast is about whether that happens again, not about who wins.",
+      "why_now": [
+        "AP linked fake videos to Storm-1516 (Oct 27)",
+        "Election Day is Nov 3",
+        "Fakes often drop in the last 72 hours"
+      ],
+      "base_rate": {
+        "text": "Officials publicly named specific fakes several times in the final week of 2024, but no such case turned up for the 2022 midterms. Midterm-year anchor: 62%.",
+        "value": 62,
+        "evidence": [
+          "E039"
+        ]
+      },
+      "adjustments": [
+        {
+          "label": "A known network is already active against specific races",
+          "delta": 8,
+          "evidence": [
+            "E013",
+            "E039"
+          ]
+        },
+        {
+          "label": "Federal election-threat communication may be thinner than in 2024",
+          "delta": -5,
+          "evidence": [
+            "E018"
+          ]
+        },
+        {
+          "label": "The intelligence chief has said there's no foreign threat so far, and CISA isn't commenting",
+          "delta": -3,
+          "evidence": [
+            "E040"
+          ]
+        }
+      ],
+      "pathway": [
+        "N_FRONTIER_CYBER",
+        "N_INFO_OPS",
+        "N_ELECTION_STRESS"
+      ],
+      "increase_if": [
+        "A fake about voting procedures (not candidates) appears",
+        "A state election official comments on the AP-reported videos"
+      ],
+      "decrease_if": [
+        "Officials choose not to amplify fakes by naming them"
+      ],
+      "skeptic": "Officials increasingly avoid naming specific fakes so they don't amplify them, and federal agencies have pulled back from public election statements.",
+      "escalation": "Only one state official anywhere needs to call out one fake. Fifty states and thousands of counties make that a low bar.",
+      "adjudicator": "The escalation point is strong because the bar is low. Resolution needs AP or Reuters coverage, which keeps it from being trivially easy.",
+      "resolution": {
+        "condition": "Between Nov 1 and the window close, a state or local election official, a state attorney general, or the FBI, CISA or ODNI publicly states that a specific circulating video, audio clip or image about the Nov 3 election (candidates, voting or results) is fabricated or AI-manipulated, as reported by AP or Reuters.",
+        "sources": [
+          "AP",
+          "Reuters",
+          "Official statements"
+        ],
+        "ambiguous": [
+          "Statements by campaigns or candidates do not count.",
+          "Generic warnings about deepfakes without a specific item do not count."
+        ]
+      },
+      "research_question": "Will a state or county election office publicly name a specific fake about voting itself (not about candidates)?",
+      "evidence": [
+        "E013",
+        "E014",
+        "E018",
+        "E039",
+        "E040"
+      ],
+      "market": {
+        "status": "not-checked",
+        "note": ""
+      },
+      "history": [
+        {
+          "at": "2026-11-01T18:00:00-06:00",
+          "p": {
+            "7d": 73,
+            "30d": 80
+          },
+          "reason": "Initial publication"
+        },
+        {
+          "at": "2026-11-01T20:25:00-06:00",
+          "p": {
+            "7d": 62,
+            "30d": 70
+          },
+          "reason": "−11: no official debunk was found for the 2022 midterms, and federal agencies have stepped back from public statements on foreign influence."
+        }
+      ],
+      "expected": {
+        "value": 55,
+        "basis": "judgment",
+        "note": "Readers expect deepfakes; fewer expect officials to publicly name a specific one."
+      },
+      "tactic": "precedent"
+    },
+    {
+      "id": "F08",
+      "title": "New US or Israeli military strikes on Iranian territory",
+      "short": "Renewed strikes on Iran",
+      "domains": [
+        "geopolitics",
+        "markets"
+      ],
+      "primary": "30d",
+      "p": {
+        "7d": 14,
+        "30d": 45
+      },
+      "range": {
+        "7d": [
+          6,
+          24
+        ],
+        "30d": [
+          25,
+          65
+        ]
+      },
+      "confidence": "low",
+      "impact": 85,
+      "newsworthiness": 95,
+      "attention": "high",
+      "summary": "This is the trigger behind several other forecasts. US officials say more strikes are possible but unlikely before the midterms, and talks are under way. The 30-day window covers the period right after the election that officials have hinted at.",
+      "why_now": [
+        "US signals action could follow Nov 3",
+        "Qatar-mediated talks Oct 31–Nov 1",
+        "Tankers still being hit near Hormuz"
+      ],
+      "base_rate": {
+        "text": "There is no clean base rate for this situation. Anchor: 45% from scenario judgment, since the US has explicitly reserved further strikes and pointed to timing after the midterms.",
+        "value": 45,
+        "evidence": [
+          "E015"
+        ]
+      },
+      "adjustments": [
+        {
+          "label": "Active talks; Iran shortened its Hormuz reopening offer from 7 days to 2",
+          "delta": -5,
+          "evidence": [
+            "E015"
+          ]
+        },
+        {
+          "label": "Prediction markets price a ceasefire break as likely by year-end",
+          "delta": 5,
+          "evidence": [
+            "E026"
+          ]
+        }
+      ],
+      "pathway": [
+        "N_IRAN_WAR",
+        "N_ENERGY_SHIPPING"
+      ],
+      "increase_if": [
+        "Talks collapse or Iran rejects the US letter",
+        "A major tanker casualty or attack on US forces"
+      ],
+      "decrease_if": [
+        "An interim deal on Hormuz",
+        "Blockade relief announced"
+      ],
+      "skeptic": "Statements reserving strikes are partly leverage for the talks. Actual strikes would derail a process both sides are investing in.",
+      "escalation": "Officials named specific remaining targets, and Iran's attacks on shipping continue. One incident could end the pause.",
+      "adjudicator": "Markets lean more hawkish than the talks suggest. The model moves partway toward them, but stays below because a ceasefire break is a broader event than strikes on Iran.",
+      "resolution": {
+        "condition": "The US or Israeli military conducts at least one strike (air, missile or drone) on targets inside Iran's internationally recognized territory within the window, as reported by at least two of Reuters, AP, Bloomberg or BBC, or confirmed by either government.",
+        "sources": [
+          "Reuters",
+          "AP",
+          "Bloomberg",
+          "BBC",
+          "Official statements"
+        ],
+        "ambiguous": [
+          "Strikes on Iranian-flagged vessels or proxies outside Iran do not count.",
+          "Cyber operations alone do not count."
+        ]
+      },
+      "research_question": "Is there a real-money market resolving on US or Israeli strikes on Iranian territory in November?",
+      "evidence": [
+        "E015",
+        "E026",
+        "E044",
+        "E045"
+      ],
+      "market": {
+        "status": "checked",
+        "note": "Polymarket priced the ceasefire holding through Nov 3 at about 94% (Nov 1). Earlier Polymarket prices (Oct 29) implied a ceasefire break as likely by Dec 31. A play-money Manifold market implies roughly 47% for an Israeli strike on Iranian territory by Nov 30. No real-money market resolving on strikes by Dec 1 was found."
+      },
+      "history": [
+        {
+          "at": "2026-11-01T18:00:00-06:00",
+          "p": {
+            "7d": 12,
+            "30d": 40
+          },
+          "reason": "Initial publication"
+        },
+        {
+          "at": "2026-11-01T19:30:00-06:00",
+          "p": {
+            "7d": 14,
+            "30d": 45
+          },
+          "reason": "+5 (30d): first prediction-market check shows traders expect a ceasefire break by year-end. +2 (7d): the same signal, discounted for the US saying strikes are unlikely before Nov 3."
+        }
+      ],
+      "expected": {
+        "value": 55,
+        "basis": "market",
+        "note": "Polymarket (Oct 29) priced a US–Iran ceasefire break by Dec 31 at about 75%; interpolated, that implies roughly 55% by Dec 1. A ceasefire break is broader than strikes on Iranian territory."
+      },
+      "tactic": "scenario"
+    },
+    {
+      "id": "F13",
+      "title": "A county election board refuses or fails to certify midterm results on time",
+      "short": "County certification fight",
+      "domains": [
+        "elections"
+      ],
+      "primary": "30d",
+      "p": {
+        "7d": 8,
+        "30d": 72
+      },
+      "range": {
+        "7d": [
+          3,
+          15
+        ],
+        "30d": [
+          55,
+          85
+        ]
+      },
+      "confidence": "medium",
+      "impact": 50,
+      "newsworthiness": 75,
+      "attention": "low",
+      "expected": {
+        "value": 25,
+        "basis": "judgment",
+        "note": "Most people assume certification is an automatic formality once votes are counted."
+      },
+      "tactic": "precedent",
+      "surprise_note": "Certification feels automatic, but a local board refused or missed its deadline after two of the last three general elections. A lawsuit to block certification is already filed in Texas.",
+      "summary": "After the votes are counted, thousands of county boards must formally certify them. Refusals have become a recurring feature since 2020, even though courts have always ordered certification in the end. This forecast is about the process, not who wins.",
+      "why_now": [
+        "Suit to block certification filed in Texas (Oct 27)",
+        "Two of the last three general elections had a refusal or missed deadline",
+        "Deadlines fall Nov 17–Dec 3 in key states"
+      ],
+      "base_rate": {
+        "text": "A county board refused or missed its deadline after the 2020 (Wayne County MI deadlock), 2022 (Cochise AZ) and 2024 (Atlantic County NJ missed the deadline) general elections. The 2024 case was a slow count rather than a refusal, so: 65%.",
+        "value": 65,
+        "evidence": [
+          "E023",
+          "E024",
+          "E038"
+        ]
+      },
+      "adjustments": [
+        {
+          "label": "Organized challenges are already filed before Election Day",
+          "delta": 5,
+          "evidence": [
+            "E022"
+          ]
+        },
+        {
+          "label": "New federal pressure on certification: a Justice Department suit over Alaska's Senate race and prosecution-warning letters to every state",
+          "delta": 2,
+          "evidence": [
+            "E037",
+            "E041"
+          ]
+        }
+      ],
+      "pathway": [
+        "N_ELECTION_STRESS",
+        "N_CERTIFICATION"
+      ],
+      "increase_if": [
+        "Close or uncalled races in states with contested local boards",
+        "New suits seeking to delay certification"
+      ],
+      "decrease_if": [
+        "Lopsided results reduce the stakes",
+        "Courts dismiss pending suits quickly and decisively"
+      ],
+      "skeptic": "States tightened certification law after 2022 and officials now face criminal consequences, so boards may comply rather than refuse.",
+      "escalation": "It takes only one of more than 3,000 county boards, and challenges are already organized before a single vote is counted.",
+      "adjudicator": "The one-of-thousands point is strong, and the 2024 general's clean record is the main counterweight. 65% reflects both.",
+      "resolution": {
+        "condition": "Between Nov 3 and Dec 1, a county (or equivalent local) canvassing board in any US state votes against certifying, deadlocks on, or misses its statutory deadline to certify results of the Nov 3, 2026 general election, as reported by AP, Reuters, Votebeat, or another major national outlet.",
+        "sources": [
+          "AP",
+          "Reuters",
+          "Votebeat",
+          "State election offices"
+        ],
+        "ambiguous": [
+          "Delays caused only by ongoing counting, recounts, or court-ordered hand counts do not count.",
+          "A deadlock that is reversed the same day still counts if reported."
+        ]
+      },
+      "research_question": "Will courts rule on the pending Texas and Alaska certification suits before the canvass deadlines?",
+      "evidence": [
+        "E022",
+        "E023",
+        "E024",
+        "E037",
+        "E038",
+        "E041"
+      ],
+      "market": {
+        "status": "none",
+        "note": ""
+      },
+      "history": [
+        {
+          "at": "2026-11-01T19:30:00-06:00",
+          "p": {
+            "7d": 8,
+            "30d": 65
+          },
+          "reason": "Initial publication"
+        },
+        {
+          "at": "2026-11-01T20:25:00-06:00",
+          "p": {
+            "7d": 8,
+            "30d": 72
+          },
+          "reason": "+7: a county also missed its deadline after 2024, and federal pressure on certification is new this cycle."
+        }
+      ]
+    },
+    {
+      "id": "F14",
+      "title": "At least one US Senate race is still uncalled five days after Election Day",
+      "short": "Senate race still uncalled",
+      "domains": [
+        "elections"
+      ],
+      "primary": "7d",
+      "p": {
+        "7d": 85,
+        "30d": null
+      },
+      "range": {
+        "7d": [
+          72,
+          93
+        ],
+        "30d": null
+      },
+      "confidence": "high",
+      "impact": 40,
+      "newsworthiness": 65,
+      "attention": "medium",
+      "expected": {
+        "value": 35,
+        "basis": "judgment",
+        "note": "Most people expect results on election night or the morning after."
+      },
+      "tactic": "calendar",
+      "surprise_note": "Election-night results are the expectation, but the rules almost guarantee a wait: ranked-choice counting in Alaska and Maine, Georgia's majority requirement, and mail ballots that can arrive for a week.",
+      "summary": "This one follows from the rules, not from any prediction about who wins. Several states' counting rules make a days-long wait likely somewhere. That wait is also when misleading claims spread fastest, which links this forecast to the election-fakes and certification forecasts.",
+      "why_now": [
+        "Ranked-choice tabulation in Alaska and Maine",
+        "Georgia needs a majority or goes to a Dec 1 runoff",
+        "California mail ballots accepted through Nov 10"
+      ],
+      "base_rate": {
+        "text": "In each of the last four general elections (2018, 2020, 2022, 2024), at least one Senate race was still uncalled five days later. Shrunk for small sample: 80%. Race-call dates come from AP's public records and will be linked as evidence next cycle.",
+        "value": 80,
+        "evidence": [
+          "E021"
+        ]
+      },
+      "adjustments": [
+        {
+          "label": "Alaska's ranked-choice count is expected to be slow and contested",
+          "delta": 2,
+          "evidence": [
+            "E020"
+          ]
+        },
+        {
+          "label": "Alaska won't run its ranked-choice count until Nov 18",
+          "delta": 4,
+          "evidence": [
+            "E036"
+          ]
+        },
+        {
+          "label": "A Georgia runoff is now very unlikely, removing one path",
+          "delta": -1,
+          "evidence": [
+            "E055"
+          ]
+        }
+      ],
+      "pathway": [
+        "N_COUNT_TIMING",
+        "N_ELECTION_STRESS"
+      ],
+      "increase_if": [
+        "Any Senate race within about 2 points",
+        "A third-party or write-in candidate pushing a ranked-choice race below 50%"
+      ],
+      "decrease_if": [
+        "A wave election with comfortable margins everywhere"
+      ],
+      "skeptic": "In a lopsided year, the AP can call even slow-counting states early, and ranked-choice rounds aren't needed if someone clears 50%.",
+      "escalation": "Three independent mechanisms (ranked choice, runoff rules, late mail) each only need one close race to trigger.",
+      "adjudicator": "Four for four in recent cycles with multiple independent triggers. Hold high.",
+      "resolution": {
+        "condition": "As of 11:59 p.m. Central on Nov 8, 2026, the Associated Press has not declared a winner in at least one 2026 regular or special US Senate general election, including races headed to a runoff or ranked-choice tabulation.",
+        "sources": [
+          "AP race calls",
+          "AP election results pages"
+        ],
+        "ambiguous": [
+          "A race the AP calls as 'advancing to a runoff' counts as uncalled.",
+          "Retracted AP calls count as uncalled."
+        ]
+      },
+      "research_question": "Will any Alaska Senate candidate clear 50% in the first round, letting the AP call it early?",
+      "evidence": [
+        "E020",
+        "E021",
+        "E036",
+        "E055"
+      ],
+      "market": {
+        "status": "not-checked",
+        "note": ""
+      },
+      "history": [
+        {
+          "at": "2026-11-01T19:30:00-06:00",
+          "p": {
+            "7d": 82,
+            "30d": null
+          },
+          "reason": "Initial publication"
+        },
+        {
+          "at": "2026-11-01T20:25:00-06:00",
+          "p": {
+            "7d": 85,
+            "30d": null
+          },
+          "reason": "+3: Alaska's ranked-choice tabulation is scheduled for Nov 18; a Georgia runoff is now unlikely."
+        }
+      ]
+    },
+    {
+      "id": "F15",
+      "title": "Israel still has no new government on Dec 1",
+      "short": "No Israeli government by Dec 1",
+      "domains": [
+        "geopolitics"
+      ],
+      "primary": "30d",
+      "p": {
+        "7d": null,
+        "30d": 95
+      },
+      "range": {
+        "7d": null,
+        "30d": [
+          87,
+          98
+        ]
+      },
+      "confidence": "high",
+      "impact": 55,
+      "newsworthiness": 70,
+      "attention": "high",
+      "expected": {
+        "value": 65,
+        "basis": "judgment",
+        "note": "Daily 'who will lead Israel' coverage implies an answer is close."
+      },
+      "tactic": "calendar",
+      "surprise_note": "The coverage treats each day's coalition news as the decisive moment. But the legal steps alone run into December, and no government since 2013 has been sworn in faster than 55 days after the vote.",
+      "summary": "Israel voted on Oct 27 and no bloc has a majority. The new Knesset sits Nov 10, a candidate gets the mandate by Nov 11, and then has 28 days, extendable to 42. Even the clearest result in recent years took 58 days. This forecast says the waiting is the story, not who wins.",
+      "why_now": [
+        "No bloc has 61 seats",
+        "Mandate assigned by Nov 11, then 28–42 days",
+        "2022's clear majority still took 58 days"
+      ],
+      "base_rate": {
+        "text": "Since 2013, every election that produced a government took 55–82 days to swearing-in, and both 2019 elections produced none. Dec 1 is day 35. Allowing for a surprise unity deal: 95%.",
+        "value": 95,
+        "evidence": [
+          "E031"
+        ]
+      },
+      "adjustments": [
+        {
+          "label": "The president is pushing hard for a fast unity government",
+          "delta": -1,
+          "evidence": [
+            "E029"
+          ]
+        },
+        {
+          "label": "The likely first nominee has refused to serve under the current prime minister, making a quick unity deal harder",
+          "delta": 1,
+          "evidence": [
+            "E046"
+          ]
+        }
+      ],
+      "pathway": [
+        "N_ISRAEL_POLITICS"
+      ],
+      "increase_if": [
+        "Parties rule out serving with each other",
+        "Talk of a second election"
+      ],
+      "decrease_if": [
+        "A major party breaks from its bloc in the first week",
+        "A national-unity framework announced before Nov 11"
+      ],
+      "skeptic": "Wartime pressure could force an unusually fast unity deal, and the president has said he'd push for one.",
+      "escalation": "Without a majority bloc, this looks more like 2019, when two elections in a row produced no government at all.",
+      "adjudicator": "Even under pressure, the statutory sequence makes a government by Dec 1 nearly impossible. Hold very high.",
+      "resolution": {
+        "condition": "As of 11:59 p.m. Israel time on Dec 1, 2026, no new government has won a Knesset confidence vote and been sworn in following the Oct 27, 2026 election, as reported by the Knesset, Reuters, AP or the Times of Israel.",
+        "sources": [
+          "Knesset",
+          "Reuters",
+          "AP",
+          "Times of Israel"
+        ],
+        "ambiguous": [
+          "The caretaker government continuing counts as no new government.",
+          "A government sworn in on Dec 1 itself resolves no."
+        ]
+      },
+      "research_question": "Link the 2013, 2015, 2020 and 2021 formation timelines as evidence to firm up the base rate.",
+      "evidence": [
+        "E029",
+        "E030",
+        "E031",
+        "E046"
+      ],
+      "market": {
+        "status": "not-checked",
+        "note": ""
+      },
+      "history": [
+        {
+          "at": "2026-11-01T20:30:00-06:00",
+          "p": {
+            "7d": null,
+            "30d": 94
+          },
+          "reason": "Initial publication"
+        },
+        {
+          "at": "2026-11-01T20:25:00-06:00",
+          "p": {
+            "7d": null,
+            "30d": 95
+          },
+          "reason": "+1: both camps expect a first nominee who has ruled out serving under the current prime minister."
+        }
+      ]
+    },
+    {
+      "id": "F16",
+      "title": "No confirmed cyberattack disrupts an official election system during election week",
+      "short": "No election-week hack",
+      "domains": [
+        "elections",
+        "cyber"
+      ],
+      "primary": "7d",
+      "p": {
+        "7d": 62,
+        "30d": null
+      },
+      "range": {
+        "7d": [
+          45,
+          78
+        ],
+        "30d": null
+      },
+      "confidence": "medium",
+      "impact": 45,
+      "newsworthiness": 60,
+      "attention": "high",
+      "expected": {
+        "value": 55,
+        "basis": "judgment",
+        "note": "Coverage of election hacking makes a confirmed disruption feel likely."
+      },
+      "tactic": "reverse-gap",
+      "summary": "Election-week hacking gets a lot of attention, but officially confirmed disruptions of election systems are rare: one recent general election had them, the next did not. The friction that matters this year is slower and legal.",
+      "why_now": [
+        "No confirmed disruption found in 2024's election week",
+        "Officials often attribute slowdowns to traffic",
+        "An active war adds a motive"
+      ],
+      "base_rate": {
+        "text": "Officially confirmed cyber disruptions of public election sites happened in 2022 but not in 2024. Anchor: 60% for none this election week.",
+        "value": 60,
+        "evidence": [
+          "E057"
+        ]
+      },
+      "adjustments": [
+        {
+          "label": "An active war gives Iran-linked groups a motive to embarrass the US",
+          "delta": -4,
+          "evidence": [
+            "E015"
+          ]
+        },
+        {
+          "label": "Only an official confirmation counts; officials often cite high traffic instead",
+          "delta": 6,
+          "evidence": []
+        }
+      ],
+      "pathway": [
+        "N_INFO_OPS",
+        "N_ELECTION_STRESS"
+      ],
+      "increase_if": [
+        "Election Day passes without reported slowdowns"
+      ],
+      "decrease_if": [
+        "Hacktivist groups announce election-day campaigns",
+        "CISA issues an election-week alert"
+      ],
+      "skeptic": "Thousands of thinly protected county websites and a wartime adversary make at least one confirmed incident plausible.",
+      "escalation": "Officials have strong reasons to describe slowdowns as traffic rather than attacks.",
+      "adjudicator": "The confirmation requirement is the binding constraint. Hold just above 60%.",
+      "resolution": {
+        "condition": "Between Nov 1 and Nov 8, no state or local election office, CISA or the FBI publicly confirms that a cyber incident (such as denial of service, intrusion or ransomware) disrupted an official election website, voter lookup tool, results page or election-office IT, as reported by AP, Reuters or another major national outlet.",
+        "sources": [
+          "AP",
+          "Reuters",
+          "Official statements"
+        ],
+        "ambiguous": [
+          "Outages attributed to traffic or technical faults do not count as cyber incidents.",
+          "Incidents at campaigns or parties do not count."
+        ]
+      },
+      "research_question": "Do any election offices report attacks on Election Day itself?",
+      "evidence": [
+        "E014",
+        "E015",
+        "E057"
+      ],
+      "market": {
+        "status": "none",
+        "note": ""
+      },
+      "history": [
+        {
+          "at": "2026-11-01T23:15:00-06:00",
+          "p": {
+            "7d": 62,
+            "30d": null
+          },
+          "reason": "Initial publication"
+        }
+      ]
+    },
+    {
+      "id": "F18",
+      "title": "No comprehensive US–Iran agreement is announced by Dec 1",
+      "short": "No US–Iran deal by Dec 1",
+      "domains": [
+        "geopolitics",
+        "markets"
+      ],
+      "primary": "30d",
+      "p": {
+        "7d": null,
+        "30d": 90
+      },
+      "range": {
+        "7d": null,
+        "30d": [
+          80,
+          96
+        ]
+      },
+      "confidence": "medium",
+      "impact": 70,
+      "newsworthiness": 75,
+      "attention": "high",
+      "expected": {
+        "value": 70,
+        "basis": "judgment",
+        "note": "Each round of talks is covered as if a breakthrough could be days away."
+      },
+      "tactic": "precedent",
+      "surprise_note": "Coverage of each round of talks implies a deal could be close. Eight months of talks have produced no comprehensive agreement, and Iran just rejected the latest plan.",
+      "summary": "Talks keep making headlines, but nothing in the last eight months has produced a full agreement, and the latest plan was rejected. Expect more rounds, more deadlines and no comprehensive deal this month.",
+      "why_now": [
+        "Iran rejected Qatar's latest plan (Oct 31)",
+        "US says further strikes remain possible",
+        "Iran's leader ordered readiness for retaliation"
+      ],
+      "base_rate": {
+        "text": "Since the war began on Feb 28, talks have produced ceasefires and proposals but no comprehensive agreement in eight months. Anchor: 88% for none in the next 30 days.",
+        "value": 88,
+        "evidence": [
+          "E056"
+        ]
+      },
+      "adjustments": [
+        {
+          "label": "Both sides are signaling readiness to fight, not to settle",
+          "delta": 2,
+          "evidence": [
+            "E044"
+          ]
+        }
+      ],
+      "pathway": [
+        "N_IRAN_WAR"
+      ],
+      "increase_if": [
+        "Talks break off",
+        "New strikes"
+      ],
+      "decrease_if": [
+        "Iran accepts a framework",
+        "The US lifts the naval blockade"
+      ],
+      "skeptic": "Iran's economy is under severe pressure, which could force a fast deal.",
+      "escalation": "Each side's stated conditions are far apart, and the latest plan was rejected outright.",
+      "adjudicator": "A comprehensive deal in 30 days would need both sides to drop core demands. Hold high.",
+      "resolution": {
+        "condition": "By Dec 1, 2026, the US and Iran have not signed or jointly announced an agreement covering Iran's nuclear program or a formal end to hostilities, as reported by Reuters, AP or Bloomberg. An interim arrangement limited to shipping or prisoner exchanges does not count as a comprehensive agreement.",
+        "sources": [
+          "Reuters",
+          "AP",
+          "Bloomberg",
+          "Official statements"
+        ],
+        "ambiguous": [
+          "A framework announced as agreed in principle, with a signing date, counts as an agreement."
+        ]
+      },
+      "research_question": "Do any of the ongoing proposals include a signing timeline?",
+      "evidence": [
+        "E015",
+        "E044",
+        "E056"
+      ],
+      "market": {
+        "status": "not-checked",
+        "note": ""
+      },
+      "history": [
+        {
+          "at": "2026-11-01T23:15:00-06:00",
+          "p": {
+            "7d": null,
+            "30d": 90
+          },
+          "reason": "Initial publication"
+        }
+      ]
+    },
+    {
+      "id": "F19",
+      "title": "Gadi Eisenkot is the first person asked to form Israel's next government",
+      "short": "Eisenkot gets the first try",
+      "domains": [
+        "geopolitics"
+      ],
+      "primary": "30d",
+      "p": {
+        "7d": 35,
+        "30d": 80
+      },
+      "range": {
+        "7d": [
+          15,
+          55
+        ],
+        "30d": [
+          62,
+          92
+        ]
+      },
+      "confidence": "medium",
+      "impact": 50,
+      "newsworthiness": 70,
+      "attention": "high",
+      "expected": {
+        "value": 75,
+        "basis": "judgment",
+        "note": "Israeli reporting says both camps expect this."
+      },
+      "tactic": "calendar",
+      "summary": "Israel's president must name someone to try forming a government by Nov 11. Both camps expect it to be Gadi Eisenkot, and getting the first try is only the start of a 28 to 42-day process.",
+      "why_now": [
+        "Mandate due by Nov 11",
+        "Both camps expect Eisenkot first",
+        "No bloc has a majority"
+      ],
+      "base_rate": {
+        "text": "Israel's president usually gives the first mandate to the candidate with the most recommendations, and both camps expect that to be Eisenkot. Anchor: 80%.",
+        "value": 80,
+        "evidence": [
+          "E046"
+        ]
+      },
+      "adjustments": [],
+      "pathway": [
+        "N_ISRAEL_POLITICS"
+      ],
+      "increase_if": [
+        "Party recommendations confirm the expectation"
+      ],
+      "decrease_if": [
+        "A surprise realignment of recommendations"
+      ],
+      "skeptic": "Recommendation counts are close, and the president has room to choose whoever seems likeliest to form a government.",
+      "escalation": "Both camps already expect this outcome.",
+      "adjudicator": "Reporting from both camps points the same way. Hold at 80%.",
+      "resolution": {
+        "condition": "Between Nov 1 and Dec 1, Israel's president formally assigns the task of forming a government first to Gadi Eisenkot, as reported by Reuters, AP or the Times of Israel.",
+        "sources": [
+          "Reuters",
+          "AP",
+          "Times of Israel"
+        ],
+        "ambiguous": [
+          "If someone else gets the mandate first, this resolves no even if Eisenkot gets it later."
+        ]
+      },
+      "research_question": "How do party recommendations line up once consultations begin?",
+      "evidence": [
+        "E029",
+        "E046"
+      ],
+      "market": {
+        "status": "not-checked",
+        "note": ""
+      },
+      "history": [
+        {
+          "at": "2026-11-01T23:15:00-06:00",
+          "p": {
+            "7d": 35,
+            "30d": 80
+          },
+          "reason": "Initial publication"
+        }
+      ]
+    },
+    {
+      "id": "F20",
+      "title": "Binance publishes a root-cause report on its record theft by Dec 1",
+      "short": "Binance explains the theft",
+      "domains": [
+        "cyber",
+        "markets"
+      ],
+      "primary": "30d",
+      "p": {
+        "7d": 35,
+        "30d": 75
+      },
+      "range": {
+        "7d": [
+          15,
+          55
+        ],
+        "30d": [
+          58,
+          88
+        ]
+      },
+      "confidence": "medium",
+      "impact": 45,
+      "newsworthiness": 60,
+      "attention": "medium",
+      "expected": {
+        "value": 60,
+        "basis": "judgment",
+        "note": "Exchanges often promise explanations that arrive slowly or not at all."
+      },
+      "tactic": "lagged-consequence",
+      "summary": "Binance has promised a root-cause report on the $6.3 billion theft. Exchanges hit by record thefts have usually explained how it happened within weeks. Whether the report names a tool other exchanges also use will matter more than the report itself.",
+      "why_now": [
+        "Binance committed to a root-cause report",
+        "It says there were 'additional points of breach'",
+        "Investigators are still tracing funds"
+      ],
+      "base_rate": {
+        "text": "Exchanges hit by record thefts have usually published forensic findings within weeks; Bybit released preliminary reports about five days after its 2025 theft. Anchor: 70%.",
+        "value": 70,
+        "evidence": [
+          "E028"
+        ]
+      },
+      "adjustments": [
+        {
+          "label": "Binance publicly committed to publishing a root-cause report",
+          "delta": 5,
+          "evidence": [
+            "E008"
+          ]
+        }
+      ],
+      "pathway": [
+        "N_DPRK_THEFT",
+        "N_CRYPTO_STRESS"
+      ],
+      "increase_if": [
+        "Binance names an outside investigator"
+      ],
+      "decrease_if": [
+        "Law enforcement asks Binance to hold details back"
+      ],
+      "skeptic": "An ongoing criminal investigation can delay or narrow what a company publishes.",
+      "escalation": "Binance needs to restore trust fast, and a public commitment is hard to walk back.",
+      "adjudicator": "The commitment plus precedent make this likely. Investigation pressure keeps it from being near-certain.",
+      "resolution": {
+        "condition": "Between Nov 1 and Dec 1, Binance publishes a report, blog post or official statement setting out the root cause of the October 2026 theft in more detail than its initial statements (at minimum, how attackers got in and which systems were involved), on its official site or as reported by Reuters, Bloomberg, The Block, CoinDesk or The Hacker News.",
+        "sources": [
+          "Binance",
+          "Reuters",
+          "Bloomberg",
+          "The Block",
+          "CoinDesk",
+          "The Hacker News"
+        ],
+        "ambiguous": [
+          "Repeating only 'a compromised engineer laptop' does not count."
+        ]
+      },
+      "research_question": "Does the report name a tool or vendor other exchanges also use?",
+      "evidence": [
+        "E008",
+        "E028",
+        "E053"
+      ],
+      "market": {
+        "status": "none",
+        "note": ""
+      },
+      "history": [
+        {
+          "at": "2026-11-01T23:15:00-06:00",
+          "p": {
+            "7d": 35,
+            "30d": 75
+          },
+          "reason": "Initial publication"
+        }
+      ]
+    }
+  ]
+}

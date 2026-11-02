@@ -904,6 +904,38 @@
         "N_COUNT_TIMING"
       ],
       "notes": "Exact July date not captured; first of month used."
+    },
+    {
+      "id": "E056",
+      "date": "2026-10-31",
+      "source": "Reuters",
+      "source_type": "wire-service",
+      "url": "https://www.spokesman.com/stories/2026/oct/31/iranian-envoys-meet-qatari-mediators-as-threat-loo/",
+      "claim": "Iran rejected Qatar's seven-day plan during the Oct 31 talks; eight months after the war began, no comprehensive US–Iran agreement has been reached.",
+      "status": "reported",
+      "reliability": "A",
+      "cluster": "iran-nov1",
+      "direction": "context",
+      "nodes": [
+        "N_IRAN_WAR"
+      ],
+      "notes": "Same report as E044."
+    },
+    {
+      "id": "E057",
+      "date": "2024-11-06",
+      "source": "Cloudflare",
+      "source_type": "specialist-analysis",
+      "url": "https://blog.cloudflare.com/exploring-internet-traffic-shifts-and-cyber-attacks-during-the-2024-us-election",
+      "claim": "Cloudflare saw no significant disruptions to local government election websites during the 2024 US general election.",
+      "status": "confirmed",
+      "reliability": "B",
+      "cluster": "election-cyber-2024",
+      "direction": "base-rate",
+      "nodes": [
+        "N_ELECTION_STRESS"
+      ],
+      "notes": "Exact publication date approximate."
     }
   ]
 }

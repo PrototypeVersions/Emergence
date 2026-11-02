@@ -2,7 +2,7 @@
 
 Scheduled runs also follow `docs/AUTOMATION.md`, which defines the weekly and daily run types and the guardrails for publishing without review.
 
-Forecasts change only during an explicit update cycle. Cadence: weekly on Monday mornings, plus short updates on calendar decision dates and after major surprises (see `AUTOMATION.md`).
+Forecasts change only during an explicit update cycle. Automatic updates are currently off; run updates by hand. If automation is turned back on, `AUTOMATION.md` defines the schedule.
 
 ## 1. Resolve what closed
 

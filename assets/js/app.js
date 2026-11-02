@@ -67,9 +67,10 @@
     const under = bySurprise.filter(isUnderRadar);
     const hero = under[0] || bySurprise[0];
     const second = under.find((f) => f !== hero);
+    const third = under.find((f) => f !== hero && f !== second);
     const over = fs.filter(isOverexpected).sort((a, b) => gap(a) - gap(b))[0];
     const tail = fs.filter((f) => pp(f) <= 20 && f.impact >= 70 && f !== over).sort((a, b) => b.impact * b.newsworthiness - a.impact * a.newsworthiness)[0];
-    return { hero, second, over, tail, underCount: under.length };
+    return { hero, second, third, over, tail, underCount: under.length };
   }
   /** Plain-English likelihood. */
   const word = (p) => (p >= 90 ? "Almost certain" : p >= 70 ? "Likely" : p >= 55 ? "More likely than not" : p >= 45 ? "Toss-up" : p >= 30 ? "Possible" : p >= 10 ? "Unlikely" : "Very unlikely");
@@ -135,18 +136,6 @@
   }
   const lastClose = (st) => st.forecasts.map((id) => S.data.fc.horizons[S.data.byId[id].primary].closes).sort().pop();
 
-  /** Next Monday-morning full update, honoring the skip rule (no full update within 4 days of the last one). */
-  function nextUpdate() {
-    const full = S.data.index.snapshots.filter((x) => /Weekly update|Initial publication/.test(x.change_type)).map((x) => new Date(x.published)).sort((a, b) => b - a)[0];
-    const d = new Date(); d.setHours(0, 0, 0, 0);
-    for (let i = 0; i < 21; i++) {
-      const c = new Date(d.getFullYear(), d.getMonth(), d.getDate() + i, 6, 38);
-      if (c.getDay() !== 1 || c < new Date()) continue;
-      if (full && (c - full) / 864e5 < 4) continue;
-      return c.toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" });
-    }
-    return "next Monday";
-  }
   /** Timeline of upcoming decision dates; dates within 2 days of each other are grouped. */
   function ribbon() {
     const t = todayISO();
@@ -171,7 +160,7 @@
   }
 
   function viewPulse() {
-    const { hero, second, over } = pulsePicks();
+    const { hero, second, third, over } = pulsePicks();
     const B = S.data.stories.brief;
     const L = S.data.links;
     const pickHTML = (f, kind, label, why) => f ? `<a class="pick" data-kind="${kind}" href="#/forecast/${f.id}">
@@ -182,7 +171,7 @@
     return `
       <section class="brief" aria-labelledby="brief-title">
         <div class="cover">
-        <div class="kicker"><span>This week's brief, ${fmtDate(B.date)}</span><span>Next update ${nextUpdate()}</span></div>
+        <div class="kicker"><span>This week's brief, ${fmtDate(B.date)}</span></div>
         <h1 id="brief-title" class="brief-title">${esc(B.title)}</h1>
         ${ribbon()}
         </div>
@@ -197,7 +186,7 @@
       <section class="trio" aria-label="Numbers to watch">
         ${pickHTML(hero, "likely", "Likely, but few expect it", (f) => `${peopleGuess(f)}.`)}
         ${pickHTML(second, "likely", "Also likely, but few expect it", (f) => `${peopleGuess(f)}.`)}
-        ${pickHTML(over, "underwatched", "Expected, but may not happen", (f) => `${peopleGuess(f)}. We think it's less likely.`)}
+        ${third ? pickHTML(third, "likely", "Also likely, but few expect it", (f) => `${peopleGuess(f)}.`) : pickHTML(over, "underwatched", "Expected, but may not happen", (f) => `${peopleGuess(f)}. We think it's less likely.`)}
       </section>
       <section class="pulse-foot">
         <div class="unknown">
@@ -224,7 +213,7 @@
     const t = todayISO();
     const es = [...S.data.calendar.entries].sort((a, b) => a.date.localeCompare(b.date));
     const next = es.find((e) => e.date >= t);
-    return `<header class="page-head"><h1>When we'll actually know</h1><p>News builds up to moments. This is the calendar of when things are actually decided, with what the coverage implies next to what's really scheduled. Updates to the site land on these dates.</p></header>
+    return `<header class="page-head"><h1>When we'll actually know</h1><p>News builds up to moments. This is the calendar of when things are actually decided, with what the coverage implies next to what's really scheduled.</p></header>
       <ol class="cal-list">${es.map((e) => { const past = e.date < t; return `<li class="cal-item${past ? " past" : ""}${e === next ? " next" : ""}">
         <div class="cal-date"><b>${new Date(e.date + "T12:00:00").toLocaleDateString("en-US", { month: "short" })}</b><span>${new Date(e.date + "T12:00:00").getDate()}</span></div>
         <div class="cal-body">
@@ -652,7 +641,7 @@
       <h2>Follow along</h2>
       <p>Subscribe to the <a class="link" href="feed.xml">RSS feed</a> to get each weekly brief and new story.</p>
       <h2>Updates</h2>
-      <p>The site updates itself on a schedule: a full update every Monday morning, and a short update on the decision dates in the calendar or after a major surprise. Each update follows a written protocol, and a validator must pass before anything is published. The current cycle was published ${fmtDate(S.data.fc.published)}.</p>
+      <p>Updates are published by hand, after fresh research. Each one follows a written protocol, and a validator must pass before anything is published. The current cycle was published ${fmtDate(S.data.fc.published)}.</p>
     </div>`;
   }
 
@@ -749,7 +738,7 @@
   syncControls();
   load().then(() => {
     const fc = S.data.fc;
-    $("#rail-foot").innerHTML = `<strong>Forecast cycle ${esc(fmtDate(fc.published))}</strong>Updates every Monday morning and on decision dates. Next 7-day forecasts close ${esc(closes("7d"))}.`;
+    $("#rail-foot").innerHTML = `<strong>Forecast cycle ${esc(fmtDate(fc.published))}</strong>Next forecasts close ${esc(closes("7d"))}.`;
     route();
   }).catch((err) => {
     view.innerHTML = `<div class="page-head"><h1>The forecast data didn't load</h1><p>${esc(err.message)}. If you opened this file directly from disk, serve the folder over HTTP instead (for example, <code>python3 -m http.server</code>) and reload.</p></div>`;

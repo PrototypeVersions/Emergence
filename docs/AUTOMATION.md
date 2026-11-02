@@ -1,5 +1,7 @@
 # Automated updates
 
+> **Status: off.** Automatic updates were turned off on Nov 1, 2026. Both scheduled tasks ("Emergence weekly update" and "Emergence daily check") are disabled. Updates now happen only when someone runs them by hand. Re-enable the tasks to resume automatic updates; the rules below still apply.
+
 Emergence updates itself on a schedule, with no one reviewing each run. These rules are what keep that safe. Scheduled runs must follow this file, `docs/UPDATE_PROTOCOL.md`, `docs/SAFETY_BOUNDARY.md` and `CLAUDE.md`.
 
 ## Run types

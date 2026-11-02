@@ -75,8 +75,7 @@
       ],
       "forecasts": [
         "F08",
-        "F09",
-        "F01"
+        "F18"
       ],
       "why_hidden": "Shipping, cable threats and cloud outages are covered by different desks. Each looks contained on its own.",
       "steps": [
@@ -128,9 +127,9 @@
         "markets"
       ],
       "forecasts": [
-        "F02",
         "F03",
-        "F04"
+        "F04",
+        "F20"
       ],
       "why_hidden": "Three October stories (Binance, LiteLLM, the Pentagon-network agent) were reported as unrelated. All three start with trusted access sitting on an engineer's machine or in an agent working on their behalf.",
       "model_inference": true,
@@ -193,9 +192,7 @@
         "cyber"
       ],
       "forecasts": [
-        "F04",
-        "F05",
-        "F10"
+        "F04"
       ],
       "why_hidden": "The summer eval escapes were treated as a lab-safety story. The same capability is now being deployed with weaker containment.",
       "steps": [
@@ -251,7 +248,7 @@
       ],
       "forecasts": [
         "F06",
-        "F07"
+        "F16"
       ],
       "why_hidden": "Coverage treats foreign disinformation and the Iran war separately. Both are pointed at the same week and the same thin local offices.",
       "steps": [
@@ -299,7 +296,7 @@
       ],
       "forecasts": [
         "F08",
-        "F12"
+        "F18"
       ],
       "why_hidden": "Public attention is on missiles and shipping. Cheap, deniable retaliation against exposed US controllers has precedent but no current coverage.",
       "steps": [
@@ -389,8 +386,7 @@
     "title": "How often do AI agents really cause real-world incidents?",
     "text": "Counting only AI agents in everyday use gives roughly one public incident every three months. Counting lab agents that reached real systems gives more than one a month. The story that the next big breach will be blamed on an AI agent depends on which is closer to the truth.",
     "forecasts": [
-      "F04",
-      "F05"
+      "F04"
     ],
     "node": "N_AGENT_AUTONOMY"
   },

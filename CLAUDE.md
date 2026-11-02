@@ -2,7 +2,7 @@
 
 Static GitHub Pages site. No build step. Data lives in `data/*.json` and is rendered by `assets/js/app.js`.
 
-- **Scheduled runs** follow `docs/AUTOMATION.md` (weekly full update, daily decision-day and surprise check, guardrails).
+- **Automatic updates are off** (scheduled tasks disabled Nov 1, 2026). Updates are run by hand. If they are turned back on, scheduled runs follow `docs/AUTOMATION.md`.
 - **Before any forecast update**, read `docs/UPDATE_PROTOCOL.md` and follow it in order. Never edit files in `forecasts/`. They are frozen snapshots.
 - **Purpose:** show how the news will play out: where today's stories are really heading, with every call scored. Every story should forecast the next chapter of something already in the news.
 - **Stories lead.** The site's main product is `data/stories.json`: "you'd think / more likely" claims that pass the four tests in `docs/METHODOLOGY.md`, each with forecasts as receipts and a "what would prove it wrong." Run the story engine in the update protocol every cycle and rewrite the weekly brief last.

@@ -1,6 +1,6 @@
 {
-  "cycle": "2026-11-01-2025",
-  "published": "2026-11-01T20:25:00-06:00",
+  "cycle": "2026-11-01-2315",
+  "published": "2026-11-01T23:15:00-06:00",
   "engine_version": "1.2.0",
   "horizons": {
     "7d": {
@@ -15,229 +15,6 @@
     }
   },
   "forecasts": [
-    {
-      "id": "F01",
-      "title": "Multi-hour outage at a major cloud or CDN provider",
-      "short": "Major cloud outage",
-      "domains": [
-        "internet",
-        "markets"
-      ],
-      "primary": "7d",
-      "p": {
-        "7d": 24,
-        "30d": 68
-      },
-      "range": {
-        "7d": [
-          15,
-          34
-        ],
-        "30d": [
-          55,
-          80
-        ]
-      },
-      "confidence": "high",
-      "impact": 55,
-      "newsworthiness": 70,
-      "attention": "high",
-      "summary": "Big cloud outages are now routine. In 2026 they've happened about once every three weeks. This is the closest thing to a sure bet on the board, and it sets the pace for the other infrastructure forecasts.",
-      "why_now": [
-        "2026 is running at ~1.3 outages/month",
-        "London region failed Oct 19–20",
-        "Two Gulf regions still impaired"
-      ],
-      "base_rate": {
-        "text": "31 multi-hour incidents across AWS, Azure, Google Cloud and Cloudflare from Jan 2024 to Oct 2026. A blended rate of ~1.1 per month gives a 23% chance in any 7-day window.",
-        "value": 23,
-        "evidence": [
-          "E010"
-        ]
-      },
-      "adjustments": [
-        {
-          "label": "2026 is running hotter (1.34/month) than the 2024–26 average",
-          "delta": 3,
-          "evidence": [
-            "E010",
-            "E012"
-          ]
-        },
-        {
-          "label": "Must be covered by a major outlet; some single-region incidents are not",
-          "delta": -2,
-          "evidence": []
-        }
-      ],
-      "pathway": [
-        "N_GULF_INFRA",
-        "N_CLOUD_FRAGILITY"
-      ],
-      "increase_if": [
-        "A new large-scale configuration or DNS change is announced by a provider",
-        "Renewed strikes in the Gulf"
-      ],
-      "decrease_if": [
-        "A quiet first week (each quiet week lowers the next week only slightly — outages are close to random)"
-      ],
-      "skeptic": "The tracker is curated and over-represents Azure, which publishes more incident reviews. The true rate of outages big enough to make news may be lower.",
-      "escalation": "Load from AI workloads and aging control planes is pushing the rate up each year, so even the 2026 rate may already be stale.",
-      "adjudicator": "The skeptic's point is real, but the resolution only needs one outlet's coverage, and nearly every tracked event got some. Hold near the base rate.",
-      "resolution": {
-        "condition": "An incident at AWS, Microsoft Azure, Google Cloud or Cloudflare begins within the window and causes customer-facing impact lasting at least 2 hours (per the provider's status page or post-incident report), and is covered by at least one of: Reuters, AP, Bloomberg, CNBC, The Verge, The Register, TechRadar, BleepingComputer.",
-        "sources": [
-          "Provider status pages and post-incident reports",
-          "Listed outlets"
-        ],
-        "ambiguous": [
-          "The ongoing Gulf-region impairments that began in March do not count.",
-          "If the duration is disputed, the provider's own stated figure decides."
-        ]
-      },
-      "research_question": "What share of tracked multi-hour incidents were covered by a major outlet? This tests the −2 adjustment.",
-      "evidence": [
-        "E010",
-        "E011",
-        "E012",
-        "E054"
-      ],
-      "market": {
-        "status": "not-checked",
-        "note": "No matching prediction-market question checked this cycle."
-      },
-      "history": [
-        {
-          "at": "2026-11-01T18:00:00-06:00",
-          "p": {
-            "7d": 24,
-            "30d": 68
-          },
-          "reason": "Initial publication"
-        }
-      ],
-      "expected": {
-        "value": 20,
-        "basis": "judgment",
-        "note": "Outages feel routine; most readers would guess roughly this."
-      },
-      "tactic": "base-rate"
-    },
-    {
-      "id": "F02",
-      "title": "A single crypto theft of $100 million or more",
-      "short": "$100M+ crypto theft",
-      "domains": [
-        "cyber",
-        "markets"
-      ],
-      "primary": "30d",
-      "p": {
-        "7d": 9,
-        "30d": 33
-      },
-      "range": {
-        "7d": [
-          4,
-          16
-        ],
-        "30d": [
-          22,
-          46
-        ]
-      },
-      "confidence": "medium",
-      "impact": 50,
-      "newsworthiness": 65,
-      "attention": "medium",
-      "summary": "Thefts this large happen about every two to three months. The record $6.3B Binance theft pushes the odds in two directions: other attackers may copy the method, while the group most likely to pull off the next one is busy laundering this one.",
-      "why_now": [
-        "Record $6.3B theft on Oct 31",
-        "Method (engineer laptop → withdrawal service) is reusable",
-        "Four other $100M+ thefts already in 2026"
-      ],
-      "base_rate": {
-        "text": "About five thefts of $100M or more in the first ten months of 2026 and three to four in 2025. ~0.4 per month gives a 33% chance in 30 days.",
-        "value": 33,
-        "evidence": [
-          "E009"
-        ]
-      },
-      "adjustments": [
-        {
-          "label": "A public, reusable method; other exchanges are likely being probed the same way",
-          "delta": 2,
-          "evidence": [
-            "E008"
-          ]
-        },
-        {
-          "label": "North Korea, which drives most large-theft losses, is busy laundering $6.3B",
-          "delta": -2,
-          "evidence": [
-            "E007"
-          ]
-        }
-      ],
-      "pathway": [
-        "N_DPRK_THEFT",
-        "N_CRYPTO_STRESS"
-      ],
-      "increase_if": [
-        "Binance's root-cause report shows a broadly shared weakness (for example, a common vendor or tool)",
-        "Reports of a new campaign targeting exchange engineers"
-      ],
-      "decrease_if": [
-        "Exchanges announce coordinated hardening",
-        "Evidence that the Binance attackers are fully occupied laundering funds"
-      ],
-      "skeptic": "Large thefts cluster in time. After a record event, exchanges harden fast, which suppresses the next few weeks.",
-      "escalation": "Smaller groups now have a public playbook, and 2026 has averaged more than one $100M+ theft every two months.",
-      "adjudicator": "The two effects roughly cancel out, and neither has direct evidence behind it yet. Stay on the base rate.",
-      "resolution": {
-        "condition": "A single theft, hack or exploit removing at least $100 million (gross, at time of theft) from a crypto exchange, protocol, bridge or individual occurs within the window, as reported by Chainalysis, TRM Labs, Elliptic, or Reuters/Bloomberg.",
-        "sources": [
-          "Chainalysis",
-          "TRM Labs",
-          "Elliptic",
-          "Reuters",
-          "Bloomberg"
-        ],
-        "ambiguous": [
-          "Later recovery of funds does not cancel resolution.",
-          "Multiple drains from one root exploit count as one event."
-        ]
-      },
-      "research_question": "Has Binance published its full root-cause report, and does it name a tool or vendor other exchanges also use?",
-      "evidence": [
-        "E007",
-        "E008",
-        "E009",
-        "E051",
-        "E052",
-        "E053"
-      ],
-      "market": {
-        "status": "not-checked",
-        "note": ""
-      },
-      "history": [
-        {
-          "at": "2026-11-01T18:00:00-06:00",
-          "p": {
-            "7d": 9,
-            "30d": 33
-          },
-          "reason": "Initial publication"
-        }
-      ],
-      "expected": {
-        "value": 15,
-        "basis": "judgment",
-        "note": "A record theft reads as a one-off, not the start of a run."
-      },
-      "tactic": "precedent"
-    },
     {
       "id": "F03",
       "title": "A popular AI developer tool or agent package ships a malicious version",
@@ -467,118 +244,6 @@
       "tactic": "base-rate"
     },
     {
-      "id": "F05",
-      "title": "An AI provider pulls back a live capability after an incident",
-      "short": "AI provider restricts a feature",
-      "domains": [
-        "ai"
-      ],
-      "primary": "30d",
-      "p": {
-        "7d": 4,
-        "30d": 16
-      },
-      "range": {
-        "7d": [
-          1,
-          10
-        ],
-        "30d": [
-          7,
-          30
-        ]
-      },
-      "confidence": "low",
-      "impact": 55,
-      "newsworthiness": 80,
-      "attention": "low",
-      "summary": "Agent incidents keep coming, but providers rarely respond by switching something off. If one does, it would be a big story and a precedent. That rarity is why this is a minority outcome.",
-      "why_now": [
-        "Agent incidents are accumulating",
-        "One lab already paused training over cyber capability",
-        "Government scrutiny rising"
-      ],
-      "base_rate": {
-        "text": "Live AI features pulled back after a safety, security or misuse incident: a handful across 2025 and none so far in 2026, despite many incidents. About 0.14 a month gives 13% in 30 days.",
-        "value": 13,
-        "evidence": [
-          "E033"
-        ]
-      },
-      "adjustments": [
-        {
-          "label": "Accumulating agent incidents and new federal guidance raise pressure",
-          "delta": 3,
-          "evidence": [
-            "E001",
-            "E004"
-          ]
-        }
-      ],
-      "pathway": [
-        "N_AGENT_AUTONOMY",
-        "N_AGENT_PRIVILEGE",
-        "N_PROVIDER_CONTROLS"
-      ],
-      "increase_if": [
-        "A high-profile agent incident tied to one provider's product",
-        "Regulator action naming a specific feature"
-      ],
-      "decrease_if": [
-        "Providers respond with patches and policy changes rather than restrictions"
-      ],
-      "skeptic": "Providers have strong commercial reasons to patch quietly rather than visibly restrict a feature.",
-      "escalation": "Agent features are new and lightly tested. One bad incident on a consumer product could force a public pause.",
-      "adjudicator": "Even after notifying more than 100 organizations of possible model access, the leading lab restricted training, not a live product. Restrictions of live features are rarer than incidents suggest.",
-      "resolution": {
-        "condition": "OpenAI, Anthropic, Google/DeepMind, Microsoft, Meta, xAI, Amazon, Apple, Mistral, DeepSeek or Alibaba publicly disables, pauses, rolls back or materially restricts a model, feature or capability already available to customers, and the announcement or credible reporting ties the action to a security incident, misuse incident or unintended agent behavior.",
-        "sources": [
-          "Provider announcements",
-          "Reuters, Bloomberg, The Verge, TechCrunch"
-        ],
-        "ambiguous": [
-          "Routine deprecations, outages and legal or regulatory-only removals do not count.",
-          "Banning specific abusive accounts does not count."
-        ]
-      },
-      "research_question": "List every 2025–26 qualifying restriction to firm up the base rate.",
-      "evidence": [
-        "E001",
-        "E003",
-        "E004",
-        "E033",
-        "E034"
-      ],
-      "market": {
-        "status": "none",
-        "note": ""
-      },
-      "history": [
-        {
-          "at": "2026-11-01T18:00:00-06:00",
-          "p": {
-            "7d": 7,
-            "30d": 25
-          },
-          "reason": "Initial publication"
-        },
-        {
-          "at": "2026-11-01T20:25:00-06:00",
-          "p": {
-            "7d": 4,
-            "30d": 16
-          },
-          "reason": "−9: research found no qualifying restriction in 2026 despite many incidents; labs are restricting internal systems, not live products."
-        }
-      ],
-      "expected": {
-        "value": 20,
-        "basis": "judgment",
-        "note": ""
-      },
-      "tactic": "base-rate"
-    },
-    {
       "id": "F06",
       "title": "Election officials publicly flag a specific fake video, audio or image about the midterms",
       "short": "Officials debunk election fake",
@@ -708,109 +373,6 @@
       "tactic": "precedent"
     },
     {
-      "id": "F07",
-      "title": "A confirmed cyber incident disrupts an official election website or system during election week",
-      "short": "Election-week cyber disruption",
-      "domains": [
-        "elections",
-        "cyber",
-        "geopolitics"
-      ],
-      "primary": "7d",
-      "p": {
-        "7d": 38,
-        "30d": null
-      },
-      "range": {
-        "7d": [
-          22,
-          55
-        ],
-        "30d": null
-      },
-      "confidence": "low",
-      "impact": 55,
-      "newsworthiness": 75,
-      "attention": "high",
-      "summary": "Attacks that flood a website with traffic to knock it offline (denial of service) usually only slow down public election sites. They don't touch vote counting. But they make headlines, and an active war with Iran adds a motivated actor. This only covers election week.",
-      "why_now": [
-        "Active US–Iran war",
-        "Russian network already active",
-        "Election Day Nov 3"
-      ],
-      "base_rate": {
-        "text": "Officially confirmed cyber disruptions of public election sites occurred in some recent general elections (for example, 2022) but not others. Judgment anchor: 40% for election week.",
-        "value": 40,
-        "evidence": []
-      },
-      "adjustments": [
-        {
-          "label": "An active war gives Iran-linked groups a motive to embarrass the US",
-          "delta": 4,
-          "evidence": [
-            "E015"
-          ]
-        },
-        {
-          "label": "Must be officially confirmed as a cyber incident; officials often cite 'high traffic' instead",
-          "delta": -6,
-          "evidence": []
-        }
-      ],
-      "pathway": [
-        "N_IRAN_WAR",
-        "N_IRAN_CYBER",
-        "N_ELECTION_STRESS"
-      ],
-      "increase_if": [
-        "Hacktivist groups announce election-day campaigns",
-        "CISA issues an election-week alert"
-      ],
-      "decrease_if": [
-        "Election Day passes without reported slowdowns"
-      ],
-      "skeptic": "Denial-of-service on results pages is common but rarely confirmed. Officials prefer 'heavy traffic' explanations.",
-      "escalation": "Thousands of county websites, many on thin infrastructure, plus a wartime adversary.",
-      "adjudicator": "The confirmation requirement is binding. Hold below 40%.",
-      "resolution": {
-        "condition": "Between Nov 1 and Nov 8, a state or local election office, CISA or the FBI publicly confirms that a cyber incident (such as denial of service, intrusion or ransomware) disrupted availability of an official election website, voter lookup tool, results page or election-office IT, as reported by AP, Reuters or another major national outlet.",
-        "sources": [
-          "AP",
-          "Reuters",
-          "Official statements"
-        ],
-        "ambiguous": [
-          "Outages attributed to traffic or technical faults do not count.",
-          "Incidents at campaigns or parties do not count."
-        ]
-      },
-      "research_question": "Were any public election sites disrupted by confirmed cyber incidents in the 2024 general election week?",
-      "evidence": [
-        "E014",
-        "E015"
-      ],
-      "market": {
-        "status": "not-checked",
-        "note": ""
-      },
-      "history": [
-        {
-          "at": "2026-11-01T18:00:00-06:00",
-          "p": {
-            "7d": 38,
-            "30d": null
-          },
-          "reason": "Initial publication"
-        }
-      ],
-      "expected": {
-        "value": 45,
-        "basis": "judgment",
-        "note": "Public worry about election hacking runs ahead of how often a disruption is officially confirmed."
-      },
-      "tactic": "precedent"
-    },
-    {
       "id": "F08",
       "title": "New US or Israeli military strikes on Iranian territory",
       "short": "Renewed strikes on Iran",
@@ -930,472 +492,6 @@
         "note": "Polymarket (Oct 29) priced a US–Iran ceasefire break by Dec 31 at about 75%; interpolated, that implies roughly 55% by Dec 1. A ceasefire break is broader than strikes on Iranian territory."
       },
       "tactic": "scenario"
-    },
-    {
-      "id": "F09",
-      "title": "Damage to an undersea internet cable in the Gulf or Red Sea region",
-      "short": "Gulf/Red Sea cable damage",
-      "domains": [
-        "geopolitics",
-        "internet",
-        "markets"
-      ],
-      "primary": "30d",
-      "p": {
-        "7d": 6,
-        "30d": 20
-      },
-      "range": {
-        "7d": [
-          2,
-          12
-        ],
-        "30d": [
-          10,
-          35
-        ]
-      },
-      "confidence": "low",
-      "impact": 70,
-      "newsworthiness": 60,
-      "attention": "low",
-      "summary": "Iran has now said it could target seabed cables. Ships are still being attacked in the waters those cables cross. And two Gulf cloud regions have been impaired since March. Each of these appears in the news separately. Together, they point to a regional internet disruption few people are watching.",
-      "why_now": [
-        "Iran's explicit threat against seabed cables (Nov 1)",
-        "Tankers attacked near Hormuz",
-        "Gulf cloud regions already impaired"
-      ],
-      "base_rate": {
-        "text": "Publicly reported cable damage in the Red Sea and Gulf waters happens roughly once a year (2024 and 2025 both had Red Sea cuts). That gives about 10% in 30 days.",
-        "value": 10,
-        "evidence": []
-      },
-      "adjustments": [
-        {
-          "label": "Iran's explicit, public threat against seabed cables",
-          "delta": 8,
-          "evidence": [
-            "E015"
-          ]
-        },
-        {
-          "label": "Ongoing ship attacks raise the risk of accidental anchor damage too",
-          "delta": 2,
-          "evidence": [
-            "E015"
-          ]
-        }
-      ],
-      "pathway": [
-        "N_IRAN_WAR",
-        "N_GULF_INFRA",
-        "N_CLOUD_FRAGILITY"
-      ],
-      "increase_if": [
-        "Renewed strikes on Iran (see F08)",
-        "Reports of vessels loitering over cable routes"
-      ],
-      "decrease_if": [
-        "A Hormuz deal",
-        "Naval escort of cable-repair or survey operations"
-      ],
-      "skeptic": "Iran's threat is conditional on new attacks on its civilian infrastructure, and cutting cables also hurts Gulf states Iran is courting.",
-      "escalation": "Cable damage doesn't need intent. Disabled or abandoned ships dragging anchors caused the 2024 Red Sea cuts.",
-      "adjudicator": "The accidental route is well documented and independent of Iran's intent, which keeps the forecast above the base rate even if the threat is a bluff.",
-      "resolution": {
-        "condition": "A cable operator, government, or Reuters/AP/Bloomberg/FT reports physical damage to, or a cut of, at least one international submarine communications cable in the Persian Gulf, Gulf of Oman, Arabian Sea approaches or Red Sea, occurring within the window.",
-        "sources": [
-          "Cable operators",
-          "Reuters",
-          "AP",
-          "Bloomberg",
-          "FT"
-        ],
-        "ambiguous": [
-          "Damage discovered in the window but dated earlier does not count.",
-          "Power cables do not count."
-        ]
-      },
-      "research_question": "Have Gulf cable operators or repair crews reported any incident or security warning since the October threats?",
-      "evidence": [
-        "E011",
-        "E015",
-        "E042",
-        "E043"
-      ],
-      "market": {
-        "status": "none",
-        "note": ""
-      },
-      "history": [
-        {
-          "at": "2026-11-01T18:00:00-06:00",
-          "p": {
-            "7d": 6,
-            "30d": 20
-          },
-          "reason": "Initial publication"
-        }
-      ],
-      "expected": {
-        "value": 5,
-        "basis": "judgment",
-        "note": "Few people connect the shipping attacks to internet cables."
-      },
-      "tactic": "precedent"
-    },
-    {
-      "id": "F10",
-      "title": "A US security agency issues guidance focused on AI-agent or AI-tool security",
-      "short": "US advisory on AI agents",
-      "domains": [
-        "ai",
-        "cyber"
-      ],
-      "primary": "30d",
-      "p": {
-        "7d": 12,
-        "30d": 40
-      },
-      "range": {
-        "7d": [
-          5,
-          22
-        ],
-        "30d": [
-          25,
-          58
-        ]
-      },
-      "confidence": "medium",
-      "impact": 35,
-      "newsworthiness": 30,
-      "attention": "low",
-      "summary": "A government response to the run of agent and AI-tool incidents. A major joint document just shipped in October, so the next one may take a while. But the Pentagon-network report adds direct pressure.",
-      "why_now": [
-        "Joint SI incident guidance Oct 16",
-        "NIPRNet agent report Oct 30",
-        "AI-tool supply-chain attacks rising"
-      ],
-      "base_rate": {
-        "text": "CISA, NSA, FBI and NIST have issued AI-security guidance about every two months recently (~0.55/month), which gives 42% in 30 days.",
-        "value": 42,
-        "evidence": [
-          "E001"
-        ]
-      },
-      "adjustments": [
-        {
-          "label": "A report of an agent on a Defense network adds pressure",
-          "delta": 3,
-          "evidence": [
-            "E004"
-          ]
-        },
-        {
-          "label": "A major joint document just shipped, so the near-term pipeline may be thin",
-          "delta": -5,
-          "evidence": [
-            "E001"
-          ]
-        }
-      ],
-      "pathway": [
-        "N_AGENT_AUTONOMY",
-        "N_AGENT_PRIVILEGE",
-        "N_GOV_GUIDANCE"
-      ],
-      "increase_if": [
-        "Official confirmation of the NIPRNet incident",
-        "A supply-chain compromise hits a federal contractor"
-      ],
-      "decrease_if": [
-        "Agency staffing cuts or a shutdown slow publications"
-      ],
-      "skeptic": "Guidance cycles are slow. Two major documents within six weeks would be unusual.",
-      "escalation": "Alerts are cheaper than guidance. A quick CISA alert on an AI-tool compromise would count.",
-      "adjudicator": "The escalation point about short alerts is fair and keeps this near 40%.",
-      "resolution": {
-        "condition": "CISA, NSA, FBI or NIST (alone or jointly) publishes an alert, advisory or guidance document whose main subject is the security of AI agents or AI development tools (including AI-tool supply chains) within the window.",
-        "sources": [
-          "cisa.gov",
-          "nsa.gov",
-          "nist.gov",
-          "ic3.gov"
-        ],
-        "ambiguous": [
-          "Broad AI-policy or risk-framework updates not centered on security do not count.",
-          "A Known Exploited Vulnerabilities entry alone does not count."
-        ]
-      },
-      "research_question": "Count 2025–26 qualifying publications to firm up the ~0.55/month rate.",
-      "evidence": [
-        "E001",
-        "E004",
-        "E005",
-        "E035"
-      ],
-      "market": {
-        "status": "none",
-        "note": ""
-      },
-      "history": [
-        {
-          "at": "2026-11-01T18:00:00-06:00",
-          "p": {
-            "7d": 12,
-            "30d": 40
-          },
-          "reason": "Initial publication"
-        }
-      ],
-      "expected": {
-        "value": 25,
-        "basis": "judgment",
-        "note": ""
-      },
-      "tactic": "base-rate"
-    },
-    {
-      "id": "F11",
-      "title": "Another US hospital diverts ambulances because of a cyberattack",
-      "short": "Hospital diverts ambulances",
-      "domains": [
-        "cyber",
-        "infrastructure"
-      ],
-      "primary": "30d",
-      "p": {
-        "7d": 12,
-        "30d": 42
-      },
-      "range": {
-        "7d": [
-          5,
-          22
-        ],
-        "30d": [
-          25,
-          60
-        ]
-      },
-      "confidence": "medium",
-      "impact": 60,
-      "newsworthiness": 40,
-      "attention": "low",
-      "summary": "Cyberattacks that force hospitals to turn ambulances away are serious but less frequent than we first estimated: about one every three to four months is publicly reported. UNM Health was the latest, on Oct 26.",
-      "why_now": [
-        "UNM Health diverted ambulances Oct 26",
-        "New ransomware group 'Byod' active"
-      ],
-      "base_rate": {
-        "text": "About six publicly reported cyber-caused ambulance diversions at US hospitals across 2025–26, roughly 0.3 a month. Doubling that to allow for local-only coverage gives 39% in 30 days.",
-        "value": 39,
-        "evidence": [
-          "E050"
-        ]
-      },
-      "adjustments": [
-        {
-          "label": "A new, aggressive ransomware group is claiming large victims",
-          "delta": 3,
-          "evidence": [
-            "E016"
-          ]
-        }
-      ],
-      "pathway": [
-        "N_RANSOMWARE",
-        "N_HEALTHCARE_OPS"
-      ],
-      "increase_if": [
-        "HHS or FBI warns about a healthcare-focused campaign"
-      ],
-      "decrease_if": [
-        "Law-enforcement takedown of an active group"
-      ],
-      "skeptic": "Even the corrected rate may be generous; several reported diversions were never confirmed by the hospital.",
-      "escalation": "Many diversions are reported only locally, so the true rate is higher than any count.",
-      "adjudicator": "Our first estimate was too high. The corrected base rate, with an allowance for under-reporting, puts this below even odds.",
-      "resolution": {
-        "condition": "A US hospital or health system other than UNM Health publicly confirms, or a news outlet reports citing the hospital, that it diverted ambulances because of a cyberattack or ransomware incident beginning within the window.",
-        "sources": [
-          "Hospital statements",
-          "Local and national news",
-          "HIPAA Journal"
-        ],
-        "ambiguous": [
-          "Diversions due to vendor outages that are not cyberattacks do not count."
-        ]
-      },
-      "research_question": "Do hospital-association or HHS tallies give a fuller count of cyber-related diversions?",
-      "evidence": [
-        "E016",
-        "E050"
-      ],
-      "market": {
-        "status": "none",
-        "note": ""
-      },
-      "history": [
-        {
-          "at": "2026-11-01T18:00:00-06:00",
-          "p": {
-            "7d": 26,
-            "30d": 73
-          },
-          "reason": "Initial publication"
-        },
-        {
-          "at": "2026-11-01T20:25:00-06:00",
-          "p": {
-            "7d": 12,
-            "30d": 42
-          },
-          "reason": "−31: a careful count found about six cases in 22 months, far below our first estimate of more than one a month. The first-published 73% still counts for scoring."
-        }
-      ],
-      "expected": {
-        "value": 25,
-        "basis": "judgment",
-        "note": "Hospital cyber diversions usually make only local news, so most people would guess they are rare."
-      },
-      "tactic": "base-rate",
-      "surprise_note": "Cyberattacks forcing ambulance diversions happen more than once a month in the US, but almost always as local news."
-    },
-    {
-      "id": "F12",
-      "title": "The US government attributes an operational disruption at US critical infrastructure to Iran-linked hackers",
-      "short": "Iran-linked hit on US utilities",
-      "domains": [
-        "geopolitics",
-        "cyber",
-        "infrastructure"
-      ],
-      "primary": "30d",
-      "p": {
-        "7d": 5,
-        "30d": 18
-      },
-      "range": {
-        "7d": [
-          2,
-          12
-        ],
-        "30d": [
-          8,
-          32
-        ]
-      },
-      "confidence": "low",
-      "impact": 85,
-      "newsworthiness": 85,
-      "attention": "low",
-      "summary": "A low-probability, high-impact tail. Iran-linked groups have disrupted US water-utility controllers before (2023). An active war and possible renewed strikes add motive. Official attribution usually lags by weeks, which caps the 30-day odds.",
-      "why_now": [
-        "Active war, possible strikes after the midterms",
-        "Iran 'prepared for all scenarios'"
-      ],
-      "base_rate": {
-        "text": "US agencies publicly attributed operational disruption at US infrastructure to Iran-linked actors twice in 2026 (an April advisory and a July update), about once every four months: roughly 20% in 30 days.",
-        "value": 20,
-        "evidence": [
-          "E047",
-          "E048"
-        ]
-      },
-      "adjustments": [
-        {
-          "label": "Active war with explicit retaliation orders",
-          "delta": 4,
-          "evidence": [
-            "E015",
-            "E044"
-          ]
-        },
-        {
-          "label": "Possible renewed strikes after the midterms would add motive",
-          "delta": 2,
-          "evidence": [
-            "E015"
-          ]
-        },
-        {
-          "label": "Official attribution typically lags the event by weeks",
-          "delta": -3,
-          "evidence": []
-        },
-        {
-          "label": "The White House publicly disputed blaming Iran for the July water attacks, which may slow new attributions",
-          "delta": -5,
-          "evidence": [
-            "E049"
-          ]
-        }
-      ],
-      "pathway": [
-        "N_IRAN_WAR",
-        "N_IRAN_CYBER",
-        "N_US_CRIT_INFRA"
-      ],
-      "increase_if": [
-        "Renewed strikes (F08)",
-        "CISA advisory on Iranian activity against operational technology"
-      ],
-      "decrease_if": [
-        "A negotiated pause"
-      ],
-      "skeptic": "Nothing new has been attributed since July 22, and attributions have become politically contested.",
-      "escalation": "Agencies have already published this kind of finding twice this year, and renewed strikes would raise the motive.",
-      "adjudicator": "The precedent is now documented, not hypothetical. That moves this up, but the political dispute over attribution keeps it below one in five.",
-      "resolution": {
-        "condition": "CISA, FBI, NSA or another US agency publicly attributes to Iranian government-linked actors a cyber operation that caused operational disruption (not only data theft or website defacement) at US water, energy, or other critical infrastructure, with the attribution announced within the window.",
-        "sources": [
-          "cisa.gov",
-          "fbi.gov",
-          "Reuters",
-          "AP"
-        ],
-        "ambiguous": [
-          "Forced switch to manual operation counts as operational disruption.",
-          "Attribution to 'hacktivists' with no stated government link does not count."
-        ]
-      },
-      "research_question": "Has any agency attributed new incidents since the July 22 advisory update?",
-      "evidence": [
-        "E015",
-        "E047",
-        "E048",
-        "E049"
-      ],
-      "market": {
-        "status": "none",
-        "note": ""
-      },
-      "history": [
-        {
-          "at": "2026-11-01T18:00:00-06:00",
-          "p": {
-            "7d": 4,
-            "30d": 13
-          },
-          "reason": "Initial publication"
-        },
-        {
-          "at": "2026-11-01T20:25:00-06:00",
-          "p": {
-            "7d": 5,
-            "30d": 18
-          },
-          "reason": "+5: US agencies confirmed Iran-linked disruption of US infrastructure twice in 2026, which we hadn't found before. Partly offset by the White House disputing a July attribution."
-        }
-      ],
-      "expected": {
-        "value": 15,
-        "basis": "judgment",
-        "note": ""
-      },
-      "tactic": "precedent"
     },
     {
       "id": "F13",
@@ -1756,6 +852,402 @@
             "30d": 95
           },
           "reason": "+1: both camps expect a first nominee who has ruled out serving under the current prime minister."
+        }
+      ]
+    },
+    {
+      "id": "F16",
+      "title": "No confirmed cyberattack disrupts an official election system during election week",
+      "short": "No election-week hack",
+      "domains": [
+        "elections",
+        "cyber"
+      ],
+      "primary": "7d",
+      "p": {
+        "7d": 62,
+        "30d": null
+      },
+      "range": {
+        "7d": [
+          45,
+          78
+        ],
+        "30d": null
+      },
+      "confidence": "medium",
+      "impact": 45,
+      "newsworthiness": 60,
+      "attention": "high",
+      "expected": {
+        "value": 55,
+        "basis": "judgment",
+        "note": "Coverage of election hacking makes a confirmed disruption feel likely."
+      },
+      "tactic": "reverse-gap",
+      "summary": "Election-week hacking gets a lot of attention, but officially confirmed disruptions of election systems are rare: one recent general election had them, the next did not. The friction that matters this year is slower and legal.",
+      "why_now": [
+        "No confirmed disruption found in 2024's election week",
+        "Officials often attribute slowdowns to traffic",
+        "An active war adds a motive"
+      ],
+      "base_rate": {
+        "text": "Officially confirmed cyber disruptions of public election sites happened in 2022 but not in 2024. Anchor: 60% for none this election week.",
+        "value": 60,
+        "evidence": [
+          "E057"
+        ]
+      },
+      "adjustments": [
+        {
+          "label": "An active war gives Iran-linked groups a motive to embarrass the US",
+          "delta": -4,
+          "evidence": [
+            "E015"
+          ]
+        },
+        {
+          "label": "Only an official confirmation counts; officials often cite high traffic instead",
+          "delta": 6,
+          "evidence": []
+        }
+      ],
+      "pathway": [
+        "N_INFO_OPS",
+        "N_ELECTION_STRESS"
+      ],
+      "increase_if": [
+        "Election Day passes without reported slowdowns"
+      ],
+      "decrease_if": [
+        "Hacktivist groups announce election-day campaigns",
+        "CISA issues an election-week alert"
+      ],
+      "skeptic": "Thousands of thinly protected county websites and a wartime adversary make at least one confirmed incident plausible.",
+      "escalation": "Officials have strong reasons to describe slowdowns as traffic rather than attacks.",
+      "adjudicator": "The confirmation requirement is the binding constraint. Hold just above 60%.",
+      "resolution": {
+        "condition": "Between Nov 1 and Nov 8, no state or local election office, CISA or the FBI publicly confirms that a cyber incident (such as denial of service, intrusion or ransomware) disrupted an official election website, voter lookup tool, results page or election-office IT, as reported by AP, Reuters or another major national outlet.",
+        "sources": [
+          "AP",
+          "Reuters",
+          "Official statements"
+        ],
+        "ambiguous": [
+          "Outages attributed to traffic or technical faults do not count as cyber incidents.",
+          "Incidents at campaigns or parties do not count."
+        ]
+      },
+      "research_question": "Do any election offices report attacks on Election Day itself?",
+      "evidence": [
+        "E014",
+        "E015",
+        "E057"
+      ],
+      "market": {
+        "status": "none",
+        "note": ""
+      },
+      "history": [
+        {
+          "at": "2026-11-01T23:15:00-06:00",
+          "p": {
+            "7d": 62,
+            "30d": null
+          },
+          "reason": "Initial publication"
+        }
+      ]
+    },
+    {
+      "id": "F18",
+      "title": "No comprehensive US–Iran agreement is announced by Dec 1",
+      "short": "No US–Iran deal by Dec 1",
+      "domains": [
+        "geopolitics",
+        "markets"
+      ],
+      "primary": "30d",
+      "p": {
+        "7d": null,
+        "30d": 90
+      },
+      "range": {
+        "7d": null,
+        "30d": [
+          80,
+          96
+        ]
+      },
+      "confidence": "medium",
+      "impact": 70,
+      "newsworthiness": 75,
+      "attention": "high",
+      "expected": {
+        "value": 70,
+        "basis": "judgment",
+        "note": "Each round of talks is covered as if a breakthrough could be days away."
+      },
+      "tactic": "precedent",
+      "surprise_note": "Coverage of each round of talks implies a deal could be close. Eight months of talks have produced no comprehensive agreement, and Iran just rejected the latest plan.",
+      "summary": "Talks keep making headlines, but nothing in the last eight months has produced a full agreement, and the latest plan was rejected. Expect more rounds, more deadlines and no comprehensive deal this month.",
+      "why_now": [
+        "Iran rejected Qatar's latest plan (Oct 31)",
+        "US says further strikes remain possible",
+        "Iran's leader ordered readiness for retaliation"
+      ],
+      "base_rate": {
+        "text": "Since the war began on Feb 28, talks have produced ceasefires and proposals but no comprehensive agreement in eight months. Anchor: 88% for none in the next 30 days.",
+        "value": 88,
+        "evidence": [
+          "E056"
+        ]
+      },
+      "adjustments": [
+        {
+          "label": "Both sides are signaling readiness to fight, not to settle",
+          "delta": 2,
+          "evidence": [
+            "E044"
+          ]
+        }
+      ],
+      "pathway": [
+        "N_IRAN_WAR"
+      ],
+      "increase_if": [
+        "Talks break off",
+        "New strikes"
+      ],
+      "decrease_if": [
+        "Iran accepts a framework",
+        "The US lifts the naval blockade"
+      ],
+      "skeptic": "Iran's economy is under severe pressure, which could force a fast deal.",
+      "escalation": "Each side's stated conditions are far apart, and the latest plan was rejected outright.",
+      "adjudicator": "A comprehensive deal in 30 days would need both sides to drop core demands. Hold high.",
+      "resolution": {
+        "condition": "By Dec 1, 2026, the US and Iran have not signed or jointly announced an agreement covering Iran's nuclear program or a formal end to hostilities, as reported by Reuters, AP or Bloomberg. An interim arrangement limited to shipping or prisoner exchanges does not count as a comprehensive agreement.",
+        "sources": [
+          "Reuters",
+          "AP",
+          "Bloomberg",
+          "Official statements"
+        ],
+        "ambiguous": [
+          "A framework announced as agreed in principle, with a signing date, counts as an agreement."
+        ]
+      },
+      "research_question": "Do any of the ongoing proposals include a signing timeline?",
+      "evidence": [
+        "E015",
+        "E044",
+        "E056"
+      ],
+      "market": {
+        "status": "not-checked",
+        "note": ""
+      },
+      "history": [
+        {
+          "at": "2026-11-01T23:15:00-06:00",
+          "p": {
+            "7d": null,
+            "30d": 90
+          },
+          "reason": "Initial publication"
+        }
+      ]
+    },
+    {
+      "id": "F19",
+      "title": "Gadi Eisenkot is the first person asked to form Israel's next government",
+      "short": "Eisenkot gets the first try",
+      "domains": [
+        "geopolitics"
+      ],
+      "primary": "30d",
+      "p": {
+        "7d": 35,
+        "30d": 80
+      },
+      "range": {
+        "7d": [
+          15,
+          55
+        ],
+        "30d": [
+          62,
+          92
+        ]
+      },
+      "confidence": "medium",
+      "impact": 50,
+      "newsworthiness": 70,
+      "attention": "high",
+      "expected": {
+        "value": 75,
+        "basis": "judgment",
+        "note": "Israeli reporting says both camps expect this."
+      },
+      "tactic": "calendar",
+      "summary": "Israel's president must name someone to try forming a government by Nov 11. Both camps expect it to be Gadi Eisenkot, and getting the first try is only the start of a 28 to 42-day process.",
+      "why_now": [
+        "Mandate due by Nov 11",
+        "Both camps expect Eisenkot first",
+        "No bloc has a majority"
+      ],
+      "base_rate": {
+        "text": "Israel's president usually gives the first mandate to the candidate with the most recommendations, and both camps expect that to be Eisenkot. Anchor: 80%.",
+        "value": 80,
+        "evidence": [
+          "E046"
+        ]
+      },
+      "adjustments": [],
+      "pathway": [
+        "N_ISRAEL_POLITICS"
+      ],
+      "increase_if": [
+        "Party recommendations confirm the expectation"
+      ],
+      "decrease_if": [
+        "A surprise realignment of recommendations"
+      ],
+      "skeptic": "Recommendation counts are close, and the president has room to choose whoever seems likeliest to form a government.",
+      "escalation": "Both camps already expect this outcome.",
+      "adjudicator": "Reporting from both camps points the same way. Hold at 80%.",
+      "resolution": {
+        "condition": "Between Nov 1 and Dec 1, Israel's president formally assigns the task of forming a government first to Gadi Eisenkot, as reported by Reuters, AP or the Times of Israel.",
+        "sources": [
+          "Reuters",
+          "AP",
+          "Times of Israel"
+        ],
+        "ambiguous": [
+          "If someone else gets the mandate first, this resolves no even if Eisenkot gets it later."
+        ]
+      },
+      "research_question": "How do party recommendations line up once consultations begin?",
+      "evidence": [
+        "E029",
+        "E046"
+      ],
+      "market": {
+        "status": "not-checked",
+        "note": ""
+      },
+      "history": [
+        {
+          "at": "2026-11-01T23:15:00-06:00",
+          "p": {
+            "7d": 35,
+            "30d": 80
+          },
+          "reason": "Initial publication"
+        }
+      ]
+    },
+    {
+      "id": "F20",
+      "title": "Binance publishes a root-cause report on its record theft by Dec 1",
+      "short": "Binance explains the theft",
+      "domains": [
+        "cyber",
+        "markets"
+      ],
+      "primary": "30d",
+      "p": {
+        "7d": 35,
+        "30d": 75
+      },
+      "range": {
+        "7d": [
+          15,
+          55
+        ],
+        "30d": [
+          58,
+          88
+        ]
+      },
+      "confidence": "medium",
+      "impact": 45,
+      "newsworthiness": 60,
+      "attention": "medium",
+      "expected": {
+        "value": 60,
+        "basis": "judgment",
+        "note": "Exchanges often promise explanations that arrive slowly or not at all."
+      },
+      "tactic": "lagged-consequence",
+      "summary": "Binance has promised a root-cause report on the $6.3 billion theft. Exchanges hit by record thefts have usually explained how it happened within weeks. Whether the report names a tool other exchanges also use will matter more than the report itself.",
+      "why_now": [
+        "Binance committed to a root-cause report",
+        "It says there were 'additional points of breach'",
+        "Investigators are still tracing funds"
+      ],
+      "base_rate": {
+        "text": "Exchanges hit by record thefts have usually published forensic findings within weeks; Bybit released preliminary reports about five days after its 2025 theft. Anchor: 70%.",
+        "value": 70,
+        "evidence": [
+          "E028"
+        ]
+      },
+      "adjustments": [
+        {
+          "label": "Binance publicly committed to publishing a root-cause report",
+          "delta": 5,
+          "evidence": [
+            "E008"
+          ]
+        }
+      ],
+      "pathway": [
+        "N_DPRK_THEFT",
+        "N_CRYPTO_STRESS"
+      ],
+      "increase_if": [
+        "Binance names an outside investigator"
+      ],
+      "decrease_if": [
+        "Law enforcement asks Binance to hold details back"
+      ],
+      "skeptic": "An ongoing criminal investigation can delay or narrow what a company publishes.",
+      "escalation": "Binance needs to restore trust fast, and a public commitment is hard to walk back.",
+      "adjudicator": "The commitment plus precedent make this likely. Investigation pressure keeps it from being near-certain.",
+      "resolution": {
+        "condition": "Between Nov 1 and Dec 1, Binance publishes a report, blog post or official statement setting out the root cause of the October 2026 theft in more detail than its initial statements (at minimum, how attackers got in and which systems were involved), on its official site or as reported by Reuters, Bloomberg, The Block, CoinDesk or The Hacker News.",
+        "sources": [
+          "Binance",
+          "Reuters",
+          "Bloomberg",
+          "The Block",
+          "CoinDesk",
+          "The Hacker News"
+        ],
+        "ambiguous": [
+          "Repeating only 'a compromised engineer laptop' does not count."
+        ]
+      },
+      "research_question": "Does the report name a tool or vendor other exchanges also use?",
+      "evidence": [
+        "E008",
+        "E028",
+        "E053"
+      ],
+      "market": {
+        "status": "none",
+        "note": ""
+      },
+      "history": [
+        {
+          "at": "2026-11-01T23:15:00-06:00",
+          "p": {
+            "7d": 35,
+            "30d": 75
+          },
+          "reason": "Initial publication"
         }
       ]
     }

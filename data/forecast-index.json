@@ -1,5 +1,5 @@
 {
-  "active": "2026-11-01-2025",
+  "active": "2026-11-01-2315",
   "snapshots": [
     {
       "cycle": "2026-11-01-1800",
@@ -36,6 +36,15 @@
       "engine_version": "1.2.0",
       "change_type": "Weekly update",
       "reason": "First full update using five parallel research helpers. Seven forecasts moved, including two corrected base rates (hospital diversions, election-fake debunks); 24 evidence records added."
+    },
+    {
+      "cycle": "2026-11-01-2315",
+      "published": "2026-11-01T23:15:00-06:00",
+      "file": "forecasts/2026-11-01-2315.json",
+      "count": 11,
+      "engine_version": "1.2.0",
+      "change_type": "Forecast update",
+      "reason": "Refocused on likely outcomes: retired eight lower-probability forecasts (F01, F02, F05, F07, F09, F10, F11, F12) before their windows closed, without scoring them; their published numbers remain in earlier snapshots. Added F16, F18, F19, F20."
     }
   ]
 }
