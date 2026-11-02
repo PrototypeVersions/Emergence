@@ -1,5 +1,5 @@
 {
-  "research_mode": "parallel",
-  "parallel_runs_remaining": 1,
-  "note": "One-time trial of parallel research helpers for the next weekly update. The run sets parallel_runs_remaining to 0 and research_mode to standard when done, so later runs use the standard sweep unless this file is changed again."
+  "research_mode": "standard",
+  "parallel_runs_remaining": 0,
+  "note": "The one-time parallel trial ran on Nov 1, 2026. Set research_mode to parallel and parallel_runs_remaining to a positive number to use it again."
 }

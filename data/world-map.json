@@ -59,7 +59,9 @@
         "E001",
         "E002",
         "E004",
-        "E019"
+        "E019",
+        "E033",
+        "E034"
       ],
       "label_side": "r"
     },
@@ -93,7 +95,8 @@
       "summary": "Frontier models have reached real external systems during cyber evaluations, and at least one lab paused training over cyber capability.",
       "evidence": [
         "E002",
-        "E003"
+        "E003",
+        "E033"
       ],
       "label_side": "r"
     },
@@ -123,7 +126,8 @@
       "weight": 1,
       "summary": "Federal agencies are issuing guidance specific to agent control failures.",
       "evidence": [
-        "E001"
+        "E001",
+        "E035"
       ],
       "label_side": "r"
     },
@@ -140,7 +144,8 @@
       "evidence": [
         "E005",
         "E006",
-        "E027"
+        "E027",
+        "E032"
       ],
       "label_side": "r"
     },
@@ -157,7 +162,8 @@
       "evidence": [
         "E007",
         "E025",
-        "E028"
+        "E028",
+        "E051"
       ],
       "label_side": "r"
     },
@@ -181,12 +187,16 @@
       "domain": "cyber",
       "label": "Iran-linked cyber activity",
       "state": "elevated",
-      "confidence": "low",
+      "confidence": "medium",
       "x": 66,
       "y": 62,
       "weight": 2,
-      "summary": "Inferred from the active war: Iran-linked actors have previously targeted US water-sector controllers. No fresh public evidence collected this cycle.",
-      "evidence": [],
+      "summary": "US agencies confirmed this year that Iran-linked hackers disrupted US water, energy and local-government sites (April advisory, July update). Nothing new has been attributed since July.",
+      "evidence": [
+        "E047",
+        "E048",
+        "E049"
+      ],
       "label_side": "l"
     },
     {
@@ -201,7 +211,8 @@
       "summary": "Multi-hour hyperscaler/CDN outages are running at about 1.3 per month in 2026, up from about 0.6 in 2024.",
       "evidence": [
         "E010",
-        "E012"
+        "E012",
+        "E054"
       ],
       "label_side": "r"
     },
@@ -214,10 +225,12 @@
       "x": 78,
       "y": 44,
       "weight": 2,
-      "summary": "Two Gulf cloud regions listed as impaired since March; Iran has threatened regional seabed cables.",
+      "summary": "Drone strikes knocked out AWS facilities in the UAE and Bahrain in March, and some capacity can't be recovered. Iran has named Gulf undersea cables as targets if fighting resumes.",
       "evidence": [
         "E011",
-        "E015"
+        "E015",
+        "E042",
+        "E043"
       ],
       "label_side": "r"
     },
@@ -232,7 +245,8 @@
       "weight": 2,
       "summary": "AI-manipulated videos linked to a Russian network are targeting Senate races in the final week.",
       "evidence": [
-        "E013"
+        "E013",
+        "E039"
       ],
       "label_side": "r"
     },
@@ -249,7 +263,9 @@
       "evidence": [
         "E013",
         "E014",
-        "E018"
+        "E018",
+        "E040",
+        "E041"
       ],
       "label_side": "r"
     },
@@ -265,7 +281,9 @@
       "summary": "War since Feb 28, 2026. Talks are under way, but the US has signalled possible further strikes after the midterms.",
       "evidence": [
         "E015",
-        "E026"
+        "E026",
+        "E044",
+        "E045"
       ],
       "label_side": "b"
     },
@@ -297,7 +315,9 @@
       "evidence": [
         "E007",
         "E008",
-        "E009"
+        "E009",
+        "E052",
+        "E053"
       ],
       "label_side": "r"
     },
@@ -327,7 +347,8 @@
       "weight": 1,
       "summary": "Cyberattacks continue to force ambulance diversions and cancelled procedures.",
       "evidence": [
-        "E016"
+        "E016",
+        "E050"
       ],
       "label_side": "r"
     },
@@ -340,8 +361,10 @@
       "x": 73,
       "y": 80,
       "weight": 2,
-      "summary": "Internet-exposed industrial controllers at US utilities; a known target class for state-linked actors.",
-      "evidence": [],
+      "summary": "Internet-exposed industrial controllers at US utilities. Iran-linked actors disrupted some in 2026, per a joint US advisory.",
+      "evidence": [
+        "E047"
+      ],
       "label_side": "r"
     },
     {
@@ -357,7 +380,9 @@
       "summary": "Ranked-choice tabulation in Alaska and Maine, Georgia's majority rule, and late-arriving mail ballots mean several races cannot be called on election night.",
       "evidence": [
         "E020",
-        "E021"
+        "E021",
+        "E036",
+        "E055"
       ]
     },
     {
@@ -374,7 +399,9 @@
       "evidence": [
         "E022",
         "E023",
-        "E024"
+        "E024",
+        "E037",
+        "E038"
       ]
     },
     {
@@ -391,7 +418,8 @@
       "evidence": [
         "E029",
         "E030",
-        "E031"
+        "E031",
+        "E046"
       ]
     }
   ],
@@ -577,8 +605,10 @@
       "strength": 0.6,
       "confidence": "low",
       "lag": "days",
-      "basis": "historical",
-      "evidence": [],
+      "basis": "empirical",
+      "evidence": [
+        "E047"
+      ],
       "note": "Past Iran–Israel escalations were accompanied by Iran-linked operations against Western targets."
     },
     {
@@ -589,8 +619,10 @@
       "strength": 0.5,
       "confidence": "low",
       "lag": "weeks",
-      "basis": "historical",
-      "evidence": [],
+      "basis": "empirical",
+      "evidence": [
+        "E047"
+      ],
       "note": "2023 precedent: Iran-linked actors disrupted US water-utility controllers."
     },
     {

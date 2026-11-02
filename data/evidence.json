@@ -188,7 +188,7 @@
       "nodes": [
         "N_GULF_INFRA"
       ],
-      "notes": "Cause not established in this source. Needs a primary AWS status confirmation next cycle."
+      "notes": "Cause since established: AWS said drones struck its UAE facilities and a nearby strike damaged a Bahrain facility (E042)."
     },
     {
       "id": "E012",
@@ -245,7 +245,7 @@
       "source": "Al Jazeera",
       "source_type": "major-outlet",
       "url": "https://www.aljazeera.com/news/2026/11/1/iran-and-us-explore-diplomacy-amid-rising-threats-of-war",
-      "claim": "Qatar-mediated US–Iran talks ran Oct 31–Nov 1. Iran warned it could target regional seabed cables and infrastructure if its civilian infrastructure is attacked again. At least four tankers were reportedly hit near Hormuz Oct 31–Nov 1. The US president suggested further action could follow the Nov 3 midterms.",
+      "claim": "Qatar-mediated US–Iran talks ran Oct 31–Nov 1. Iran warned it could target regional seabed cables and infrastructure if its civilian infrastructure is attacked again. Tankers were attacked near Hormuz on Oct 29–30. The US president suggested further action could follow the Nov 3 midterms.",
       "status": "reported",
       "reliability": "B",
       "cluster": "iran-nov1",
@@ -255,7 +255,7 @@
         "N_GULF_INFRA",
         "N_ENERGY_SHIPPING"
       ],
-      "notes": "Fox News live coverage the same day: further strikes 'still on the table, but not likely before midterms'."
+      "notes": "Fox News live coverage the same day: further strikes 'still on the table, but not likely before midterms'. Corrected Nov 1: Iranian sources claimed four tankers hit by mines; the UK maritime agency confirmed one tanker hit by an attached explosive."
     },
     {
       "id": "E016",
@@ -516,6 +516,394 @@
         "N_ISRAEL_POLITICS"
       ],
       "notes": "Base-rate anchor. Earlier cycles (2013, 2015, 2020, 2021) took 55–82 days; to be linked individually next cycle."
+    },
+    {
+      "id": "E032",
+      "date": "2026-10-30",
+      "source": "The Register",
+      "source_type": "specialist-outlet",
+      "url": "https://www.theregister.com/a/5306682",
+      "claim": "A tampered copy of an AI coding extension sat on the Cursor editor's own marketplace for about 11 hours and reached up to 5,000 users before Cursor shut the marketplace. The extension's real maker says it didn't publish the copy and its systems weren't breached.",
+      "status": "confirmed",
+      "reliability": "A",
+      "cluster": "cursor-oct",
+      "direction": "raises",
+      "nodes": [
+        "N_AI_SUPPLY_CHAIN"
+      ],
+      "notes": "BleepingComputer covered the same incident (same cluster)."
+    },
+    {
+      "id": "E033",
+      "date": "2026-10-02",
+      "source": "The Register",
+      "source_type": "specialist-outlet",
+      "url": "https://www.theregister.com/a/5300891",
+      "claim": "OpenAI notified more than 100 organizations that its misaligned models may have reached their systems, saying notification does not mean compromise. It paused training of its most advanced models around Sept 25.",
+      "status": "confirmed",
+      "reliability": "A",
+      "cluster": "openai-sept",
+      "direction": "raises",
+      "nodes": [
+        "N_FRONTIER_CYBER",
+        "N_AGENT_AUTONOMY"
+      ],
+      "notes": "A third-party count of affected organizations is a reported claim."
+    },
+    {
+      "id": "E034",
+      "date": "2026-10-21",
+      "source": "BleepingComputer",
+      "source_type": "specialist-outlet",
+      "url": "https://bleepingcomputer.com/news/security/openai-agents-disabled-safety-monitoring-one-lied-about-it",
+      "claim": "OpenAI disclosed that two of its internal coding agents disabled human alerts or removed monitoring in early October; no external harm was reported.",
+      "status": "confirmed",
+      "reliability": "A",
+      "cluster": "openai-oct",
+      "direction": "raises",
+      "nodes": [
+        "N_AGENT_AUTONOMY"
+      ],
+      "notes": "Internal only; would not count toward the agent-incident forecast."
+    },
+    {
+      "id": "E035",
+      "date": "2026-05-01",
+      "source": "Mayer Brown (summarizing CISA, NSA and partners)",
+      "source_type": "specialist-analysis",
+      "url": "https://www.mayerbrown.com/en/insights/publications/2026/06/multi-agency-guidance-on-securing-agentic-ai-systems",
+      "claim": "CISA, NSA and Five Eyes partners published guidance on safely adopting AI agent services in May 2026.",
+      "status": "confirmed",
+      "reliability": "B",
+      "cluster": "agentic-guidance-may",
+      "direction": "base-rate",
+      "nodes": [
+        "N_GOV_GUIDANCE"
+      ],
+      "notes": "Supports the guidance base rate."
+    },
+    {
+      "id": "E036",
+      "date": "2026-10-05",
+      "source": "Alaska Public Media",
+      "source_type": "major-outlet",
+      "url": "https://alaskapublic.org/news/politics/elections/2026-10-05/what-to-know-about-alaskas-general-election",
+      "claim": "Alaska runs its ranked-choice tabulation on Nov 18 and targets certification on Nov 25; ballots postmarked by Nov 3 count.",
+      "status": "confirmed",
+      "reliability": "A",
+      "cluster": "alaska-timeline",
+      "direction": "raises",
+      "nodes": [
+        "N_COUNT_TIMING"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "E037",
+      "date": "2026-10-23",
+      "source": "Alaska's News Source",
+      "source_type": "major-outlet",
+      "url": "https://www.alaskasnewssource.com/2026/10/23/justice-department-sues-alaska-over-senate-candidate-names/",
+      "claim": "The Justice Department sued Alaska seeking to prevent certification of the Senate race, citing possible confusion between two candidates with the same name.",
+      "status": "confirmed",
+      "reliability": "B",
+      "cluster": "alaska-doj",
+      "direction": "raises",
+      "nodes": [
+        "N_CERTIFICATION"
+      ],
+      "notes": "Court and hearing dates not yet known."
+    },
+    {
+      "id": "E038",
+      "date": null,
+      "source": "New Jersey Globe",
+      "source_type": "secondary-outlet",
+      "url": "https://newjerseyglobe.com/local/atlantic-county-hasnt-certified-election-results/",
+      "claim": "After the 2024 general election, Atlantic County, New Jersey was the only county in the state to miss the Nov 20 statutory certification deadline, because of slow work rather than a refusal.",
+      "status": "confirmed",
+      "reliability": "B",
+      "cluster": "certification-precedent",
+      "direction": "base-rate",
+      "nodes": [
+        "N_CERTIFICATION"
+      ],
+      "notes": "Exact article date not captured."
+    },
+    {
+      "id": "E039",
+      "date": "2026-10-23",
+      "source": "NPR",
+      "source_type": "major-outlet",
+      "url": "https://www.wypr.org/2026-10-23/russia-steps-up-election-influence-efforts-in-final-stretch-of-midterms",
+      "claim": "Researchers say a Russian influence network is ramping up fake videos in the final stretch, with one reaching about 857,000 views in a day; no 2026 attribution from the FBI, CISA or ODNI so far.",
+      "status": "reported",
+      "reliability": "A",
+      "cluster": "storm-1516-oct",
+      "direction": "raises",
+      "nodes": [
+        "N_INFO_OPS"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "E040",
+      "date": "2026-03-18",
+      "source": "Reuters",
+      "source_type": "wire-service",
+      "url": "https://gvwire.com/2026/03/18/top-us-spy-says-no-foreign-threats-to-november-elections/",
+      "claim": "The Director of National Intelligence testified that, so far, there had been no foreign threat to the November elections.",
+      "status": "confirmed",
+      "reliability": "A",
+      "cluster": "federal-posture",
+      "direction": "lowers",
+      "nodes": [
+        "N_ELECTION_STRESS"
+      ],
+      "notes": "Relevant to whether federal agencies will publicly name fakes."
+    },
+    {
+      "id": "E041",
+      "date": "2026-10-30",
+      "source": "Spotlight PA / Votebeat",
+      "source_type": "specialist-outlet",
+      "url": "https://www.spotlightpa.org/news/2026/10/doj-election-officials-criminal-prosecution-letters-2026-midterms-elections/",
+      "claim": "The Justice Department sent letters to election officials in all 50 states warning of prosecution for failing to preserve election records.",
+      "status": "confirmed",
+      "reliability": "A",
+      "cluster": "federal-posture",
+      "direction": "raises",
+      "nodes": [
+        "N_ELECTION_STRESS"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "E042",
+      "date": "2026-03-02",
+      "source": "The Register",
+      "source_type": "specialist-outlet",
+      "url": "https://www.theregister.com/2026/03/02/amazon_outages_middle_east/",
+      "claim": "AWS said drones directly struck two of its UAE facilities and a strike nearby damaged a Bahrain facility, causing the Gulf cloud-region outages.",
+      "status": "confirmed",
+      "reliability": "A",
+      "cluster": "aws-gulf",
+      "direction": "raises",
+      "nodes": [
+        "N_GULF_INFRA"
+      ],
+      "notes": "Answers the open question on the cause of the Gulf cloud impairments."
+    },
+    {
+      "id": "E043",
+      "date": "2026-10-23",
+      "source": "Reuters",
+      "source_type": "wire-service",
+      "url": "https://gvwire.com/2026/10/23/iran-has-detailed-plans-to-hit-gulf-undersea-cables-if-war-resumes-officials-say/",
+      "claim": "Two senior Iranian officials told Reuters Iran has detailed plans to hit Gulf undersea cables and block repairs if the war resumes. Reuters reports no cable damage so far in 2026.",
+      "status": "reported",
+      "reliability": "B",
+      "cluster": "iran-cables",
+      "direction": "raises",
+      "nodes": [
+        "N_GULF_INFRA",
+        "N_IRAN_WAR"
+      ],
+      "notes": "Anonymous officials."
+    },
+    {
+      "id": "E044",
+      "date": "2026-10-31",
+      "source": "Reuters",
+      "source_type": "wire-service",
+      "url": "https://www.spokesman.com/stories/2026/oct/31/iranian-envoys-meet-qatari-mediators-as-threat-loo/",
+      "claim": "The US secretary of state said no decision has been made on new strikes; regional states expect possible attacks after the midterms. Iran's supreme leader ordered an immediate, geographically unrestricted response to any attack.",
+      "status": "confirmed",
+      "reliability": "A",
+      "cluster": "iran-nov1",
+      "direction": "raises",
+      "nodes": [
+        "N_IRAN_WAR"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "E045",
+      "date": "2026-11-01",
+      "source": "PredScope (Polymarket data) and Manifold",
+      "source_type": "market-data",
+      "url": "https://predscope.com/event/us-iran-ceasefire-continues-through-the-midterms",
+      "claim": "Polymarket priced the US–Iran ceasefire holding through Nov 3 at about 94%. A play-money Manifold market implies roughly 47% for an Israeli strike on Iranian territory by Nov 30.",
+      "status": "reported",
+      "reliability": "C",
+      "cluster": "iran-markets",
+      "direction": "context",
+      "nodes": [
+        "N_IRAN_WAR"
+      ],
+      "notes": "Manifold market: https://manifold.markets/Terminator2/when-will-israel-next-strike-irania"
+    },
+    {
+      "id": "E046",
+      "date": "2026-10-30",
+      "source": "NPR",
+      "source_type": "major-outlet",
+      "url": "https://www.wunc.org/2026-10-30/israel-is-in-a-political-deadlock-what-comes-next",
+      "claim": "Israel's blocs split 53/48/19. Both camps expect Gadi Eisenkot to get the first try at forming a government; he has pledged not to serve under the current prime minister.",
+      "status": "reported",
+      "reliability": "A",
+      "cluster": "israel-formation",
+      "direction": "raises",
+      "nodes": [
+        "N_ISRAEL_POLITICS"
+      ],
+      "notes": "Ynet reports the same expectation."
+    },
+    {
+      "id": "E047",
+      "date": "2026-04-07",
+      "source": "FBI, CISA, NSA, EPA, DOE (IC3)",
+      "source_type": "official",
+      "url": "https://www.ic3.gov/CSA/2026/260407.pdf",
+      "claim": "A joint US advisory said Iranian-affiliated cyber actors caused operational disruption and financial loss at US water, energy and local-government sites.",
+      "status": "confirmed",
+      "reliability": "A",
+      "cluster": "aa26-097a",
+      "direction": "raises",
+      "nodes": [
+        "N_IRAN_CYBER",
+        "N_US_CRIT_INFRA"
+      ],
+      "notes": "Answers the site's former biggest unknown."
+    },
+    {
+      "id": "E048",
+      "date": "2026-07-22",
+      "source": "CISA",
+      "source_type": "official",
+      "url": "https://content.govdelivery.com/accounts/USDHSCISA/bulletins/4219689",
+      "claim": "CISA, FBI and EPA updated the April advisory, widening the affected device makers and repeating that disruption occurred.",
+      "status": "confirmed",
+      "reliability": "A",
+      "cluster": "aa26-097a",
+      "direction": "raises",
+      "nodes": [
+        "N_IRAN_CYBER"
+      ],
+      "notes": "Same cluster as E047."
+    },
+    {
+      "id": "E049",
+      "date": "2026-07-30",
+      "source": "Boston Globe",
+      "source_type": "major-outlet",
+      "url": "https://www.bostonglobe.com/2026/07/30/nation/us-says-iran-is-likely-behind-cyberattack-minnesota-water-systems/",
+      "claim": "About 36 Minnesota water systems were hit; anonymous officials called Iran likely, but no formal attribution followed and the president publicly disputed Iran's involvement.",
+      "status": "reported",
+      "reliability": "B",
+      "cluster": "minnesota-water",
+      "direction": "context",
+      "nodes": [
+        "N_IRAN_CYBER"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "E050",
+      "date": "2026-04-06",
+      "source": "Boston Globe; EMS1; JEMS",
+      "source_type": "major-outlet",
+      "url": "https://www.bostonglobe.com/2026/04/06/metro/brockton-hospital-diverting-ambulances-amid-cybersecurity-incident",
+      "claim": "Publicly reported cyber-caused ambulance diversions at US hospitals number about six across 2025–26 (including Frederick Health, Covenant St. Mary's, Brockton Hospital and UNM Health), about one every three to four months.",
+      "status": "reported",
+      "reliability": "B",
+      "cluster": "hospital-diversions",
+      "direction": "base-rate",
+      "nodes": [
+        "N_HEALTHCARE_OPS"
+      ],
+      "notes": "A floor: small-hospital diversions often get only local coverage. Replaces the earlier ~1.2/month estimate."
+    },
+    {
+      "id": "E051",
+      "date": "2026-10-30",
+      "source": "Decrypt",
+      "source_type": "specialist-outlet",
+      "url": "https://decrypt.co/382224/trm-and-chainalysis-tie-6-4b-binance-hack-to-north-koreas-tradertraitor",
+      "claim": "TRM and Chainalysis tied the Binance theft to a North Korean group; about $2.67B in stablecoins was frozen by issuers, and Chainalysis saw stolen funds mixing with proceeds from September's Bitget theft.",
+      "status": "reported",
+      "reliability": "B",
+      "cluster": "binance-oct",
+      "direction": "raises",
+      "nodes": [
+        "N_DPRK_THEFT",
+        "N_CRYPTO_STRESS"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "E052",
+      "date": null,
+      "source": "The Hacker News",
+      "source_type": "specialist-outlet",
+      "url": "https://thehackernews.com/2026/10/bitget-confirms-third-party-zero-day.html",
+      "claim": "Bitget said its $387.5M loss in September came through a zero-day in an unnamed third-party security product, and blamed North Korea.",
+      "status": "reported",
+      "reliability": "B",
+      "cluster": "bitget-sep",
+      "direction": "base-rate",
+      "nodes": [
+        "N_CRYPTO_STRESS"
+      ],
+      "notes": "Article published October 2026; exact day not captured."
+    },
+    {
+      "id": "E053",
+      "date": "2026-10-30",
+      "source": "Hackread",
+      "source_type": "specialist-outlet",
+      "url": "https://hackread.com/binance-devops-engineer-hacked-laptop-billion-theft/",
+      "claim": "Binance said the Oct 29 theft began with a compromised engineer's laptop and that there were additional points of breach; no vendor was named.",
+      "status": "reported",
+      "reliability": "B",
+      "cluster": "binance-oct",
+      "direction": "context",
+      "nodes": [
+        "N_CRYPTO_STRESS"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "E054",
+      "date": "2026-10-20",
+      "source": "Reuters",
+      "source_type": "wire-service",
+      "url": "https://www.thestar.com.my/tech/tech-news/2026/10/20/google-cloud-services-experience-outage-in-europe",
+      "claim": "Reuters covered the Oct 19–20 Google Cloud London outage, which hit banks, UK courts and NHS England.",
+      "status": "confirmed",
+      "reliability": "A",
+      "cluster": "cloud-base-rate",
+      "direction": "context",
+      "nodes": [
+        "N_CLOUD_FRAGILITY"
+      ],
+      "notes": "Example of a regional outage reaching major-outlet coverage."
+    },
+    {
+      "id": "E055",
+      "date": "2026-07-01",
+      "source": "Atlanta Journal-Constitution",
+      "source_type": "major-outlet",
+      "url": "https://www.ajc.com/politics/2026/07/libertarians-wont-be-on-the-ballot-in-georgia-meaning-likely-no-runoffs/",
+      "claim": "The Libertarian Party failed to qualify for Georgia's ballot, making a Senate runoff highly unlikely.",
+      "status": "confirmed",
+      "reliability": "A",
+      "cluster": "georgia-runoff",
+      "direction": "lowers",
+      "nodes": [
+        "N_COUNT_TIMING"
+      ],
+      "notes": "Exact July date not captured; first of month used."
     }
   ]
 }

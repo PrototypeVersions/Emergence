@@ -1,5 +1,5 @@
 {
-  "active": "2026-11-01-2030",
+  "active": "2026-11-01-2025",
   "snapshots": [
     {
       "cycle": "2026-11-01-1800",
@@ -27,6 +27,15 @@
       "engine_version": "1.2.0",
       "change_type": "Model engine change + forecast update",
       "reason": "Engine: stories and a weekly brief now lead the site, with forecasts as their receipts. Forecasts: added F15 (Israeli government formation)."
+    },
+    {
+      "cycle": "2026-11-01-2025",
+      "published": "2026-11-01T20:25:00-06:00",
+      "file": "forecasts/2026-11-01-2025.json",
+      "count": 15,
+      "engine_version": "1.2.0",
+      "change_type": "Weekly update",
+      "reason": "First full update using five parallel research helpers. Seven forecasts moved, including two corrected base rates (hospital diversions, election-fake debunks); 24 evidence records added."
     }
   ]
 }

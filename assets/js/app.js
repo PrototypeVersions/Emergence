@@ -135,11 +135,17 @@
   }
   const lastClose = (st) => st.forecasts.map((id) => S.data.fc.horizons[S.data.byId[id].primary].closes).sort().pop();
 
+  /** Next Monday-morning full update, honoring the skip rule (no full update within 4 days of the last one). */
   function nextUpdate() {
-    const d = new Date(); const day = d.getDay();
-    const add = day === 1 && d.getHours() < 7 ? 0 : (8 - day) % 7 || 7;
-    const n = new Date(d.getFullYear(), d.getMonth(), d.getDate() + add);
-    return n.toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" });
+    const full = S.data.index.snapshots.filter((x) => /Weekly update|Initial publication/.test(x.change_type)).map((x) => new Date(x.published)).sort((a, b) => b - a)[0];
+    const d = new Date(); d.setHours(0, 0, 0, 0);
+    for (let i = 0; i < 21; i++) {
+      const c = new Date(d.getFullYear(), d.getMonth(), d.getDate() + i, 6, 38);
+      if (c.getDay() !== 1 || c < new Date()) continue;
+      if (full && (c - full) / 864e5 < 4) continue;
+      return c.toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" });
+    }
+    return "next Monday";
   }
   /** Timeline of upcoming decision dates; dates within 2 days of each other are grouped. */
   function ribbon() {
@@ -180,7 +186,7 @@
         <h1 id="brief-title" class="brief-title">${esc(B.title)}</h1>
         ${ribbon()}
         </div>
-        ${B.changes && B.changes.length ? `<div class="changes"><h2>What changed since last week</h2><ul>${B.changes.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
+        ${B.changes && B.changes.length ? `<div class="changes"><h2>What changed in this update</h2><ul>${B.changes.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
         <div class="brief-body">${B.paragraphs.map((x) => `<p>${esc(x)}</p>`).join("")}</div>
       </section>
       <section class="stories-sec" aria-labelledby="stories-h">

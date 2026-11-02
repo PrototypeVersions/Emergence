@@ -80,6 +80,24 @@
       "short": "Texas certifies"
     },
     {
+      "date": "2026-11-18",
+      "title": "Alaska's ranked-choice count",
+      "short": "Alaska RCV count",
+      "hype": "Alaska's Senate race was decided on election night.",
+      "reality": "Alaska runs its ranked-choice tabulation today. If no one cleared 50% in the first round, this is when the race is actually decided.",
+      "stories": [
+        "S1"
+      ],
+      "forecasts": [
+        "F14"
+      ],
+      "evidence": [
+        "E036"
+      ],
+      "done": false,
+      "outcome": null
+    },
+    {
       "date": "2026-11-19",
       "title": "Arizona county canvass deadline",
       "hype": "Nothing to see here.",
@@ -115,6 +133,25 @@
       "done": false,
       "outcome": null,
       "short": "Georgia certifies"
+    },
+    {
+      "date": "2026-11-25",
+      "title": "Alaska certification target",
+      "short": "Alaska certifies",
+      "hype": "The result is final.",
+      "reality": "Alaska aims to certify today, with a Justice Department suit seeking to prevent certification of the Senate race still pending.",
+      "stories": [
+        "S1"
+      ],
+      "forecasts": [
+        "F13"
+      ],
+      "evidence": [
+        "E036",
+        "E037"
+      ],
+      "done": false,
+      "outcome": null
     },
     {
       "date": "2026-12-01",

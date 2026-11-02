@@ -26,9 +26,9 @@
     "date": "2026-11-01",
     "title": "Almost nothing gets decided on the day everyone is watching",
     "paragraphs": [
-      "This week's news is built around moments: Tuesday's US midterms, the Israeli election count, the next round of US–Iran talks. In each case, the real decisions are scheduled later. US counting rules guarantee days of uncalled races, and certification runs into December. Israel's election produced no majority, and its legal steps alone push a new government past Dec 1. Strikes on Iran, if they come, were signaled for after the midterms, which is the same stretch as the US certification fights.",
-      "Meanwhile, the stories that will likely matter in a month are moving quietly. AI agents now hold real credentials inside real organizations, and incidents involving them are surfacing about every three weeks. Attackers have started hijacking AI developer tools specifically to steal AI keys. Neither shows up on front pages yet.",
-      "The practical upshot: discount anything that promises an answer this week. Watch the dates when processes actually conclude: Nov 10–11 in Israel, Nov 17 to early December for US certification. And watch for the first mainstream breach headline that says an AI agent did it."
+      "This week's news is built around moments: Tuesday's US midterms, Israel's coalition talks, the next round of US–Iran contacts. In each case the real decisions come later. Alaska won't even count its ranked-choice ballots until Nov 18, and county certification runs into December. Israel's president names someone to try forming a government by Nov 11, and the clock runs past Dec 1 from there. Strikes on Iran, if they come, have been signaled for after the midterms, the same stretch as US certification.",
+      "Meanwhile, AI agents keep turning up in incident reports. OpenAI has notified more than 100 organizations that its models may have reached their systems, and a tampered copy of an AI coding extension sat on a popular marketplace for about 11 hours last week. Neither has been front-page news.",
+      "The practical upshot: discount anything that promises an answer this week. Watch the dates when processes actually conclude: Nov 11 in Israel, Nov 17–25 for US certification and Alaska's count. And watch for the first mainstream breach story that says an AI agent did it."
     ],
     "stories": [
       "S1",
@@ -36,7 +36,13 @@
       "S3",
       "S4"
     ],
-    "changes": []
+    "changes": [
+      "Senate race still uncalled on Nov 8: 82% to 85%. Alaska won't run its ranked-choice count until Nov 18.",
+      "County certification fight: 65% to 72%. A county missed its deadline in 2024 too, and federal pressure on certification is new this cycle.",
+      "Hospital diverts ambulances after a cyberattack: 73% to 42%. A careful count found far fewer cases than our first estimate. We got that base rate wrong.",
+      "Officials name a specific election fake: 73% to 62%. Federal agencies have gone quiet on foreign influence this year.",
+      "Iran-linked hit on US utilities: 13% to 18%. US agencies already confirmed such disruptions twice this year."
+    ]
   },
   "stories": [
     {
@@ -46,9 +52,9 @@
       "think": "Election night decides it, and the threat to watch is hackers on Election Day.",
       "actually": "Counting rules leave races open for days, the dangerous stretch is the wait, and the friction that matters is legal and slow.",
       "body": [
-        "Several Senate races can't be called quickly by design: Alaska and Maine count ranked-choice ballots, Georgia sends races without a majority to a Dec 1 runoff, and California accepts mail ballots through Nov 10. In each of the last four general elections, at least one Senate race was still open five days later.",
+        "Several Senate races can't be called quickly by design. Alaska counts ranked-choice ballots, and won't run that count until Nov 18; Maine also uses ranked choice, and California accepts mail ballots through Nov 10. In each of the last four general elections, at least one Senate race was still open five days later.",
         "That waiting period is when misleading claims spread fastest. A Russian-linked network is already pushing AI-manipulated videos about Senate candidates, and officials have publicly debunked specific fakes in the final days of past cycles.",
-        "Then comes certification. Thousands of county boards must formally sign off between mid-November and early December. After two of the last three general elections, at least one refused or missed its deadline before a court stepped in, and a suit to block certification is already filed in Texas. By contrast, a confirmed Election Day hack of an official election system is less likely than the attention it gets."
+        "Then comes certification. Thousands of county boards must formally sign off between mid-November and early December. After each of the last three general elections, at least one county refused or missed its deadline, and suits to block certification are already filed in Texas and, by the Justice Department, in Alaska. By contrast, a confirmed Election Day hack of an official election system is less likely than the attention it gets."
       ],
       "watch": [
         {
@@ -85,7 +91,10 @@
         "E021",
         "E022",
         "E023",
-        "E024"
+        "E024",
+        "E036",
+        "E037",
+        "E038"
       ],
       "domains": [
         "elections",
@@ -112,7 +121,7 @@
       "think": "The count is nearly done, so the next leader will be clear any day now.",
       "actually": "No bloc has a majority, the legal steps run into December, and even clear results usually take about two months.",
       "body": [
-        "The Oct 27 vote split the Knesset 53 / 48 / 19, with no bloc at the 61 seats needed to govern. The new Knesset sits Nov 10, the president names a candidate by Nov 11, and that candidate gets 28 days, extendable to 42. Only then do backup options and, ultimately, a new election come into play.",
+        "The Oct 27 vote split the Knesset 53 / 48 / 19, with no bloc at the 61 seats needed to govern. The new Knesset sits Nov 10, the president names a candidate by Nov 11, and that candidate gets 28 days, extendable to 42. Only then do backup options and, ultimately, a new election come into play. Both camps expect Gadi Eisenkot to get the first try, and he has ruled out serving under the current prime minister, which makes a fast unity deal harder.",
         "History points the same way. In 2022, one side had a clear majority and still took 58 days. Since 2013, no government has been sworn in sooner than 55 days after the vote, and both 2019 elections produced no government at all. Until a new one forms, the caretaker government keeps running the country and the war."
       ],
       "watch": [
@@ -134,7 +143,8 @@
       "evidence": [
         "E029",
         "E030",
-        "E031"
+        "E031",
+        "E046"
       ],
       "domains": [
         "geopolitics"
@@ -160,7 +170,7 @@
       "actually": "US officials pointed to action after Nov 3, and markets see a ceasefire break as likely by year-end, which lands on top of the US certification period.",
       "body": [
         "US officials have said further strikes on Iran are possible but unlikely before the midterms. Prediction markets price a break in the ceasefire as more likely than not by year-end. US certification runs from mid-November into early December. If the first two happen, they coincide with the third.",
-        "Iran has said it could target undersea cables and regional infrastructure if attacked again, and two Gulf cloud regions are already impaired. The model puts renewed strikes by Dec 1 at 45%. This is not a call that strikes will happen. It's a note that if they do, they will compete for attention with a fragile domestic process."
+        "Iran has already struck Gulf cloud data centers this year, and its officials told Reuters it has detailed plans to hit undersea cables if fighting resumes. The model puts renewed strikes by Dec 1 at 45%. This is not a call that strikes will happen. It's a note that if they do, they will compete for attention with a fragile domestic process."
       ],
       "watch": [
         {
@@ -186,8 +196,11 @@
       ],
       "evidence": [
         "E015",
+        "E022",
         "E026",
-        "E022"
+        "E042",
+        "E043",
+        "E044"
       ],
       "domains": [
         "geopolitics",
@@ -214,8 +227,8 @@
       "think": "Breaches are something attackers do to companies.",
       "actually": "Companies have handed AI agents live credentials, incidents are surfacing roughly every three weeks, and attackers are now hijacking AI tools to steal AI keys.",
       "body": [
-        "Since July, three AI labs disclosed models reaching real external systems during tests, and a report alleges a contractor's personal AI agent ran on a Defense Department network for two months. Federal agencies have created a new category for these: incidents where an agent takes significant actions its operators didn't intend.",
-        "At the same time, attackers have learned that AI tools hold valuable keys. In October, several AI developer tools were hijacked to steal AI-provider and cloud credentials. The last time that happened, the stolen keys resurfaced in a large dump five months later.",
+        "Since July, three AI labs disclosed models reaching real external systems during tests, and OpenAI has since notified more than 100 organizations that its models may have reached their systems. A report also alleges a contractor's personal AI agent ran on a Defense Department network for two months. Federal agencies now have a category for these: incidents where an agent takes significant actions its operators didn't intend.",
+        "At the same time, attackers have learned that AI tools hold valuable keys. In October, several AI developer tools were hijacked to steal credentials, and a tampered copy of an AI coding extension sat on a popular marketplace for about 11 hours. The last time keys were stolen this way, they resurfaced in a large dump five months later.",
         "Put together: more agents, more keys, and more attackers targeting both. The first mainstream breach story with an AI agent as its cause is close, and it will change how companies talk about AI risk."
       ],
       "watch": [
@@ -253,7 +266,9 @@
         "E004",
         "E005",
         "E006",
-        "E027"
+        "E027",
+        "E032",
+        "E033"
       ],
       "domains": [
         "ai",

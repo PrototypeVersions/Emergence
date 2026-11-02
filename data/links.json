@@ -386,13 +386,13 @@
     }
   ],
   "biggest_unknown": {
-    "title": "Is Iran conducting cyber operations against US targets right now?",
-    "text": "Three forecasts (F07, F12 and part of F09) lean on Iran-linked cyber activity, and no current public evidence for it was collected this cycle. Precedent alone is carrying those nodes.",
+    "title": "How often do AI agents really cause real-world incidents?",
+    "text": "Counting only AI agents in everyday use gives roughly one public incident every three months. Counting lab agents that reached real systems gives more than one a month. The story that the next big breach will be blamed on an AI agent depends on which is closer to the truth.",
     "forecasts": [
-      "F07",
-      "F12"
+      "F04",
+      "F05"
     ],
-    "node": "N_IRAN_CYBER"
+    "node": "N_AGENT_AUTONOMY"
   },
   "strength_scale": {
     "strong": "Good evidence the link is real",
@@ -426,6 +426,13 @@
             "E005",
             "E006"
           ]
+        },
+        {
+          "date": "2026-10-30",
+          "text": "A tampered AI coding extension sits on a popular marketplace for about 11 hours",
+          "evidence": [
+            "E032"
+          ]
         }
       ],
       "link": "Last time, keys stolen through an AI developer tool resurfaced five months later. October's wave harvested the same kind of keys, so a similar delayed fallout is likely.",
@@ -451,6 +458,13 @@
           "text": "A Texas county party sues to block certification, citing possible AI and foreign interference",
           "evidence": [
             "E022"
+          ]
+        },
+        {
+          "date": "2026-10-23",
+          "text": "The Justice Department sues to prevent certification of Alaska's Senate race",
+          "evidence": [
+            "E037"
           ]
         },
         {
@@ -514,6 +528,13 @@
           ]
         },
         {
+          "date": "2026-10-02",
+          "text": "OpenAI notifies more than 100 organizations that its models may have reached their systems",
+          "evidence": [
+            "E033"
+          ]
+        },
+        {
           "date": "2026-10-16",
           "text": "NIST, NSA and CISA publish guidance on agents taking actions their operators didn't intend",
           "evidence": [
@@ -536,26 +557,33 @@
     },
     {
       "id": "C5",
-      "title": "Iran's cable threat and the already-impaired Gulf cloud",
-      "strength": "speculative",
+      "title": "Iran has already hit Gulf data centers. Cables are on its list.",
+      "strength": "plausible",
       "events": [
         {
-          "date": "2026-03-01",
-          "text": "Two Gulf cloud regions (UAE and Bahrain) are listed as impaired, and remain so",
+          "date": "2026-03-02",
+          "text": "AWS says drones directly struck two of its UAE facilities and damaged one in Bahrain",
           "evidence": [
-            "E011"
+            "E042"
+          ]
+        },
+        {
+          "date": "2026-10-23",
+          "text": "Iranian officials tell Reuters they have detailed plans to hit Gulf undersea cables and block repairs if the war resumes",
+          "evidence": [
+            "E043"
           ]
         },
         {
           "date": "2026-11-01",
-          "text": "Iran warns it could target seabed cables if attacked again; tankers are still being hit near Hormuz",
+          "text": "Iran warns again it could target seabed cables if attacked; talks continue in Qatar",
           "evidence": [
             "E015"
           ]
         }
       ],
-      "link": "If fighting resumes, the region's internet is already running with less slack. The cause of the cloud impairment is unknown, so the link may be coincidence.",
-      "confirm": "A confirmed cause for the cloud impairment, or reported damage to a Gulf or Red Sea cable.",
+      "link": "Iran has shown it will strike digital infrastructure in the Gulf, and has now named undersea cables as targets if fighting resumes. A cable cut would hit a region already running with less cloud capacity.",
+      "confirm": "Damage to a Gulf or Red Sea cable, or new strikes on Gulf data centers.",
       "stories": [
         "S3"
       ]

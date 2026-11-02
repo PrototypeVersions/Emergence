@@ -1,6 +1,6 @@
 {
-  "cycle": "2026-11-01-2030",
-  "published": "2026-11-01T20:30:00-06:00",
+  "cycle": "2026-11-01-2025",
+  "published": "2026-11-01T20:25:00-06:00",
   "engine_version": "1.2.0",
   "horizons": {
     "7d": {
@@ -99,7 +99,8 @@
       "evidence": [
         "E010",
         "E011",
-        "E012"
+        "E012",
+        "E054"
       ],
       "market": {
         "status": "not-checked",
@@ -207,11 +208,14 @@
           "Multiple drains from one root exploit count as one event."
         ]
       },
-      "research_question": "Did Binance's root cause involve a third-party tool or vendor used by other exchanges?",
+      "research_question": "Has Binance published its full root-cause report, and does it name a tool or vendor other exchanges also use?",
       "evidence": [
         "E007",
         "E008",
-        "E009"
+        "E009",
+        "E051",
+        "E052",
+        "E053"
       ],
       "market": {
         "status": "not-checked",
@@ -322,7 +326,8 @@
       "research_question": "How many 2026 AI-tool compromises meet the two-outlet bar? That would make the base rate firmer.",
       "evidence": [
         "E005",
-        "E006"
+        "E006",
+        "E032"
       ],
       "market": {
         "status": "none",
@@ -431,12 +436,14 @@
           "New reporting on the NIPRNet case does not count."
         ]
       },
-      "research_question": "What is the true count of qualifying incidents per month in 2026 under this exact definition?",
+      "research_question": "Will OpenAI's promised incident-disclosure framework surface new qualifying cases?",
       "evidence": [
         "E001",
         "E002",
         "E004",
-        "E019"
+        "E019",
+        "E033",
+        "E034"
       ],
       "market": {
         "status": "none",
@@ -468,17 +475,17 @@
       ],
       "primary": "30d",
       "p": {
-        "7d": 7,
-        "30d": 25
+        "7d": 4,
+        "30d": 16
       },
       "range": {
         "7d": [
-          3,
-          13
+          1,
+          10
         ],
         "30d": [
-          12,
-          40
+          7,
+          30
         ]
       },
       "confidence": "low",
@@ -492,10 +499,10 @@
         "Government scrutiny rising"
       ],
       "base_rate": {
-        "text": "Public rollbacks or restrictions of deployed AI features tied to a safety, security or misuse incident happen a few times a year (~0.25/month), which gives 22% in 30 days.",
-        "value": 22,
+        "text": "Live AI features pulled back after a safety, security or misuse incident: a handful across 2025 and none so far in 2026, despite many incidents. About 0.14 a month gives 13% in 30 days.",
+        "value": 13,
         "evidence": [
-          "E003"
+          "E033"
         ]
       },
       "adjustments": [
@@ -522,7 +529,7 @@
       ],
       "skeptic": "Providers have strong commercial reasons to patch quietly rather than visibly restrict a feature.",
       "escalation": "Agent features are new and lightly tested. One bad incident on a consumer product could force a public pause.",
-      "adjudicator": "There is no evidence yet of a specific feature under pressure. Stay close to the base rate.",
+      "adjudicator": "Even after notifying more than 100 organizations of possible model access, the leading lab restricted training, not a live product. Restrictions of live features are rarer than incidents suggest.",
       "resolution": {
         "condition": "OpenAI, Anthropic, Google/DeepMind, Microsoft, Meta, xAI, Amazon, Apple, Mistral, DeepSeek or Alibaba publicly disables, pauses, rolls back or materially restricts a model, feature or capability already available to customers, and the announcement or credible reporting ties the action to a security incident, misuse incident or unintended agent behavior.",
         "sources": [
@@ -538,7 +545,9 @@
       "evidence": [
         "E001",
         "E003",
-        "E004"
+        "E004",
+        "E033",
+        "E034"
       ],
       "market": {
         "status": "none",
@@ -552,6 +561,14 @@
             "30d": 25
           },
           "reason": "Initial publication"
+        },
+        {
+          "at": "2026-11-01T20:25:00-06:00",
+          "p": {
+            "7d": 4,
+            "30d": 16
+          },
+          "reason": "−9: research found no qualifying restriction in 2026 despite many incidents; labs are restricting internal systems, not live products."
         }
       ],
       "expected": {
@@ -572,17 +589,17 @@
       ],
       "primary": "7d",
       "p": {
-        "7d": 73,
-        "30d": 80
+        "7d": 62,
+        "30d": 70
       },
       "range": {
         "7d": [
-          58,
-          85
+          45,
+          78
         ],
         "30d": [
-          65,
-          90
+          52,
+          84
         ]
       },
       "confidence": "medium",
@@ -596,16 +613,19 @@
         "Fakes often drop in the last 72 hours"
       ],
       "base_rate": {
-        "text": "In the 2024 general election, federal and state officials publicly called out specific fabricated videos several times in the final week. Midterms draw less of this activity. Judgment anchor: 70%.",
-        "value": 70,
-        "evidence": []
+        "text": "Officials publicly named specific fakes several times in the final week of 2024, but no such case turned up for the 2022 midterms. Midterm-year anchor: 62%.",
+        "value": 62,
+        "evidence": [
+          "E039"
+        ]
       },
       "adjustments": [
         {
           "label": "A known network is already active against specific races",
           "delta": 8,
           "evidence": [
-            "E013"
+            "E013",
+            "E039"
           ]
         },
         {
@@ -613,6 +633,13 @@
           "delta": -5,
           "evidence": [
             "E018"
+          ]
+        },
+        {
+          "label": "The intelligence chief has said there's no foreign threat so far, and CISA isn't commenting",
+          "delta": -3,
+          "evidence": [
+            "E040"
           ]
         }
       ],
@@ -643,11 +670,13 @@
           "Generic warnings about deepfakes without a specific item do not count."
         ]
       },
-      "research_question": "How many official debunks occurred in the final week of the 2022 midterms? That would be a cleaner midterm-year base rate.",
+      "research_question": "Will a state or county election office publicly name a specific fake about voting itself (not about candidates)?",
       "evidence": [
         "E013",
         "E014",
-        "E018"
+        "E018",
+        "E039",
+        "E040"
       ],
       "market": {
         "status": "not-checked",
@@ -661,6 +690,14 @@
             "30d": 80
           },
           "reason": "Initial publication"
+        },
+        {
+          "at": "2026-11-01T20:25:00-06:00",
+          "p": {
+            "7d": 62,
+            "30d": 70
+          },
+          "reason": "−11: no official debunk was found for the 2022 midterms, and federal agencies have stepped back from public statements on foreign influence."
         }
       ],
       "expected": {
@@ -858,14 +895,16 @@
           "Cyber operations alone do not count."
         ]
       },
-      "research_question": "Is there a market or bucket that resolves on US or Israeli strikes on Iranian territory by Dec 1 specifically?",
+      "research_question": "Is there a real-money market resolving on US or Israeli strikes on Iranian territory in November?",
       "evidence": [
         "E015",
-        "E026"
+        "E026",
+        "E044",
+        "E045"
       ],
       "market": {
         "status": "checked",
-        "note": "Polymarket 'US–Iran ceasefire continues through…' series (Oct 29): about 88% through the midterms, about 25% through Dec 31. No Dec 1 bucket was retrieved; a ceasefire break also counts Iranian action, so it is not identical to this question."
+        "note": "Polymarket priced the ceasefire holding through Nov 3 at about 94% (Nov 1). Earlier Polymarket prices (Oct 29) implied a ceasefire break as likely by Dec 31. A play-money Manifold market implies roughly 47% for an Israeli strike on Iranian territory by Nov 30. No real-money market resolving on strikes by Dec 1 was found."
       },
       "history": [
         {
@@ -977,10 +1016,12 @@
           "Power cables do not count."
         ]
       },
-      "research_question": "What caused the Gulf cloud-region impairments listed since March? Physical damage would strengthen the link to F01.",
+      "research_question": "Have Gulf cable operators or repair crews reported any incident or security warning since the October threats?",
       "evidence": [
         "E011",
-        "E015"
+        "E015",
+        "E042",
+        "E043"
       ],
       "market": {
         "status": "none",
@@ -1091,7 +1132,8 @@
       "evidence": [
         "E001",
         "E004",
-        "E005"
+        "E005",
+        "E035"
       ],
       "market": {
         "status": "none",
@@ -1124,33 +1166,33 @@
       ],
       "primary": "30d",
       "p": {
-        "7d": 26,
-        "30d": 73
+        "7d": 12,
+        "30d": 42
       },
       "range": {
         "7d": [
-          15,
-          38
+          5,
+          22
         ],
         "30d": [
-          58,
-          85
+          25,
+          60
         ]
       },
       "confidence": "medium",
       "impact": 60,
       "newsworthiness": 40,
       "attention": "low",
-      "summary": "This happens more often than most people realize. The cases usually make only local news. UNM Health was the latest, on Oct 26. Likely, important for patient safety, and under-covered: a textbook underwatched risk.",
+      "summary": "Cyberattacks that force hospitals to turn ambulances away are serious but less frequent than we first estimated: about one every three to four months is publicly reported. UNM Health was the latest, on Oct 26.",
       "why_now": [
         "UNM Health diverted ambulances Oct 26",
         "New ransomware group 'Byod' active"
       ],
       "base_rate": {
-        "text": "Publicly reported US hospital ambulance diversions due to cyberattacks run at roughly 1.2 per month, which gives 70% in 30 days.",
-        "value": 70,
+        "text": "About six publicly reported cyber-caused ambulance diversions at US hospitals across 2025–26, roughly 0.3 a month. Doubling that to allow for local-only coverage gives 39% in 30 days.",
+        "value": 39,
         "evidence": [
-          "E016"
+          "E050"
         ]
       },
       "adjustments": [
@@ -1172,9 +1214,9 @@
       "decrease_if": [
         "Law-enforcement takedown of an active group"
       ],
-      "skeptic": "The ~1.2/month rate is an estimate from scattered local reports. It hasn't been rigorously counted.",
-      "escalation": "Many diversions are never reported beyond local outlets, so the true rate is higher than the reported rate.",
-      "adjudicator": "The base rate itself is the weakest link. It is the top research priority for this forecast.",
+      "skeptic": "Even the corrected rate may be generous; several reported diversions were never confirmed by the hospital.",
+      "escalation": "Many diversions are reported only locally, so the true rate is higher than any count.",
+      "adjudicator": "Our first estimate was too high. The corrected base rate, with an allowance for under-reporting, puts this below even odds.",
       "resolution": {
         "condition": "A US hospital or health system other than UNM Health publicly confirms, or a news outlet reports citing the hospital, that it diverted ambulances because of a cyberattack or ransomware incident beginning within the window.",
         "sources": [
@@ -1186,9 +1228,10 @@
           "Diversions due to vendor outages that are not cyberattacks do not count."
         ]
       },
-      "research_question": "Count reported cyber-related ambulance diversions in the US for 2025–26.",
+      "research_question": "Do hospital-association or HHS tallies give a fuller count of cyber-related diversions?",
       "evidence": [
-        "E016"
+        "E016",
+        "E050"
       ],
       "market": {
         "status": "none",
@@ -1202,6 +1245,14 @@
             "30d": 73
           },
           "reason": "Initial publication"
+        },
+        {
+          "at": "2026-11-01T20:25:00-06:00",
+          "p": {
+            "7d": 12,
+            "30d": 42
+          },
+          "reason": "−31: a careful count found about six cases in 22 months, far below our first estimate of more than one a month. The first-published 73% still counts for scoring."
         }
       ],
       "expected": {
@@ -1223,17 +1274,17 @@
       ],
       "primary": "30d",
       "p": {
-        "7d": 4,
-        "30d": 13
+        "7d": 5,
+        "30d": 18
       },
       "range": {
         "7d": [
-          1,
-          9
+          2,
+          12
         ],
         "30d": [
-          5,
-          25
+          8,
+          32
         ]
       },
       "confidence": "low",
@@ -1246,16 +1297,20 @@
         "Iran 'prepared for all scenarios'"
       ],
       "base_rate": {
-        "text": "US-attributed, Iran-linked operational disruptions of US infrastructure are rare (roughly once in recent years, during a period of conflict). Anchor: ~10% for 30 days during active hostilities.",
-        "value": 10,
-        "evidence": []
+        "text": "US agencies publicly attributed operational disruption at US infrastructure to Iran-linked actors twice in 2026 (an April advisory and a July update), about once every four months: roughly 20% in 30 days.",
+        "value": 20,
+        "evidence": [
+          "E047",
+          "E048"
+        ]
       },
       "adjustments": [
         {
           "label": "Active war with explicit retaliation orders",
           "delta": 4,
           "evidence": [
-            "E015"
+            "E015",
+            "E044"
           ]
         },
         {
@@ -1269,6 +1324,13 @@
           "label": "Official attribution typically lags the event by weeks",
           "delta": -3,
           "evidence": []
+        },
+        {
+          "label": "The White House publicly disputed blaming Iran for the July water attacks, which may slow new attributions",
+          "delta": -5,
+          "evidence": [
+            "E049"
+          ]
         }
       ],
       "pathway": [
@@ -1283,9 +1345,9 @@
       "decrease_if": [
         "A negotiated pause"
       ],
-      "skeptic": "No fresh evidence of Iranian operations against US infrastructure was found this cycle. The node is driven by precedent alone.",
-      "escalation": "Disruption of an exposed controller is cheap and gives deniable retaliation. It's an attractive option if strikes resume.",
-      "adjudicator": "The skeptic is right that evidence is missing. That is why this is flagged as the biggest model unknown, not a confident forecast.",
+      "skeptic": "Nothing new has been attributed since July 22, and attributions have become politically contested.",
+      "escalation": "Agencies have already published this kind of finding twice this year, and renewed strikes would raise the motive.",
+      "adjudicator": "The precedent is now documented, not hypothetical. That moves this up, but the political dispute over attribution keeps it below one in five.",
       "resolution": {
         "condition": "CISA, FBI, NSA or another US agency publicly attributes to Iranian government-linked actors a cyber operation that caused operational disruption (not only data theft or website defacement) at US water, energy, or other critical infrastructure, with the attribution announced within the window.",
         "sources": [
@@ -1299,9 +1361,12 @@
           "Attribution to 'hacktivists' with no stated government link does not count."
         ]
       },
-      "research_question": "Has CISA published any 2026 advisory on Iranian activity against US operational technology?",
+      "research_question": "Has any agency attributed new incidents since the July 22 advisory update?",
       "evidence": [
-        "E015"
+        "E015",
+        "E047",
+        "E048",
+        "E049"
       ],
       "market": {
         "status": "none",
@@ -1315,6 +1380,14 @@
             "30d": 13
           },
           "reason": "Initial publication"
+        },
+        {
+          "at": "2026-11-01T20:25:00-06:00",
+          "p": {
+            "7d": 5,
+            "30d": 18
+          },
+          "reason": "+5: US agencies confirmed Iran-linked disruption of US infrastructure twice in 2026, which we hadn't found before. Partly offset by the White House disputing a July attribution."
         }
       ],
       "expected": {
@@ -1334,7 +1407,7 @@
       "primary": "30d",
       "p": {
         "7d": 8,
-        "30d": 65
+        "30d": 72
       },
       "range": {
         "7d": [
@@ -1342,8 +1415,8 @@
           15
         ],
         "30d": [
-          45,
-          80
+          55,
+          85
         ]
       },
       "confidence": "medium",
@@ -1364,11 +1437,12 @@
         "Deadlines fall Nov 17–Dec 3 in key states"
       ],
       "base_rate": {
-        "text": "In 2020 (Wayne County MI deadlock) and 2022 (Cochise County AZ) a county board voted against certifying or missed its deadline; 2024's general election had no comparable case. Two of three, shrunk toward even for the small sample: 60%.",
-        "value": 60,
+        "text": "A county board refused or missed its deadline after the 2020 (Wayne County MI deadlock), 2022 (Cochise AZ) and 2024 (Atlantic County NJ missed the deadline) general elections. The 2024 case was a slow count rather than a refusal, so: 65%.",
+        "value": 65,
         "evidence": [
           "E023",
-          "E024"
+          "E024",
+          "E038"
         ]
       },
       "adjustments": [
@@ -1377,6 +1451,14 @@
           "delta": 5,
           "evidence": [
             "E022"
+          ]
+        },
+        {
+          "label": "New federal pressure on certification: a Justice Department suit over Alaska's Senate race and prosecution-warning letters to every state",
+          "delta": 2,
+          "evidence": [
+            "E037",
+            "E041"
           ]
         }
       ],
@@ -1408,11 +1490,14 @@
           "A deadlock that is reversed the same day still counts if reported."
         ]
       },
-      "research_question": "Did any county board refuse or miss a deadline after the November 2024 general election? That would firm up the base rate.",
+      "research_question": "Will courts rule on the pending Texas and Alaska certification suits before the canvass deadlines?",
       "evidence": [
         "E022",
         "E023",
-        "E024"
+        "E024",
+        "E037",
+        "E038",
+        "E041"
       ],
       "market": {
         "status": "none",
@@ -1426,6 +1511,14 @@
             "30d": 65
           },
           "reason": "Initial publication"
+        },
+        {
+          "at": "2026-11-01T20:25:00-06:00",
+          "p": {
+            "7d": 8,
+            "30d": 72
+          },
+          "reason": "+7: a county also missed its deadline after 2024, and federal pressure on certification is new this cycle."
         }
       ]
     },
@@ -1438,13 +1531,13 @@
       ],
       "primary": "7d",
       "p": {
-        "7d": 82,
+        "7d": 85,
         "30d": null
       },
       "range": {
         "7d": [
-          68,
-          92
+          72,
+          93
         ],
         "30d": null
       },
@@ -1479,6 +1572,20 @@
           "evidence": [
             "E020"
           ]
+        },
+        {
+          "label": "Alaska won't run its ranked-choice count until Nov 18",
+          "delta": 4,
+          "evidence": [
+            "E036"
+          ]
+        },
+        {
+          "label": "A Georgia runoff is now very unlikely, removing one path",
+          "delta": -1,
+          "evidence": [
+            "E055"
+          ]
         }
       ],
       "pathway": [
@@ -1506,10 +1613,12 @@
           "Retracted AP calls count as uncalled."
         ]
       },
-      "research_question": "Which Senate races have polling within 3 points, and in which of them could ranked-choice or runoff rules apply?",
+      "research_question": "Will any Alaska Senate candidate clear 50% in the first round, letting the AP call it early?",
       "evidence": [
         "E020",
-        "E021"
+        "E021",
+        "E036",
+        "E055"
       ],
       "market": {
         "status": "not-checked",
@@ -1523,6 +1632,14 @@
             "30d": null
           },
           "reason": "Initial publication"
+        },
+        {
+          "at": "2026-11-01T20:25:00-06:00",
+          "p": {
+            "7d": 85,
+            "30d": null
+          },
+          "reason": "+3: Alaska's ranked-choice tabulation is scheduled for Nov 18; a Georgia runoff is now unlikely."
         }
       ]
     },
@@ -1536,12 +1653,12 @@
       "primary": "30d",
       "p": {
         "7d": null,
-        "30d": 94
+        "30d": 95
       },
       "range": {
         "7d": null,
         "30d": [
-          85,
+          87,
           98
         ]
       },
@@ -1576,6 +1693,13 @@
           "evidence": [
             "E029"
           ]
+        },
+        {
+          "label": "The likely first nominee has refused to serve under the current prime minister, making a quick unity deal harder",
+          "delta": 1,
+          "evidence": [
+            "E046"
+          ]
         }
       ],
       "pathway": [
@@ -1609,7 +1733,8 @@
       "evidence": [
         "E029",
         "E030",
-        "E031"
+        "E031",
+        "E046"
       ],
       "market": {
         "status": "not-checked",
@@ -1623,6 +1748,14 @@
             "30d": 94
           },
           "reason": "Initial publication"
+        },
+        {
+          "at": "2026-11-01T20:25:00-06:00",
+          "p": {
+            "7d": null,
+            "30d": 95
+          },
+          "reason": "+1: both camps expect a first nominee who has ruled out serving under the current prime minister."
         }
       ]
     }
