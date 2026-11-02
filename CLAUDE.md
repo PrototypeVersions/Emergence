@@ -4,7 +4,7 @@ Static GitHub Pages site. No build step. Data lives in `data/*.json` and is rend
 
 - **Scheduled runs** follow `docs/AUTOMATION.md` (weekly full update, daily decision-day and surprise check, guardrails).
 - **Before any forecast update**, read `docs/UPDATE_PROTOCOL.md` and follow it in order. Never edit files in `forecasts/`. They are frozen snapshots.
-- **Purpose:** show how the news will actually play out: where today's stories are really heading, with every call scored. Every story should forecast the next chapter of something already in the news.
+- **Purpose:** show how the news will play out: where today's stories are really heading, with every call scored. Every story should forecast the next chapter of something already in the news.
 - **Stories lead.** The site's main product is `data/stories.json`: "you'd think / more likely" claims that pass the four tests in `docs/METHODOLOGY.md`, each with forecasts as receipts and a "what would prove it wrong." Run the story engine in the update protocol every cycle and rewrite the weekly brief last.
 - **Lead with the gap.** Every forecast has `expected` (what most people or markets expect) and a `tactic`. Likely-but-overlooked forecasts (p ≥ 55, gap ≥ 20) need a `surprise_note`. Run the gap search in the update protocol every cycle.
 - **Probabilities** must equal `base_rate.value + sum(adjustments.delta)` for the primary horizon. Explain every move in `history`.

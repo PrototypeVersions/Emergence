@@ -1,6 +1,6 @@
 # Emergence
 
-Emergence shows how the news will actually play out: where today's stories are really heading, with every call scored. It reads AI, cyber, internet infrastructure, elections, geopolitics and markets together, which often reveals a different path than single-topic coverage suggests.
+Emergence shows how the news will play out: where today's stories are really heading, with every call scored. It reads AI, cyber, internet infrastructure, elections, geopolitics and markets together, which often reveals a different path than single-topic coverage suggests.
 
 It publishes **stories**: claims about what's really going on that most coverage misses because it sees only one part of the picture. Each story says what you'd expect, what's more likely, what you'll see if it's right, and what would prove it wrong. A short weekly brief ties them together.
 
