@@ -135,7 +135,6 @@
   }
   const lastClose = (st) => st.forecasts.map((id) => S.data.fc.horizons[S.data.byId[id].primary].closes).sort().pop();
 
-  const INTRO = "Emergence reads AI, cybersecurity, elections, world politics and markets side by side, to spot what news covering one topic at a time tends to miss.";
   function nextUpdate() {
     const d = new Date(); const day = d.getDay();
     const add = day === 1 && d.getHours() < 7 ? 0 : (8 - day) % 7 || 7;
@@ -176,10 +175,11 @@
         <span class="why">${why(f)}</span></a>` : "";
     return `
       <section class="brief" aria-labelledby="brief-title">
-        <p class="intro intro-mobile">${INTRO}</p>
+        <div class="cover">
         <div class="kicker"><span>This week's brief, ${fmtDate(B.date)}</span><span>Next update ${nextUpdate()}</span></div>
         <h1 id="brief-title" class="brief-title">${esc(B.title)}</h1>
         ${ribbon()}
+        </div>
         ${B.changes && B.changes.length ? `<div class="changes"><h2>What changed since last week</h2><ul>${B.changes.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
         <div class="brief-body">${B.paragraphs.map((x) => `<p>${esc(x)}</p>`).join("")}</div>
       </section>
