@@ -4,6 +4,18 @@
 
 Emergence publishes **stories**: claims about what's really going on that coverage misses because each newsroom beat sees only part of the picture. Forecasts are the receipts that make each story checkable. Most of this document describes the receipts. The section below describes the stories.
 
+## Focus on likely events
+
+Readers have limited attention. Most open forecasts should be likely (55% or higher), and the site leads with likely events most people aren't expecting. Lower-probability forecasts are kept only when a story needs them as receipts, or for a rare high-impact risk. Keep at most four below 30%. The validator enforces this. They appear on the site in a collapsed "less likely possibilities" section.
+
+## Connections
+
+`links.json → connections` lists sets of two to four real, separately reported events, each with a date and source, plus the possible link between them. Each has a strength rating: `strong` (good evidence the link is real), `plausible` (a credible mechanism, not shown yet) or `speculative` (could easily be coincidence). Each also says what would confirm or rule it out. Only publish connections where the events are real and the link is non-obvious. Never imply a link is stronger than the evidence. Upgrade, downgrade or retire connections as evidence arrives. The world map stays as internal plumbing for building chains; it isn't a reader-facing section.
+
+## Plain language
+
+Write for someone who follows the news but has never seen a forecasting site. Show likelihood in words with the number ("Likely, 82%"). Explain ranges in a sentence ("we'd be surprised if the real chance were below X% or above Y%"). Avoid jargon on reader-facing pages. Technical terms belong in these docs and behind "Show the reasoning."
+
 ## Stories (engine 1.2)
 
 A story is written as "you'd think X; more likely Y," followed by a few short paragraphs, what you'll see if it's right (linked forecasts), and what would prove it wrong. It lives in `data/stories.json`.

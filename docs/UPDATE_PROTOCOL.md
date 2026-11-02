@@ -45,7 +45,7 @@ Ask: *What important event is not on the list but follows naturally from two or 
 - Change node states and edges in `world-map.json`.
 - Re-derive each probability: base rate, then adjustments, then result. The validator checks the arithmetic.
 - Append a `history` entry to each changed forecast with a one-sentence reason. Every move must be explainable.
-- Retire closed forecasts from `forecasts.json`. Their snapshots remain the record. Add new ones (aim for 8–15 open in total).
+- Retire closed forecasts from `forecasts.json`. Their snapshots remain the record. Add new ones (aim for 8–15 open in total, mostly 55% or higher; at most four below 30%, and only when a story needs them or the impact is severe).
 - Refresh `links.json` signals and paths.
 
 ## 5. Publish

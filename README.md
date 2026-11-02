@@ -20,11 +20,12 @@ Behind every story are forecasts that make it checkable:
 | Stories | Every story, plus the causal chains underneath |
 | Predictions | What might happen, ranked several ways? |
 | Forecast pages | How could it happen, why this number, and what decides it? |
-| World map | How do the tracked conditions connect? Includes "What connects these?" |
+| Connections | Separately reported events that may be more than a coincidence, with an honest strength rating |
+| Calendar | When things are actually decided, next to what the coverage implies |
 | Evidence | Where did each fact come from, and how reliable is it? |
 | Track record | How have past forecasts turned out? |
 
-There's a **Briefing / Analyst** switch at the top. Analyst mode adds uncertainty ranges, the skeptic and escalation arguments, and source clusters.
+Extra detail (the arguments on each side, the step-by-step chains) sits behind "Show the reasoning" links, so the main pages stay readable.
 
 ## Run it locally
 

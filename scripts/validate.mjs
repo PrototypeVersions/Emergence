@@ -110,6 +110,9 @@ for (const f of fc.forecasts) {
   if (!last || last.p[f.primary] !== f.p[f.primary]) fail(`${tag}: latest history entry does not match current probability`);
 }
 
+const low = fc.forecasts.filter((f) => f.p[f.primary] < 30).map((f) => f.id);
+if (low.length > 4) fail(`Too many low-probability forecasts (${low.join(", ")}). Keep at most four below 30%; focus on likely events.`);
+
 // ---- links ----
 const pIds = dupes(links.paths.map((p) => p.id), "path");
 for (const p of links.paths) {
@@ -123,6 +126,13 @@ for (const p of links.paths) {
   for (const d of p.domains) if (!domIds.has(d)) fail(`${p.id}: unknown domain ${d}`);
 }
 for (const s of links.signals) for (const e of s.evidence) if (!evIds.has(e)) fail(`${s.id}: evidence ${e} missing`);
+dupes((links.connections || []).map((c) => c.id), "connection");
+for (const c of links.connections || []) {
+  if (!Object.keys(links.strength_scale).includes(c.strength)) fail(`${c.id}: strength must be ${Object.keys(links.strength_scale).join(", ")}`);
+  if (!c.events || c.events.length < 2) fail(`${c.id}: a connection needs at least two separate events`);
+  for (const e of c.events || []) { if (!/^\d{4}-\d{2}-\d{2}$/.test(e.date)) fail(`${c.id}: event date must be YYYY-MM-DD`); if (!e.evidence?.length) fail(`${c.id}: every event needs a source`); for (const x of e.evidence || []) if (!evIds.has(x)) fail(`${c.id}: evidence ${x} missing`); }
+  if (!c.link || !c.confirm) fail(`${c.id}: needs the possible link and what would confirm it`);
+}
 if (!nodeIds.has(links.biggest_unknown.node)) fail("biggest_unknown: node missing");
 
 // ---- stories ----
@@ -147,6 +157,7 @@ for (const st of stories.stories) {
   if (st.status !== "open" && !st.verdict) fail(`${tag}: a closed story needs a verdict note`);
   if (st.status !== "open" && !st.postmortem) fail(`${tag}: a closed story needs a postmortem`);
 }
+for (const c of links.connections || []) for (const id of c.stories) if (!sIds.has(id)) fail(`${c.id}: story ${id} does not exist`);
 for (const id of stories.brief.stories) if (!sIds.has(id)) fail(`brief: story ${id} does not exist`);
 if (!stories.brief.title || !stories.brief.paragraphs?.length) fail("brief: title and paragraphs are required");
 

@@ -393,5 +393,199 @@
       "F12"
     ],
     "node": "N_IRAN_CYBER"
-  }
+  },
+  "strength_scale": {
+    "strong": "Good evidence the link is real",
+    "plausible": "A credible mechanism, but not shown yet",
+    "speculative": "Worth watching; could easily be coincidence"
+  },
+  "connections": [
+    {
+      "id": "C1",
+      "title": "Stolen AI keys now, trouble months later",
+      "strength": "strong",
+      "events": [
+        {
+          "date": "2026-03-24",
+          "text": "Malicious LiteLLM versions steal AI and cloud keys from developers' build systems",
+          "evidence": [
+            "E027"
+          ]
+        },
+        {
+          "date": "2026-08-13",
+          "text": "A 153GB archive of those stolen credentials surfaces, tied to about 2,500 organizations",
+          "evidence": [
+            "E027"
+          ]
+        },
+        {
+          "date": "2026-10-21",
+          "text": "LiteLLM is compromised again, alongside about five other AI-tool incidents in October",
+          "evidence": [
+            "E005",
+            "E006"
+          ]
+        }
+      ],
+      "link": "Last time, keys stolen through an AI developer tool resurfaced five months later. October's wave harvested the same kind of keys, so a similar delayed fallout is likely.",
+      "confirm": "Stolen October credentials appearing in a leak, or a company tracing a breach back to them.",
+      "stories": [
+        "S4"
+      ]
+    },
+    {
+      "id": "C2",
+      "title": "Fake videos and slow vote counts arrive in the same weeks",
+      "strength": "strong",
+      "events": [
+        {
+          "date": "2026-10-27",
+          "text": "AP reports AI-manipulated videos, likely from a Russian network, targeting two Senate races",
+          "evidence": [
+            "E013"
+          ]
+        },
+        {
+          "date": "2026-10-27",
+          "text": "A Texas county party sues to block certification, citing possible AI and foreign interference",
+          "evidence": [
+            "E022"
+          ]
+        },
+        {
+          "date": "2026-10-31",
+          "text": "Alaska's Senate count is expected to be slow, with ranked-choice tabulation and certification steps still to come",
+          "evidence": [
+            "E020",
+            "E021"
+          ]
+        }
+      ],
+      "link": "Days of uncalled races leave a gap that fabricated 'evidence' can fill, and claims about AI interference are already being used to challenge certification.",
+      "confirm": "Officials debunking a fake about the count, or a certification challenge citing a specific fake.",
+      "stories": [
+        "S1"
+      ]
+    },
+    {
+      "id": "C3",
+      "title": "Three October breaches, one weak point",
+      "strength": "plausible",
+      "events": [
+        {
+          "date": "2026-10-21",
+          "text": "LiteLLM's malicious release traced to stolen GitHub tokens from three engineers",
+          "evidence": [
+            "E005"
+          ]
+        },
+        {
+          "date": "2026-10-30",
+          "text": "Binance says its $6.3B theft may have started with one engineer's compromised laptop",
+          "evidence": [
+            "E008"
+          ]
+        },
+        {
+          "date": "2026-10-30",
+          "text": "Wired reports a contractor's personal AI agent ran on a Pentagon network for two months",
+          "evidence": [
+            "E004"
+          ]
+        }
+      ],
+      "link": "Different attackers, same entry point: trusted access sitting on an individual engineer's machine or in an agent acting for them. This is our inference, not a reported finding.",
+      "confirm": "Binance's root-cause report, or other incident reports naming a developer's device or tokens as the way in.",
+      "stories": [
+        "S4"
+      ]
+    },
+    {
+      "id": "C4",
+      "title": "AI labs' test leaks, then real-world agents",
+      "strength": "plausible",
+      "events": [
+        {
+          "date": "2026-08-06",
+          "text": "Three AI labs disclose models reaching real external systems during tests",
+          "evidence": [
+            "E002"
+          ]
+        },
+        {
+          "date": "2026-10-16",
+          "text": "NIST, NSA and CISA publish guidance on agents taking actions their operators didn't intend",
+          "evidence": [
+            "E001"
+          ]
+        },
+        {
+          "date": "2026-10-30",
+          "text": "A report alleges an AI agent ran unnoticed on a Defense Department network",
+          "evidence": [
+            "E004"
+          ]
+        }
+      ],
+      "link": "The capabilities that leaked out of test environments are now deployed with live credentials, and government guidance is catching up.",
+      "confirm": "A new incident where a deployed agent, not a test, reaches systems it shouldn't.",
+      "stories": [
+        "S4"
+      ]
+    },
+    {
+      "id": "C5",
+      "title": "Iran's cable threat and the already-impaired Gulf cloud",
+      "strength": "speculative",
+      "events": [
+        {
+          "date": "2026-03-01",
+          "text": "Two Gulf cloud regions (UAE and Bahrain) are listed as impaired, and remain so",
+          "evidence": [
+            "E011"
+          ]
+        },
+        {
+          "date": "2026-11-01",
+          "text": "Iran warns it could target seabed cables if attacked again; tankers are still being hit near Hormuz",
+          "evidence": [
+            "E015"
+          ]
+        }
+      ],
+      "link": "If fighting resumes, the region's internet is already running with less slack. The cause of the cloud impairment is unknown, so the link may be coincidence.",
+      "confirm": "A confirmed cause for the cloud impairment, or reported damage to a Gulf or Red Sea cable.",
+      "stories": [
+        "S3"
+      ]
+    },
+    {
+      "id": "C6",
+      "title": "A caretaker Israel and a post-midterm Iran window",
+      "strength": "speculative",
+      "events": [
+        {
+          "date": "2026-10-27",
+          "text": "Israel's election leaves no bloc with a majority; a caretaker government stays in charge",
+          "evidence": [
+            "E029"
+          ]
+        },
+        {
+          "date": "2026-11-01",
+          "text": "US officials say further strikes on Iran are unlikely before the midterms but remain possible after",
+          "evidence": [
+            "E015"
+          ]
+        }
+      ],
+      "link": "The weeks when the US is most likely to act are also weeks when Israel is run by a caretaker government in the middle of coalition talks. How that shapes decisions is unclear.",
+      "confirm": "Israeli coalition talks visibly turning on Iran policy, or strikes during the formation period.",
+      "stories": [
+        "S2",
+        "S3"
+      ]
+    }
+  ]
 }
