@@ -13,7 +13,17 @@ For each forecast whose window has closed, apply `RESOLUTION_RULES.md` and appen
 - Add new records to `data/evidence.json` with the next free ID. Assign an independence cluster. If a new article repeats an existing report, reuse that report's cluster.
 - Check prediction markets for any forecast whose `market.status` is `to-check`.
 
-## 3. Gap search (mandatory)
+## 3. Story engine (mandatory)
+
+1. **Sweep wide.** Read across beats: security advisories, crypto analytics, court filings, election administration, shipping, AI lab disclosures, regulatory and legislative calendars, foreign elections and negotiations, and mainstream headlines. Note which sources were unreachable.
+2. **Collect loose ends.** Things that happened and must have follow-ups: stolen money and keys, promised reports, running deadlines, unresolved threats, pending votes or mandates.
+3. **Find the hype.** List the moments coverage is anticipating. For each, ask what actually decides it and when.
+4. **Cross-match.** Pair loose ends across domains. Look for shared mechanisms, shared infrastructure, and timing collisions.
+5. **Draft stories** in the "you'd think / more likely" form and apply the four tests in `METHODOLOGY.md`. Keep three to five. Each needs forecasts as receipts; add forecasts where needed.
+6. **Verdicts.** Give a verdict to each story whose forecasts have all closed. Retire it from the brief, but keep it in `stories.json`.
+7. **Write the weekly brief** last.
+
+## 3b. Gap search (mandatory)
 
 Run each tactic in `METHODOLOGY.md` against the current evidence. At minimum:
 
@@ -24,7 +34,7 @@ Run each tactic in `METHODOLOGY.md` against the current evidence. At minimum:
 
 Keep candidates with p ≥ 55 and a real gap. Each needs a resolvable condition and a `surprise_note`. Update `expected` on existing forecasts when markets or coverage move.
 
-## 3b. Implied-event challenge (mandatory)
+## 3c. Implied-event challenge (mandatory)
 
 Ask: *What important event is not on the list but follows naturally from two or more currently active conditions?* Generate at least 20 candidates. Red-team them. Keep only candidates with a coherent mechanism, real evidence, nontrivial probability, clear newsworthiness and a resolvable condition. Then ask the counter-consensus questions: which heavily covered event is overestimated, and which ignored event is underestimated?
 

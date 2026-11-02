@@ -17,6 +17,7 @@ const map = read("data/world-map.json");
 const ev = read("data/evidence.json");
 const links = read("data/links.json");
 const index = read("data/forecast-index.json");
+const stories = read("data/stories.json");
 const resolutions = read("data/resolutions.json");
 if (errors.length) { report(); }
 
@@ -123,6 +124,30 @@ for (const p of links.paths) {
 for (const s of links.signals) for (const e of s.evidence) if (!evIds.has(e)) fail(`${s.id}: evidence ${e} missing`);
 if (!nodeIds.has(links.biggest_unknown.node)) fail("biggest_unknown: node missing");
 
+// ---- stories ----
+const sIds = dupes(stories.stories.map((x) => x.id), "story");
+const STYPES = new Set(Object.keys(stories.types));
+for (const st of stories.stories) {
+  const tag = st.id;
+  for (const k of ["title", "think", "actually", "body", "watch", "wrong", "forecasts", "evidence", "domains", "tests", "status", "published"]) if (st[k] === undefined || st[k] === "") fail(`${tag}: missing ${k}`);
+  if (!STYPES.has(st.type)) fail(`${tag}: unknown story type ${st.type}`);
+  if (!st.forecasts.length) fail(`${tag}: a story needs at least one forecast as a receipt`);
+  if (!st.wrong.length) fail(`${tag}: a story must say what would prove it wrong`);
+  for (const k of ["cares", "overturns", "visible", "changes"]) if (!st.tests?.[k]) fail(`${tag}: story test "${k}" is missing`);
+  for (const f of st.forecasts) if (!fIds.has(f)) fail(`${tag}: forecast ${f} does not exist`);
+  for (const w of st.watch) {
+    if (w.forecast && !st.forecasts.includes(w.forecast)) fail(`${tag}: watch item references ${w.forecast}, which is not in the story's forecasts`);
+    if (w.h && w.forecast && fc.forecasts.find((x) => x.id === w.forecast)?.p[w.h] == null) fail(`${tag}: watch item asks for ${w.h} but ${w.forecast} has no number for it`);
+  }
+  for (const e of st.evidence) if (!evIds.has(e)) fail(`${tag}: evidence ${e} does not exist`);
+  for (const d of st.domains) if (!domIds.has(d)) fail(`${tag}: unknown domain ${d}`);
+  if (st.path && !pIds.has(st.path)) fail(`${tag}: path ${st.path} does not exist`);
+  if (!["open", "held", "partly", "wrong"].includes(st.status)) fail(`${tag}: status must be open, held, partly or wrong`);
+  if (st.status !== "open" && !st.verdict) fail(`${tag}: a closed story needs a verdict note`);
+}
+for (const id of stories.brief.stories) if (!sIds.has(id)) fail(`brief: story ${id} does not exist`);
+if (!stories.brief.title || !stories.brief.paragraphs?.length) fail("brief: title and paragraphs are required");
+
 // ---- snapshots ----
 const actives = index.snapshots.filter((s) => s.cycle === index.active);
 if (actives.length !== 1) fail(`forecast-index: active pointer must match exactly one snapshot (found ${actives.length})`);
@@ -171,6 +196,6 @@ function report() {
     console.error(`\n${errors.length} problem(s). Fix before publishing.`);
     process.exit(1);
   }
-  console.log(`OK: ${fc.forecasts.length} forecasts, ${map.nodes.length} nodes, ${map.edges.length} links, ${ev.records.length} evidence records, ${links.paths.length} paths.`);
+  console.log(`OK: ${fc.forecasts.length} forecasts, ${map.nodes.length} nodes, ${map.edges.length} links, ${ev.records.length} evidence records, ${links.paths.length} paths, ${stories.stories.length} stories.`);
   process.exit(0);
 }

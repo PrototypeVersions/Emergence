@@ -1,5 +1,38 @@
 # Methodology
 
+## What the site is for
+
+Emergence publishes **stories**: claims about what's really going on that coverage misses because each newsroom beat sees only part of the picture. Forecasts are the receipts that make each story checkable. Most of this document describes the receipts. The section below describes the stories.
+
+## Stories (engine 1.2)
+
+A story is written as "you'd think X; more likely Y," followed by a few short paragraphs, what you'll see if it's right (linked forecasts), and what would prove it wrong. It lives in `data/stories.json`.
+
+**The four tests.** A story is published only if:
+
+1. **People already care** about the subject.
+2. **It overturns an expectation** people already hold. Being new isn't required; being different from the default picture is.
+3. **You'll see it soon.** It predicts visible events within the forecast windows.
+4. **It changes what you'd watch.**
+
+A diagnosis of a mechanism ("three incidents had a common cause") is not a story by itself. Reframe it around a belief people hold and something they'll see, or leave it as a signal.
+
+**Story types:**
+
+| Type | Shape |
+|---|---|
+| `later` | The moment everyone is watching isn't where it gets decided. |
+| `smaller` | The anticipated event won't change much. |
+| `bigger` | A quiet development will matter more than its coverage suggests. |
+| `in-motion` | It happened; the consequences haven't arrived yet. |
+| `collision` | Two separately covered things land at the same time. |
+
+News is organized around moments; outcomes are usually decided by slower processes. `later` and `smaller` stories are often the most useful thing the site can say.
+
+**Verdicts.** When all of a story's forecasts close, it gets `held`, `partly` or `wrong`, with a one-line note. As a guide: held means its expected outcomes mostly happened (at least two-thirds), partly means about half, wrong means fewer. If mainstream coverage later makes the same point, record `lead_time` (for example, "12 days before Reuters"). This is a bonus, not a requirement.
+
+**Weekly brief.** Three short paragraphs that say what the stories add up to. Every sentence must tie to a story, a forecast or an evidence record.
+
 ## Principle
 
 Maximum explanatory depth per unit of unjustified assumption. A model component exists only if it helps tell possible worlds apart, find causal pathways, improve calibration, or point research at the right question.

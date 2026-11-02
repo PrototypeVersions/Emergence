@@ -1,5 +1,5 @@
 {
-  "active": "2026-11-01-1930",
+  "active": "2026-11-01-2030",
   "snapshots": [
     {
       "cycle": "2026-11-01-1800",
@@ -18,6 +18,15 @@
       "engine_version": "1.1.0",
       "change_type": "Model engine change + forecast update",
       "reason": "Engine: added public-expectation estimates, the gap ranking and discovery tactics. Forecasts: added F13 and F14; F08 moved after a prediction-market check."
+    },
+    {
+      "cycle": "2026-11-01-2030",
+      "published": "2026-11-01T20:30:00-06:00",
+      "file": "forecasts/2026-11-01-2030.json",
+      "count": 15,
+      "engine_version": "1.2.0",
+      "change_type": "Model engine change + forecast update",
+      "reason": "Engine: stories and a weekly brief now lead the site, with forecasts as their receipts. Forecasts: added F15 (Israeli government formation)."
     }
   ]
 }

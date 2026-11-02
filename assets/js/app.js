@@ -23,15 +23,16 @@
 
   // ---------- data ----------
   async function load() {
-    const files = ["forecasts", "world-map", "evidence", "links", "forecast-index", "resolutions"];
+    const files = ["forecasts", "world-map", "evidence", "links", "forecast-index", "resolutions", "stories"];
     const out = await Promise.all(files.map((f) => fetch(`data/${f}.json`, { cache: "no-cache" }).then((r) => { if (!r.ok) throw new Error(`data/${f}.json returned ${r.status}`); return r.json(); })));
-    const [fc, map, ev, links, index, res] = out;
+    const [fc, map, ev, links, index, res, stories] = out;
     const nodes = Object.fromEntries(map.nodes.map((n) => [n.id, n]));
     const evidence = Object.fromEntries(ev.records.map((e) => [e.id, e]));
     const forecasts = fc.forecasts;
     const byId = Object.fromEntries(forecasts.map((f) => [f.id, f]));
     const paths = Object.fromEntries(links.paths.map((p) => [p.id, p]));
-    S.data = { fc, map, nodes, ev, evidence, forecasts, byId, links, paths, index, res };
+    const storyById = Object.fromEntries(stories.stories.map((x) => [x.id, x]));
+    S.data = { fc, map, nodes, ev, evidence, forecasts, byId, links, paths, index, res, stories, storyById };
   }
 
   // ---------- model helpers ----------
@@ -112,69 +113,112 @@
   }
 
   // ---------- views ----------
+  // ---------- stories ----------
+  const STYPE_COLOR = { later: "var(--blue)", smaller: "var(--green)", bigger: "var(--violet)", "in-motion": "var(--amber)", collision: "var(--red)" };
+  const stype = (st) => S.data.stories.types[st.type].label;
+  function receipt(w) {
+    const f = w.forecast ? S.data.byId[w.forecast] : null;
+    if (!f) return "";
+    return `<span class="rc${w.expect === "no" ? " rc-no" : ""}"><b>${wp(w, f)}%</b>${esc(f.short)}</span>`;
+  }
+  const wh = (w, f) => (w.h && f.p[w.h] != null ? w.h : f.primary);
+  const wp = (w, f) => f.p[wh(w, f)];
+  function storyCard(st, big) {
+    return `<a class="story${big ? " story-big" : ""}" href="#/story/${st.id}" style="--c:${STYPE_COLOR[st.type]}">
+      <span class="stype">${esc(stype(st))}</span>
+      <h3>${esc(st.title)}</h3>
+      <div class="contrast"><p><span>You'd think</span>${esc(st.think)}</p><p><span>More likely</span>${esc(st.actually)}</p></div>
+      <div class="receipts">${st.watch.map(receipt).join("")}</div>
+    </a>`;
+  }
+  const lastClose = (st) => st.forecasts.map((id) => S.data.fc.horizons[S.data.byId[id].primary].closes).sort().pop();
+
   function viewPulse() {
-    const { hero, second, over, tail, underCount } = pulsePicks();
+    const { hero, over, tail } = pulsePicks();
+    const B = S.data.stories.brief;
     const L = S.data.links;
-    const hh = hero.primary;
-    const trace = hero.pathway.map((id, i) => {
-      const nd = S.data.nodes[id];
-      return `<span class="trace-step">${i ? `<span class="trace-link" style="--i:${i}" aria-hidden="true"></span>` : ""}<button type="button" class="trace-node" style="--i:${i};--c:${domColor(nd.domain)}" data-node="${id}"><span class="dot" aria-hidden="true"></span>${esc(nd.label)}</button></span>`;
-    }).join("");
     const pickHTML = (f, kind, label, why) => f ? `<a class="pick" data-kind="${kind}" href="#/forecast/${f.id}">
         <span class="kind">${label}</span>
         <span class="num">${pp(f)}%<small>in ${hLabel(f.primary)}</small></span>
         <span class="t">${esc(f.title)}</span>
         <span class="why">${why(f)}</span></a>` : "";
     return `
-      <h1 class="pulse-q">What could become tomorrow’s headline?</h1>
-      <section class="hero" aria-labelledby="hero-title">
-        <div>
-          <div class="hero-num">${pp(hero)}<sup>%</sup></div>
-          <p class="hero-when">chance within ${hLabel(hh)}<br>by ${closes(hh)}</p>
-        </div>
-        <div class="hero-body">
-          <p class="hero-tag">${isUnderRadar(hero) ? "Likely, and under the radar" : "Biggest gap from expectations"}</p>
-          <h2 id="hero-title">${esc(hero.title)}</h2>
-          <p class="summary">${esc(hero.surprise_note || hero.summary)}</p>
-          ${gapBar(hero)}
-          <p class="trace-label">How it connects</p>
-          <div class="trace" aria-label="How it connects">${trace}</div>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#/forecast/${hero.id}">Explore this forecast</a>
-            <span class="small muted">${esc(hero.confidence[0].toUpperCase() + hero.confidence.slice(1))} confidence</span>
-          </div>
-        </div>
+      <section class="brief" aria-labelledby="brief-title">
+        <p class="brief-date">Weekly brief, ${fmtDate(B.date)}</p>
+        <h1 id="brief-title" class="brief-title">${esc(B.title)}</h1>
+        <div class="brief-body">${B.paragraphs.map((x) => `<p>${esc(x)}</p>`).join("")}</div>
       </section>
-      <section class="trio" aria-label="Other ways in">
-        ${pickHTML(second, "likely", "Also likely, under the radar", (f) => `Most people would guess about ${f.expected.value}%.`)}
+      <section class="stories-sec" aria-labelledby="stories-h">
+        <h2 id="stories-h">The stories behind this week</h2>
+        <div class="story-list">${B.stories.map((id) => storyCard(S.data.storyById[id])).join("")}</div>
+      </section>
+      <section class="trio" aria-label="Numbers to watch">
+        ${pickHTML(hero, "likely", "Likely, and under the radar", (f) => `Most people would guess about ${f.expected.value}%.`)}
         ${pickHTML(over, "underwatched", "Expected, but may not happen", (f) => `${f.expected.basis === "market" ? "Markets imply" : "Most people would guess"} about ${f.expected.value}%. The model is less sure.`)}
         ${pickHTML(tail, "tail", "Long shot", (f) => `Unlikely, but impact ${f.impact}/100.`)}
       </section>
-      <section class="pulse-lower">
-        <div>
-          <h2>Signals we didn’t expect</h2>
-          ${L.signals.map((s) => `<article class="signal">
-              <h3>${esc(s.title)}</h3>
-              <p>${esc(s.text)}</p>
-              <div class="meta">${chips(s.domains)}${s.kind === "inference" ? '<span class="inference">Model inference</span>' : ""}</div>
-            </article>`).join("")}
+      <section class="pulse-foot">
+        <div class="unknown">
+          <span class="label">Biggest model unknown</span>
+          <h3>${esc(L.biggest_unknown.title)}</h3>
+          <p>${esc(L.biggest_unknown.text)}</p>
+          <p style="margin-top:1rem"><button type="button" class="link" data-node="${L.biggest_unknown.node}">See the node</button></p>
         </div>
-        <aside>
-          <div class="unknown">
-            <span class="label">Biggest model unknown</span>
-            <h3>${esc(L.biggest_unknown.title)}</h3>
-            <p>${esc(L.biggest_unknown.text)}</p>
-            <p style="margin-top:1rem"><button type="button" class="link" data-node="${L.biggest_unknown.node}">See the node</button></p>
-          </div>
-          <div class="tally">
-            <div><b>${S.data.forecasts.length}</b><span>open forecasts</span></div>
-            <div><b>${underCount}</b><span>likely, under the radar</span></div>
-            <div><b>${S.data.links.paths.length}</b><span>hidden links</span></div>
-            <div><b>${S.data.ev.records.length}</b><span>evidence records</span></div>
-          </div>
-          <p class="small" style="margin-top:2rem"><a class="link" href="#/method">How these numbers are made</a></p>
-        </aside>
+        <div class="foot-links">
+          <p>${S.data.stories.stories.length} stories, ${S.data.forecasts.length} open forecasts and ${S.data.ev.records.length} evidence records, published ${fmtDate(S.data.fc.published)}.</p>
+          <p><a class="link" href="#/predictions">See every forecast</a></p>
+          <p><a class="link" href="#/method">How these stories and numbers are made</a></p>
+        </div>
       </section>`;
+  }
+
+  function viewStories() {
+    const L = S.data.links;
+    const T = S.data.stories.types;
+    return `<header class="page-head"><h1>Stories</h1><p>Claims about what's really going on, written so they can be checked. Each one says what you'd expect, what's more likely, what you'll see if it's right, and what would prove it wrong. Its forecasts are the receipts.</p></header>
+      <div class="story-list">${S.data.stories.stories.map((st) => storyCard(st)).join("")}</div>
+      <section class="section"><h2>Story types</h2><dl class="types">${Object.entries(T).map(([k, v]) => `<div style="--c:${STYPE_COLOR[k]}"><dt>${esc(v.label)}</dt><dd>${esc(v.text)}</dd></div>`).join("")}</dl></section>
+      <section class="section"><h2>Signals we didn't expect</h2>
+        ${L.signals.map((x) => `<article class="signal"><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p><div class="meta">${chips(x.domains)}${x.kind === "inference" ? '<span class="inference">Model inference</span>' : ""}</div></article>`).join("")}
+      </section>
+      <section class="section"><h2>The chains underneath</h2><p class="small muted" style="margin-bottom:1rem">Step-by-step causal paths through the world map. Several stories are built on one of these.</p>
+        <div class="plist">${L.paths.map((p) => `<a class="prow" href="#/links/${p.id}"><div><h3>${esc(p.title)}</h3><p class="tag">${esc(p.tagline)}</p><div class="prog" aria-hidden="true">${p.steps.map((x) => `<i data-s="${x.status}"></i>`).join("")}</div></div><div class="cnt"><b>${p.steps.filter((x) => x.status === "observed").length} of ${p.steps.length}</b>steps observed</div></a>`).join("")}</div>
+      </section>`;
+  }
+
+  function viewStory(id) {
+    const st = S.data.storyById[id]; if (!st) return notFound();
+    const path = st.path ? S.data.paths[st.path] : null;
+    const verdict = { open: `It gets a verdict once its forecasts close; the last one closes ${fmtShort(lastClose(st))}.`, held: "Held up.", partly: "Partly held up.", wrong: "Wrong." }[st.status];
+    return `<article class="story-page" style="--c:${STYPE_COLOR[st.type]}">
+      <header class="story-head">
+        <span class="stype">${esc(stype(st))}</span>
+        <h1>${esc(st.title)}</h1>
+        <div class="contrast big"><p><span>You'd think</span>${esc(st.think)}</p><p><span>More likely</span>${esc(st.actually)}</p></div>
+        <p class="story-status"><span class="pill">${st.status === "open" ? "Open" : esc(verdict)}</span> ${st.status === "open" ? esc(verdict) : esc(st.verdict)}</p>
+      </header>
+      <div class="cols">
+        <div class="story-body">${st.body.map((x) => `<p>${esc(x)}</p>`).join("")}</div>
+        <div>
+          <div class="block"><h2>What you'll see if this is right</h2>
+            <div class="watch">${st.watch.map((w) => { const f = w.forecast ? S.data.byId[w.forecast] : null;
+              return f ? `<a class="wrow" href="#/forecast/${f.id}"><b>${wp(w, f)}%</b><span>${esc(w.text)}<em>${w.expect === "no" ? "The story expects this not to happen. " : ""}By ${closes(wh(w, f))}</em></span></a>`
+                       : `<div class="wrow"><b>—</b><span>${esc(w.text)}<em>Not a scored forecast</em></span></div>`; }).join("")}</div>
+          </div>
+          <div class="block"><h2>What would prove it wrong</h2><ul class="bullets">${st.wrong.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>
+          ${path ? `<div class="block"><h2>The chain underneath</h2><div class="linked"><a href="#/links/${path.id}"><b>${path.steps.filter((x) => x.status === "observed").length}/${path.steps.length}</b><span>${esc(path.title)}</span></a></div></div>` : ""}
+        </div>
+      </div>
+      <section class="section analyst-only"><h2>Why this made the cut</h2>
+        <dl class="tests">
+          <div><dt>People already care</dt><dd>${esc(st.tests.cares)}</dd></div>
+          <div><dt>It overturns an expectation</dt><dd>${esc(st.tests.overturns)}</dd></div>
+          <div><dt>You'll see it soon</dt><dd>${esc(st.tests.visible)}</dd></div>
+          <div><dt>It changes what to watch</dt><dd>${esc(st.tests.changes)}</dd></div>
+        </dl>
+      </section>
+      <section class="section"><h2>Evidence</h2>${st.evidence.map((e) => evRow(S.data.evidence[e])).join("")}</section>
+    </article>`;
   }
 
   const SORTS = {
@@ -493,6 +537,7 @@
         <div><b>${open.length}</b><span>still open</span></div>
       </div>
       <p class="small muted" style="max-width:44em">The Brier score runs from 0 (perfect) to 1. Always answering 50% earns 0.25, so anything well below 0.25 means the forecasts carry real information.</p>
+      <section class="section"><h2>Story verdicts</h2><p class="small muted" style="margin-bottom:1rem">Each story is judged once all of its forecasts close. Lead time records how far ahead of mainstream coverage a story was, when coverage later caught up.</p><div class="tablewrap"><table class="table"><thead><tr><th>Story</th><th>Published</th><th class="num">Forecasts resolved</th><th>Verdict</th><th>Lead time</th></tr></thead><tbody>${S.data.stories.stories.map((st) => { const done = st.forecasts.filter((id) => R.some((r) => r.forecast === id)).length; return `<tr><td><a href="#/story/${st.id}">${esc(st.title)}</a></td><td>${fmtShort(st.published)}</td><td class="num">${done} of ${st.forecasts.length}</td><td>${st.status === "open" ? "Open" : { held: "Held up", partly: "Partly held up", wrong: "Wrong" }[st.status]}</td><td>${st.lead_time ? esc(st.lead_time) : "—"}</td></tr>`; }).join("")}</tbody></table></div></section>
       <section class="section"><h2>Calibration</h2>${scored.length >= 20 ? `<div class="tablewrap"><table class="table"><thead><tr><th>Forecast range</th><th class="num">Forecasts</th><th class="num">Average forecast</th><th class="num">Actually happened</th></tr></thead><tbody>${bins.filter((b) => b.n).map((b) => `<tr><td>${b.lo}–${b.lo + 10}%</td><td class="num">${b.n}</td><td class="num">${Math.round(b.sp / b.n)}%</td><td class="num">${Math.round(b.so / b.n * 100)}%</td></tr>`).join("")}</tbody></table></div>` : `<div class="cal">
         <p>Calibration needs 20 resolved forecasts; ${scored.length} so far. Until then, any accuracy claim would be noise.</p>
         <div class="prog-bar"><span style="width:${Math.min(scored.length / 20 * 100, 100)}%"></span></div>
@@ -510,6 +555,11 @@
   function viewMethod() {
     return `<div class="prose">
       <header class="page-head"><h1>How it works</h1><p>Emergence looks for events that become plausible only when separate systems are read together: AI, cyber, internet infrastructure, elections, geopolitics and markets.</p></header>
+      <h2>Stories come first</h2>
+      <p>The site's main product is stories: short claims about what's really going on that most coverage misses because it sees only one part of the picture. A story has to pass four tests:</p>
+      <ul><li><b>People already care</b> about the subject.</li><li><b>It overturns an expectation</b> people already hold: "you'd think X; more likely Y."</li><li><b>You'll see it soon.</b> It predicts visible events within weeks.</li><li><b>It changes what you'd watch.</b></li></ul>
+      <p>Each story lists forecasts as receipts and says what would prove it wrong. When its forecasts close, it gets a verdict: held up, partly held up, or wrong. Verdicts stay on the site either way.</p>
+      <p>Stories are found by reading across beats that are usually covered separately, collecting loose ends (things that happened and must have follow-ups), and matching them across domains. A common pattern: news is built around moments, but outcomes are decided by slower processes. "It won't be decided when you think" is often the most useful thing to know.</p>
       <h2>Where the numbers come from</h2>
       <p>Each forecast starts from a base rate: how often events like this have actually happened. A short list of adjustments for current conditions is then added or subtracted, each tied to evidence. Every step is shown on the forecast's "Why this number" tab. When there's no honest base rate, the forecast says so and is marked low confidence.</p>
       <p>These are structured judgments, not measurements. The 80% range is the forecaster's own uncertainty.</p>
@@ -589,7 +639,9 @@
       case "pulse": html = viewPulse(); c = [["Pulse"]]; break;
       case "predictions": html = viewPredictions(); c = [["Predictions"]]; break;
       case "forecast": { const f = S.data.byId[a]; html = viewForecast(a, b); nav = "predictions"; c = [["Predictions", "#/predictions"], [f ? f.short : "Not found"]]; if (f && b && b !== "overview") { const t = FTABS.find(([k]) => k === b); if (t) c = [["Predictions", "#/predictions"], [f.short, `#/forecast/${f.id}`], [t[1]]]; } break; }
-      case "links": if (a) { const p = S.data.paths[a]; html = viewLink(a); c = [["Hidden links", "#/links"], [p ? p.title : "Not found"]]; } else { html = viewLinks(); c = [["Hidden links"]]; } break;
+      case "stories": html = viewStories(); c = [["Stories"]]; break;
+      case "story": { const st = S.data.storyById[a]; html = viewStory(a); nav = "stories"; c = [["Stories", "#/stories"], [st ? stype(st) : "Not found"]]; break; }
+      case "links": nav = "stories"; if (a) { const p = S.data.paths[a]; html = viewLink(a); c = [["Stories", "#/stories"], [p ? p.title : "Not found"]]; } else { html = viewLinks(); c = [["Stories", "#/stories"], ["Chains"]]; } break;
       case "map": html = viewMap(); c = [["World map"]]; break;
       case "evidence": html = viewEvidence(); c = [["Evidence"]]; break;
       case "record": html = viewRecord(); c = [["Track record"]]; break;
@@ -597,7 +649,7 @@
       default: html = notFound(); c = [["Not found"]];
     }
     view.innerHTML = html;
-    document.body.classList.toggle("no-horizon", top === "pulse" || top === "forecast");
+    document.body.classList.toggle("no-horizon", ["pulse", "forecast", "stories", "story", "links"].includes(top));
     crumbs(c);
     document.querySelectorAll(".nav a").forEach((el) => { if (el.dataset.nav === nav) el.setAttribute("aria-current", "page"); else el.removeAttribute("aria-current"); });
     document.title = (c[c.length - 1][0] === "Pulse" ? "" : c[c.length - 1][0] + " | ") + "Emergence";

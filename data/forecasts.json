@@ -1,7 +1,7 @@
 {
-  "cycle": "2026-11-01-1930",
-  "published": "2026-11-01T19:30:00-06:00",
-  "engine_version": "1.1.0",
+  "cycle": "2026-11-01-2030",
+  "published": "2026-11-01T20:30:00-06:00",
+  "engine_version": "1.2.0",
   "horizons": {
     "7d": {
       "label": "7 days",
@@ -1521,6 +1521,106 @@
           "p": {
             "7d": 82,
             "30d": null
+          },
+          "reason": "Initial publication"
+        }
+      ]
+    },
+    {
+      "id": "F15",
+      "title": "Israel still has no new government on Dec 1",
+      "short": "No Israeli government by Dec 1",
+      "domains": [
+        "geopolitics"
+      ],
+      "primary": "30d",
+      "p": {
+        "7d": null,
+        "30d": 94
+      },
+      "range": {
+        "7d": null,
+        "30d": [
+          85,
+          98
+        ]
+      },
+      "confidence": "high",
+      "impact": 55,
+      "newsworthiness": 70,
+      "attention": "high",
+      "expected": {
+        "value": 65,
+        "basis": "judgment",
+        "note": "Daily 'who will lead Israel' coverage implies an answer is close."
+      },
+      "tactic": "calendar",
+      "surprise_note": "The coverage treats each day's coalition news as the decisive moment. But the legal steps alone run into December, and no government since 2013 has been sworn in faster than 55 days after the vote.",
+      "summary": "Israel voted on Oct 27 and no bloc has a majority. The new Knesset sits Nov 10, a candidate gets the mandate by Nov 11, and then has 28 days, extendable to 42. Even the clearest result in recent years took 58 days. This forecast says the waiting is the story, not who wins.",
+      "why_now": [
+        "No bloc has 61 seats",
+        "Mandate assigned by Nov 11, then 28–42 days",
+        "2022's clear majority still took 58 days"
+      ],
+      "base_rate": {
+        "text": "Since 2013, every election that produced a government took 55–82 days to swearing-in, and both 2019 elections produced none. Dec 1 is day 35. Allowing for a surprise unity deal: 95%.",
+        "value": 95,
+        "evidence": [
+          "E031"
+        ]
+      },
+      "adjustments": [
+        {
+          "label": "The president is pushing hard for a fast unity government",
+          "delta": -1,
+          "evidence": [
+            "E029"
+          ]
+        }
+      ],
+      "pathway": [
+        "N_ISRAEL_POLITICS"
+      ],
+      "increase_if": [
+        "Parties rule out serving with each other",
+        "Talk of a second election"
+      ],
+      "decrease_if": [
+        "A major party breaks from its bloc in the first week",
+        "A national-unity framework announced before Nov 11"
+      ],
+      "skeptic": "Wartime pressure could force an unusually fast unity deal, and the president has said he'd push for one.",
+      "escalation": "Without a majority bloc, this looks more like 2019, when two elections in a row produced no government at all.",
+      "adjudicator": "Even under pressure, the statutory sequence makes a government by Dec 1 nearly impossible. Hold very high.",
+      "resolution": {
+        "condition": "As of 11:59 p.m. Israel time on Dec 1, 2026, no new government has won a Knesset confidence vote and been sworn in following the Oct 27, 2026 election, as reported by the Knesset, Reuters, AP or the Times of Israel.",
+        "sources": [
+          "Knesset",
+          "Reuters",
+          "AP",
+          "Times of Israel"
+        ],
+        "ambiguous": [
+          "The caretaker government continuing counts as no new government.",
+          "A government sworn in on Dec 1 itself resolves no."
+        ]
+      },
+      "research_question": "Link the 2013, 2015, 2020 and 2021 formation timelines as evidence to firm up the base rate.",
+      "evidence": [
+        "E029",
+        "E030",
+        "E031"
+      ],
+      "market": {
+        "status": "not-checked",
+        "note": ""
+      },
+      "history": [
+        {
+          "at": "2026-11-01T20:30:00-06:00",
+          "p": {
+            "7d": null,
+            "30d": 94
           },
           "reason": "Initial publication"
         }

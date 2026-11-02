@@ -376,6 +376,23 @@
         "E023",
         "E024"
       ]
+    },
+    {
+      "id": "N_ISRAEL_POLITICS",
+      "domain": "geopolitics",
+      "label": "Israeli coalition formation",
+      "state": "elevated",
+      "confidence": "high",
+      "x": 88,
+      "y": 33,
+      "weight": 2,
+      "label_side": "l",
+      "summary": "No bloc has a majority after the Oct 27 election. A caretaker government runs the country, including the war, while formation talks run for weeks.",
+      "evidence": [
+        "E029",
+        "E030",
+        "E031"
+      ]
     }
   ],
   "edges": [
@@ -765,6 +782,20 @@
         "E022"
       ],
       "note": "Claims of AI or foreign interference are already cited in a certification suit."
+    },
+    {
+      "id": "L29",
+      "from": "N_ISRAEL_POLITICS",
+      "to": "N_IRAN_WAR",
+      "type": "CORRELATED_WITH",
+      "strength": 0.3,
+      "confidence": "low",
+      "lag": "weeks",
+      "basis": "judgmental",
+      "evidence": [
+        "E029"
+      ],
+      "note": "The caretaker government keeps running the war while coalition talks continue; each can shape the other."
     }
   ]
 }

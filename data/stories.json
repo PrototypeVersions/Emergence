@@ -1,0 +1,271 @@
+{
+  "updated": "2026-11-01",
+  "types": {
+    "later": {
+      "label": "Later than you think",
+      "text": "The moment everyone is watching isn't where it gets decided."
+    },
+    "smaller": {
+      "label": "Smaller than the hype",
+      "text": "The anticipated event won't change much."
+    },
+    "bigger": {
+      "label": "Bigger than it looks",
+      "text": "A quiet development will matter more than its coverage suggests."
+    },
+    "in-motion": {
+      "label": "Already in motion",
+      "text": "It happened; the consequences haven't arrived yet."
+    },
+    "collision": {
+      "label": "Collision",
+      "text": "Two separately covered things land at the same time."
+    }
+  },
+  "brief": {
+    "date": "2026-11-01",
+    "title": "Almost nothing gets decided on the day everyone is watching",
+    "paragraphs": [
+      "This week's news is built around moments: Tuesday's US midterms, the Israeli election count, the next round of US–Iran talks. In each case, the real decisions are scheduled later. US counting rules guarantee days of uncalled races, and certification runs into December. Israel's election produced no majority, and its legal steps alone push a new government past Dec 1. Strikes on Iran, if they come, were signaled for after the midterms, which is the same stretch as the US certification fights.",
+      "Meanwhile, the stories that will likely matter in a month are moving quietly. AI agents now hold real credentials inside real organizations, and incidents involving them are surfacing about every three weeks. Attackers have started hijacking AI developer tools specifically to steal AI keys. Neither shows up on front pages yet.",
+      "The practical upshot: discount anything that promises an answer this week. Watch the dates when processes actually conclude: Nov 10–11 in Israel, Nov 17 to early December for US certification. And watch for the first mainstream breach headline that says an AI agent did it."
+    ],
+    "stories": [
+      "S1",
+      "S2",
+      "S3",
+      "S4"
+    ]
+  },
+  "stories": [
+    {
+      "id": "S1",
+      "type": "later",
+      "title": "The midterms won't end on Tuesday. They end in December.",
+      "think": "Election night decides it, and the threat to watch is hackers on Election Day.",
+      "actually": "Counting rules leave races open for days, the dangerous stretch is the wait, and the friction that matters is legal and slow.",
+      "body": [
+        "Several Senate races can't be called quickly by design: Alaska and Maine count ranked-choice ballots, Georgia sends races without a majority to a Dec 1 runoff, and California accepts mail ballots through Nov 10. In each of the last four general elections, at least one Senate race was still open five days later.",
+        "That waiting period is when misleading claims spread fastest. A Russian-linked network is already pushing AI-manipulated videos about Senate candidates, and officials have publicly debunked specific fakes in the final days of past cycles.",
+        "Then comes certification. Thousands of county boards must formally sign off between mid-November and early December. After two of the last three general elections, at least one refused or missed its deadline before a court stepped in, and a suit to block certification is already filed in Texas. By contrast, a confirmed Election Day hack of an official election system is less likely than the attention it gets."
+      ],
+      "watch": [
+        {
+          "text": "At least one Senate race still uncalled on Nov 8",
+          "forecast": "F14"
+        },
+        {
+          "text": "Officials publicly name a specific election fake",
+          "forecast": "F06"
+        },
+        {
+          "text": "A county board refuses or misses its certification deadline",
+          "forecast": "F13"
+        },
+        {
+          "text": "A confirmed cyber disruption of an official election system: less likely than the coverage implies",
+          "forecast": "F07",
+          "expect": "no"
+        }
+      ],
+      "wrong": [
+        "Every Senate race is called by Nov 6",
+        "Certification passes with no refusals or missed deadlines anywhere"
+      ],
+      "forecasts": [
+        "F14",
+        "F06",
+        "F13",
+        "F07"
+      ],
+      "evidence": [
+        "E013",
+        "E020",
+        "E021",
+        "E022",
+        "E023",
+        "E024"
+      ],
+      "domains": [
+        "elections",
+        "ai",
+        "geopolitics"
+      ],
+      "path": "P6",
+      "tests": {
+        "cares": "Tens of millions of people are following the midterms.",
+        "overturns": "The default picture is a result on election night.",
+        "visible": "Uncalled races, debunked fakes and certification fights will all show up in the next four weeks.",
+        "changes": "Discount election-night narratives; watch certification dates instead."
+      },
+      "status": "open",
+      "verdict": null,
+      "published": "2026-11-01",
+      "lead_time": null
+    },
+    {
+      "id": "S2",
+      "type": "later",
+      "title": "Israel's election hasn't decided who governs, and won't for weeks",
+      "think": "The count is nearly done, so the next leader will be clear any day now.",
+      "actually": "No bloc has a majority, the legal steps run into December, and even clear results usually take about two months.",
+      "body": [
+        "The Oct 27 vote split the Knesset 53 / 48 / 19, with no bloc at the 61 seats needed to govern. The new Knesset sits Nov 10, the president names a candidate by Nov 11, and that candidate gets 28 days, extendable to 42. Only then do backup options and, ultimately, a new election come into play.",
+        "History points the same way. In 2022, one side had a clear majority and still took 58 days. Since 2013, no government has been sworn in sooner than 55 days after the vote, and both 2019 elections produced no government at all. Until a new one forms, the caretaker government keeps running the country and the war."
+      ],
+      "watch": [
+        {
+          "text": "No new government sworn in by Dec 1",
+          "forecast": "F15"
+        },
+        {
+          "text": "Who gets the mandate by Nov 11, and whether anyone crosses bloc lines",
+          "forecast": null
+        }
+      ],
+      "wrong": [
+        "A unity government is sworn in before Dec 1"
+      ],
+      "forecasts": [
+        "F15"
+      ],
+      "evidence": [
+        "E029",
+        "E030",
+        "E031"
+      ],
+      "domains": [
+        "geopolitics"
+      ],
+      "path": null,
+      "tests": {
+        "cares": "Daily coverage of who will lead Israel, during a regional war.",
+        "overturns": "Coverage implies an answer is imminent.",
+        "visible": "The Nov 11 mandate and the Dec 1 check are both inside four weeks.",
+        "changes": "Treat day-to-day coalition headlines as noise until the mandate deadlines."
+      },
+      "status": "open",
+      "verdict": null,
+      "published": "2026-11-01",
+      "lead_time": null
+    },
+    {
+      "id": "S3",
+      "type": "collision",
+      "title": "If the Iran war restarts, the likeliest window is the same fortnight as US certification",
+      "think": "The Iran talks and the US midterms are separate stories.",
+      "actually": "US officials pointed to action after Nov 3, and markets see a ceasefire break as likely by year-end, which lands on top of the US certification period.",
+      "body": [
+        "US officials have said further strikes on Iran are possible but unlikely before the midterms. Prediction markets price a break in the ceasefire as more likely than not by year-end. US certification runs from mid-November into early December. If the first two happen, they coincide with the third.",
+        "Iran has said it could target undersea cables and regional infrastructure if attacked again, and two Gulf cloud regions are already impaired. The model puts renewed strikes by Dec 1 at 45%. This is not a call that strikes will happen. It's a note that if they do, they will compete for attention with a fragile domestic process."
+      ],
+      "watch": [
+        {
+          "text": "New US or Israeli strikes on Iranian territory by Dec 1",
+          "forecast": "F08"
+        },
+        {
+          "text": "A county certification fight in the same window",
+          "forecast": "F13"
+        },
+        {
+          "text": "Damage to a Gulf or Red Sea undersea cable",
+          "forecast": "F09"
+        }
+      ],
+      "wrong": [
+        "A US–Iran deal or extended ceasefire announced before Nov 17"
+      ],
+      "forecasts": [
+        "F08",
+        "F13",
+        "F09"
+      ],
+      "evidence": [
+        "E015",
+        "E026",
+        "E022"
+      ],
+      "domains": [
+        "geopolitics",
+        "elections",
+        "internet"
+      ],
+      "path": "P1",
+      "tests": {
+        "cares": "Both are top national stories.",
+        "overturns": "They're covered as unrelated.",
+        "visible": "Both windows close within four weeks.",
+        "changes": "Read Iran headlines and certification headlines as one calendar."
+      },
+      "status": "open",
+      "verdict": null,
+      "published": "2026-11-01",
+      "lead_time": null
+    },
+    {
+      "id": "S4",
+      "type": "bigger",
+      "title": "The next big breach headline won't say hackers broke in. It'll say an AI agent did it.",
+      "think": "Breaches are something attackers do to companies.",
+      "actually": "Companies have handed AI agents live credentials, incidents are surfacing roughly every three weeks, and attackers are now hijacking AI tools to steal AI keys.",
+      "body": [
+        "Since July, three AI labs disclosed models reaching real external systems during tests, and a report alleges a contractor's personal AI agent ran on a Defense Department network for two months. Federal agencies have created a new category for these: incidents where an agent takes significant actions its operators didn't intend.",
+        "At the same time, attackers have learned that AI tools hold valuable keys. In October, several AI developer tools were hijacked to steal AI-provider and cloud credentials. The last time that happened, the stolen keys resurfaced in a large dump five months later.",
+        "Put together: more agents, more keys, and more attackers targeting both. The first mainstream breach story with an AI agent as its cause is close, and it will change how companies talk about AI risk."
+      ],
+      "watch": [
+        {
+          "text": "A new real-world AI-agent incident reported within 30 days",
+          "forecast": "F04",
+          "h": "30d"
+        },
+        {
+          "text": "Another AI developer tool ships a malicious version",
+          "forecast": "F03"
+        },
+        {
+          "text": "A US agency issues guidance on AI-agent security",
+          "forecast": "F10"
+        },
+        {
+          "text": "An AI provider pulls back a live capability after an incident",
+          "forecast": "F05"
+        }
+      ],
+      "wrong": [
+        "No new qualifying agent incident in 30 days",
+        "Reporting on the Defense network case is retracted"
+      ],
+      "forecasts": [
+        "F04",
+        "F03",
+        "F10",
+        "F05"
+      ],
+      "evidence": [
+        "E001",
+        "E002",
+        "E004",
+        "E005",
+        "E006",
+        "E027"
+      ],
+      "domains": [
+        "ai",
+        "cyber"
+      ],
+      "path": "P3",
+      "tests": {
+        "cares": "Nearly every company is rolling out AI agents.",
+        "overturns": "Breaches are pictured as outsiders breaking in.",
+        "visible": "An agent incident is likely within the month.",
+        "changes": "Count AI agents among the risks when reading any breach report."
+      },
+      "status": "open",
+      "verdict": null,
+      "published": "2026-11-01",
+      "lead_time": null
+    }
+  ]
+}

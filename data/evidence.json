@@ -468,6 +468,54 @@
         "N_DPRK_THEFT"
       ],
       "notes": "Precedent for the pace of North Korean laundering."
+    },
+    {
+      "id": "E029",
+      "date": "2026-11-01",
+      "source": "Al Jazeera",
+      "source_type": "major-outlet",
+      "url": "https://www.aljazeera.com/news/2026/11/1/israel-election-when-will-government-be-formed-who-will-lead-it",
+      "claim": "Israel's Oct 27 election left no bloc with 61 of 120 seats (53 / 48 / 19). The new Knesset is sworn in Nov 10; the president must name a candidate by Nov 11, who then has 28 days, extendable by 14. The caretaker government stays in place until a new one forms.",
+      "status": "confirmed",
+      "reliability": "B",
+      "cluster": "israel-formation",
+      "direction": "raises",
+      "nodes": [
+        "N_ISRAEL_POLITICS"
+      ],
+      "notes": "The article gives two different certification dates (Nov 4 and Nov 10)."
+    },
+    {
+      "id": "E030",
+      "date": "2026-10-28",
+      "source": "Ynet",
+      "source_type": "major-outlet",
+      "url": "https://www.ynetnews.com/article/byqsqwzpmg",
+      "claim": "Israel's formation process allows up to 42 days for the first candidate, 28 for a second, then a 21-day window for 61 lawmakers to name a third candidate with 14 days, after which the Knesset dissolves and a new election is held.",
+      "status": "confirmed",
+      "reliability": "B",
+      "cluster": "israel-formation",
+      "direction": "raises",
+      "nodes": [
+        "N_ISRAEL_POLITICS"
+      ],
+      "notes": "Statutory steps; independently checkable in Basic Law: The Government."
+    },
+    {
+      "id": "E031",
+      "date": "2022-12-29",
+      "source": "Wikipedia: Thirty-seventh government of Israel",
+      "source_type": "reference",
+      "url": "https://en.wikipedia.org/wiki/Thirty-seventh_government_of_Israel",
+      "claim": "After the Nov 1, 2022 election, Israel's government was sworn in on Dec 29, 2022, 58 days later, even though one bloc had a clear 64-seat majority.",
+      "status": "confirmed",
+      "reliability": "C",
+      "cluster": "israel-precedent",
+      "direction": "base-rate",
+      "nodes": [
+        "N_ISRAEL_POLITICS"
+      ],
+      "notes": "Base-rate anchor. Earlier cycles (2013, 2015, 2020, 2021) took 55–82 days; to be linked individually next cycle."
     }
   ]
 }
