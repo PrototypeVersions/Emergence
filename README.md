@@ -1,6 +1,6 @@
 # Emergence
 
-Emergence forecasts events that only come into view when several systems are read together: AI, cyber, internet infrastructure, elections, geopolitics and markets.
+Emergence reads AI, cyber, internet infrastructure, elections, geopolitics and markets together, to find what single-beat coverage misses.
 
 It publishes **stories**: claims about what's really going on that most coverage misses because it sees only one part of the picture. Each story says what you'd expect, what's more likely, what you'll see if it's right, and what would prove it wrong. A short weekly brief ties them together.
 
