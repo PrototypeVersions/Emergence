@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Emergence</title>
+  <meta name="description" content="Emergence: resolvable, base-rate-anchored forecasts of events that become visible only when AI, cyber, internet, election and geopolitical systems are read together.">
+  <meta name="theme-color" content="#0A1020">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+  <a class="skip" href="#view">Skip to content</a>
+  <div class="app">
+    <aside class="rail" aria-label="Main navigation">
+      <a class="brand" href="#/pulse" aria-label="Emergence home">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="7" cy="23" r="3"/><circle cx="16" cy="9" r="3"/><circle cx="25" cy="21" r="3"/><path d="M8.6 20.6 14.4 11.4M17.6 11.4l5.8 7.2M10 23.2h12"/></svg>
+        <span>Emergence</span>
+      </a>
+      <nav class="nav">
+        <a href="#/pulse" data-nav="pulse"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10h4l2-5 4 10 2-5h4"/></svg><span>Pulse</span></a>
+        <a href="#/predictions" data-nav="predictions"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16V9M10 16V4M16 16v-5"/></svg><span>Predictions</span></a>
+        <a href="#/links" data-nav="links"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="4" cy="15" r="2"/><circle cx="10" cy="5" r="2"/><circle cx="16" cy="14" r="2"/><path d="M5 13l4-6M11 7l4 5"/></svg><span>Hidden links</span></a>
+        <a href="#/map" data-nav="map"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M3 10h14M10 3c2.5 2.5 2.5 11.5 0 14M10 3c-2.5 2.5-2.5 11.5 0 14"/></svg><span>World map</span></a>
+        <a href="#/evidence" data-nav="evidence"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 3h7l3 3v11H5zM8 9h5M8 12h5"/></svg><span>Evidence</span></a>
+        <a href="#/record" data-nav="record"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v6l4 2"/><circle cx="10" cy="10" r="7"/></svg><span>Track record</span></a>
+        <a href="#/method" data-nav="method" class="nav-method"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M10 9v5M10 6.5v.01"/></svg><span>How it works</span></a>
+      </nav>
+      <div class="rail-foot" id="rail-foot"></div>
+    </aside>
+
+    <main class="main">
+      <header class="bar">
+        <nav class="crumbs" id="crumbs" aria-label="Breadcrumb"></nav>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Forecast horizon" id="horizon">
+            <button type="button" data-h="7d">7 days</button>
+            <button type="button" data-h="30d">30 days</button>
+          </div>
+          <div class="seg" role="group" aria-label="Detail level" id="mode">
+            <button type="button" data-m="briefing">Briefing</button>
+            <button type="button" data-m="analyst">Analyst</button>
+          </div>
+        </div>
+      </header>
+      <div id="view" class="view" tabindex="-1"><p class="loading">Loading the current forecast…</p></div>
+    </main>
+
+    <div class="scrim" id="scrim" hidden></div>
+    <aside class="drawer" id="drawer" aria-label="Details" hidden>
+      <button type="button" class="drawer-close" id="drawer-close" aria-label="Close details">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5 5 15"/></svg>
+      </button>
+      <div id="drawer-body"></div>
+    </aside>
+  </div>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

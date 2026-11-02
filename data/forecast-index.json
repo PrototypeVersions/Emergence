@@ -1,0 +1,14 @@
+{
+  "active": "2026-11-01-1800",
+  "snapshots": [
+    {
+      "cycle": "2026-11-01-1800",
+      "published": "2026-11-01T18:00:00-06:00",
+      "file": "forecasts/2026-11-01-1800.json",
+      "count": 12,
+      "engine_version": "1.0.0",
+      "change_type": "Initial publication",
+      "reason": "First research cycle and forecast set."
+    }
+  ]
+}

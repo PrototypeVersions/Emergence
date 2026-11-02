@@ -1,0 +1,675 @@
+{
+  "updated": "2026-11-01",
+  "state_scale": [
+    "low",
+    "moderate",
+    "elevated",
+    "high",
+    "severe"
+  ],
+  "domains": [
+    {
+      "id": "ai",
+      "label": "AI",
+      "color": "violet"
+    },
+    {
+      "id": "cyber",
+      "label": "Cyber",
+      "color": "blue"
+    },
+    {
+      "id": "internet",
+      "label": "Internet",
+      "color": "cyan"
+    },
+    {
+      "id": "elections",
+      "label": "Elections",
+      "color": "amber"
+    },
+    {
+      "id": "geopolitics",
+      "label": "Geopolitics",
+      "color": "red"
+    },
+    {
+      "id": "markets",
+      "label": "Markets",
+      "color": "green"
+    },
+    {
+      "id": "infrastructure",
+      "label": "Infrastructure",
+      "color": "slate"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "N_AGENT_AUTONOMY",
+      "domain": "ai",
+      "label": "Agent autonomy & deployment",
+      "state": "high",
+      "confidence": "medium",
+      "x": 10,
+      "y": 32,
+      "weight": 3,
+      "summary": "AI agents are being given browsers, shells, code repos and cloud access in production and in sensitive networks.",
+      "evidence": [
+        "E001",
+        "E002",
+        "E004",
+        "E019"
+      ],
+      "label_side": "r"
+    },
+    {
+      "id": "N_AGENT_PRIVILEGE",
+      "domain": "ai",
+      "label": "Agent & developer credential exposure",
+      "state": "high",
+      "confidence": "medium",
+      "x": 30,
+      "y": 48,
+      "weight": 3,
+      "summary": "Agents and the developer machines they run on hold keys to production. Several recent incidents began with a developer's credentials or endpoint.",
+      "evidence": [
+        "E004",
+        "E005",
+        "E008",
+        "E019"
+      ],
+      "label_side": "b"
+    },
+    {
+      "id": "N_FRONTIER_CYBER",
+      "domain": "ai",
+      "label": "Frontier-model cyber capability",
+      "state": "high",
+      "confidence": "medium",
+      "x": 7,
+      "y": 10,
+      "weight": 2,
+      "summary": "Frontier models have reached real external systems during cyber evaluations, and at least one lab paused training over cyber capability.",
+      "evidence": [
+        "E002",
+        "E003"
+      ],
+      "label_side": "r"
+    },
+    {
+      "id": "N_PROVIDER_CONTROLS",
+      "domain": "ai",
+      "label": "AI provider restrictions & pauses",
+      "state": "elevated",
+      "confidence": "low",
+      "x": 5,
+      "y": 62,
+      "weight": 1,
+      "summary": "How readily AI providers pause, roll back or restrict capabilities after incidents.",
+      "evidence": [
+        "E003"
+      ],
+      "label_side": "r"
+    },
+    {
+      "id": "N_GOV_GUIDANCE",
+      "domain": "ai",
+      "label": "Government AI-security guidance",
+      "state": "elevated",
+      "confidence": "medium",
+      "x": 10,
+      "y": 80,
+      "weight": 1,
+      "summary": "Federal agencies are issuing guidance specific to agent control failures.",
+      "evidence": [
+        "E001"
+      ],
+      "label_side": "r"
+    },
+    {
+      "id": "N_AI_SUPPLY_CHAIN",
+      "domain": "cyber",
+      "label": "AI-tool supply-chain attacks",
+      "state": "high",
+      "confidence": "high",
+      "x": 40,
+      "y": 20,
+      "weight": 3,
+      "summary": "Attackers are compromising AI gateways, agent frameworks and AI coding tools to harvest AI-provider and cloud keys.",
+      "evidence": [
+        "E005",
+        "E006"
+      ],
+      "label_side": "r"
+    },
+    {
+      "id": "N_DPRK_THEFT",
+      "domain": "cyber",
+      "label": "State-linked crypto theft",
+      "state": "severe",
+      "confidence": "high",
+      "x": 62,
+      "y": 6,
+      "weight": 2,
+      "summary": "North Korea-attributed groups just executed the largest crypto theft on record.",
+      "evidence": [
+        "E007"
+      ],
+      "label_side": "r"
+    },
+    {
+      "id": "N_RANSOMWARE",
+      "domain": "cyber",
+      "label": "Ransomware vs. essential services",
+      "state": "elevated",
+      "confidence": "medium",
+      "x": 50,
+      "y": 74,
+      "weight": 2,
+      "summary": "Ransomware continues to disrupt hospitals and public services; new groups keep appearing.",
+      "evidence": [
+        "E016"
+      ],
+      "label_side": "r"
+    },
+    {
+      "id": "N_IRAN_CYBER",
+      "domain": "cyber",
+      "label": "Iran-linked cyber activity",
+      "state": "elevated",
+      "confidence": "low",
+      "x": 66,
+      "y": 62,
+      "weight": 2,
+      "summary": "Inferred from the active war: Iran-linked actors have previously targeted US water-sector controllers. No fresh public evidence collected this cycle.",
+      "evidence": [],
+      "label_side": "l"
+    },
+    {
+      "id": "N_CLOUD_FRAGILITY",
+      "domain": "internet",
+      "label": "Hyperscale cloud fragility",
+      "state": "elevated",
+      "confidence": "high",
+      "x": 52,
+      "y": 44,
+      "weight": 3,
+      "summary": "Multi-hour hyperscaler/CDN outages are running at about 1.3 per month in 2026, up from about 0.6 in 2024.",
+      "evidence": [
+        "E010",
+        "E012"
+      ],
+      "label_side": "r"
+    },
+    {
+      "id": "N_GULF_INFRA",
+      "domain": "internet",
+      "label": "Gulf cables & cloud regions",
+      "state": "high",
+      "confidence": "low",
+      "x": 78,
+      "y": 44,
+      "weight": 2,
+      "summary": "Two Gulf cloud regions listed as impaired since March; Iran has threatened regional seabed cables.",
+      "evidence": [
+        "E011",
+        "E015"
+      ],
+      "label_side": "r"
+    },
+    {
+      "id": "N_INFO_OPS",
+      "domain": "elections",
+      "label": "Foreign synthetic-media operations",
+      "state": "high",
+      "confidence": "high",
+      "x": 24,
+      "y": 68,
+      "weight": 2,
+      "summary": "AI-manipulated videos linked to a Russian network are targeting Senate races in the final week.",
+      "evidence": [
+        "E013"
+      ],
+      "label_side": "r"
+    },
+    {
+      "id": "N_ELECTION_STRESS",
+      "domain": "elections",
+      "label": "Election-week process stress",
+      "state": "elevated",
+      "confidence": "medium",
+      "x": 32,
+      "y": 92,
+      "weight": 2,
+      "summary": "Load on election officials from disinformation, cyber threats and uncertain federal support during the Nov 3 midterms.",
+      "evidence": [
+        "E013",
+        "E014",
+        "E018"
+      ],
+      "label_side": "r"
+    },
+    {
+      "id": "N_IRAN_WAR",
+      "domain": "geopolitics",
+      "label": "US/Israel–Iran war",
+      "state": "severe",
+      "confidence": "high",
+      "x": 90,
+      "y": 64,
+      "weight": 3,
+      "summary": "War since Feb 28, 2026. Talks are under way, but the US has signalled possible further strikes after the midterms.",
+      "evidence": [
+        "E015"
+      ],
+      "label_side": "b"
+    },
+    {
+      "id": "N_TAIWAN",
+      "domain": "geopolitics",
+      "label": "China–Taiwan pressure",
+      "state": "elevated",
+      "confidence": "low",
+      "x": 93,
+      "y": 5,
+      "weight": 1,
+      "summary": "Repeated October drills including blockade simulation. Background only this cycle.",
+      "evidence": [
+        "E017"
+      ],
+      "label_side": "b"
+    },
+    {
+      "id": "N_CRYPTO_STRESS",
+      "domain": "markets",
+      "label": "Crypto exchange security stress",
+      "state": "high",
+      "confidence": "medium",
+      "x": 74,
+      "y": 24,
+      "weight": 2,
+      "summary": "Record theft, paused withdrawals and billions in frozen assets; the mechanism may be reusable against other exchanges.",
+      "evidence": [
+        "E007",
+        "E008",
+        "E009"
+      ],
+      "label_side": "r"
+    },
+    {
+      "id": "N_ENERGY_SHIPPING",
+      "domain": "markets",
+      "label": "Hormuz shipping & energy",
+      "state": "severe",
+      "confidence": "medium",
+      "x": 93,
+      "y": 92,
+      "weight": 2,
+      "summary": "Tankers are still being attacked near Hormuz; Iranian oil loadings halted since late August under the US blockade.",
+      "evidence": [
+        "E015"
+      ],
+      "label_side": "l"
+    },
+    {
+      "id": "N_HEALTHCARE_OPS",
+      "domain": "infrastructure",
+      "label": "Hospital operations",
+      "state": "elevated",
+      "confidence": "medium",
+      "x": 55,
+      "y": 94,
+      "weight": 1,
+      "summary": "Cyberattacks continue to force ambulance diversions and cancelled procedures.",
+      "evidence": [
+        "E016"
+      ],
+      "label_side": "r"
+    },
+    {
+      "id": "N_US_CRIT_INFRA",
+      "domain": "infrastructure",
+      "label": "US water & energy control systems",
+      "state": "elevated",
+      "confidence": "low",
+      "x": 73,
+      "y": 80,
+      "weight": 2,
+      "summary": "Internet-exposed industrial controllers at US utilities; a known target class for state-linked actors.",
+      "evidence": [],
+      "label_side": "r"
+    }
+  ],
+  "edges": [
+    {
+      "id": "L01",
+      "from": "N_AGENT_AUTONOMY",
+      "to": "N_AGENT_PRIVILEGE",
+      "type": "INCREASES",
+      "strength": 0.8,
+      "confidence": "high",
+      "lag": "weeks",
+      "basis": "empirical",
+      "evidence": [
+        "E004",
+        "E019"
+      ],
+      "note": "More deployed agents means more credentials held by software."
+    },
+    {
+      "id": "L02",
+      "from": "N_AGENT_PRIVILEGE",
+      "to": "N_AI_SUPPLY_CHAIN",
+      "type": "AMPLIFIES",
+      "strength": 0.7,
+      "confidence": "medium",
+      "lag": "days",
+      "basis": "empirical",
+      "evidence": [
+        "E005",
+        "E006"
+      ],
+      "note": "Stealers read the same config files coding agents use; stolen developer tokens enable new malicious publishes."
+    },
+    {
+      "id": "L03",
+      "from": "N_AI_SUPPLY_CHAIN",
+      "to": "N_AGENT_PRIVILEGE",
+      "type": "INCREASES",
+      "strength": 0.6,
+      "confidence": "medium",
+      "lag": "days",
+      "basis": "empirical",
+      "evidence": [
+        "E005"
+      ],
+      "note": "Each compromise leaks more AI and cloud keys — a feedback loop."
+    },
+    {
+      "id": "L04",
+      "from": "N_FRONTIER_CYBER",
+      "to": "N_AGENT_AUTONOMY",
+      "type": "ENABLES",
+      "strength": 0.5,
+      "confidence": "medium",
+      "lag": "months",
+      "basis": "judgmental",
+      "evidence": [
+        "E002"
+      ],
+      "note": ""
+    },
+    {
+      "id": "L05",
+      "from": "N_FRONTIER_CYBER",
+      "to": "N_PROVIDER_CONTROLS",
+      "type": "TRIGGERS",
+      "strength": 0.5,
+      "confidence": "low",
+      "lag": "weeks",
+      "basis": "historical",
+      "evidence": [
+        "E003"
+      ],
+      "note": "Capability findings have already prompted at least one training pause."
+    },
+    {
+      "id": "L06",
+      "from": "N_AGENT_PRIVILEGE",
+      "to": "N_PROVIDER_CONTROLS",
+      "type": "TRIGGERS",
+      "strength": 0.4,
+      "confidence": "low",
+      "lag": "weeks",
+      "basis": "judgmental",
+      "evidence": [
+        "E004"
+      ],
+      "note": "Public agent incidents pressure providers to restrict features."
+    },
+    {
+      "id": "L07",
+      "from": "N_AGENT_PRIVILEGE",
+      "to": "N_GOV_GUIDANCE",
+      "type": "TRIGGERS",
+      "strength": 0.4,
+      "confidence": "medium",
+      "lag": "weeks",
+      "basis": "historical",
+      "evidence": [
+        "E001",
+        "E004"
+      ],
+      "note": ""
+    },
+    {
+      "id": "L08",
+      "from": "N_AI_SUPPLY_CHAIN",
+      "to": "N_CLOUD_FRAGILITY",
+      "type": "INCREASES",
+      "strength": 0.3,
+      "confidence": "low",
+      "lag": "weeks",
+      "basis": "theoretical",
+      "evidence": [
+        "E005"
+      ],
+      "note": "Stolen cloud keys can be used against cloud-hosted services; not yet observed causing a major outage."
+    },
+    {
+      "id": "L09",
+      "from": "N_DPRK_THEFT",
+      "to": "N_CRYPTO_STRESS",
+      "type": "INCREASES",
+      "strength": 0.9,
+      "confidence": "high",
+      "lag": "hours",
+      "basis": "empirical",
+      "evidence": [
+        "E007",
+        "E008"
+      ],
+      "note": ""
+    },
+    {
+      "id": "L10",
+      "from": "N_AGENT_PRIVILEGE",
+      "to": "N_CRYPTO_STRESS",
+      "type": "CORRELATED_WITH",
+      "strength": 0.4,
+      "confidence": "low",
+      "lag": "—",
+      "basis": "judgmental",
+      "evidence": [
+        "E008"
+      ],
+      "note": "Same root weakness: a privileged engineer's endpoint was the bridge into production."
+    },
+    {
+      "id": "L11",
+      "from": "N_IRAN_WAR",
+      "to": "N_GULF_INFRA",
+      "type": "INCREASES",
+      "strength": 0.7,
+      "confidence": "medium",
+      "lag": "days",
+      "basis": "empirical",
+      "evidence": [
+        "E011",
+        "E015"
+      ],
+      "note": "Explicit threat against seabed cables."
+    },
+    {
+      "id": "L12",
+      "from": "N_IRAN_WAR",
+      "to": "N_ENERGY_SHIPPING",
+      "type": "INCREASES",
+      "strength": 0.9,
+      "confidence": "high",
+      "lag": "hours",
+      "basis": "empirical",
+      "evidence": [
+        "E015"
+      ],
+      "note": ""
+    },
+    {
+      "id": "L13",
+      "from": "N_IRAN_WAR",
+      "to": "N_IRAN_CYBER",
+      "type": "INCREASES",
+      "strength": 0.6,
+      "confidence": "low",
+      "lag": "days",
+      "basis": "historical",
+      "evidence": [],
+      "note": "Past Iran–Israel escalations were accompanied by Iran-linked operations against Western targets."
+    },
+    {
+      "id": "L14",
+      "from": "N_IRAN_CYBER",
+      "to": "N_US_CRIT_INFRA",
+      "type": "INCREASES",
+      "strength": 0.5,
+      "confidence": "low",
+      "lag": "weeks",
+      "basis": "historical",
+      "evidence": [],
+      "note": "2023 precedent: Iran-linked actors disrupted US water-utility controllers."
+    },
+    {
+      "id": "L15",
+      "from": "N_IRAN_CYBER",
+      "to": "N_ELECTION_STRESS",
+      "type": "INCREASES",
+      "strength": 0.3,
+      "confidence": "low",
+      "lag": "days",
+      "basis": "historical",
+      "evidence": [],
+      "note": "Iran-linked actors targeted the 2020 and 2024 US elections."
+    },
+    {
+      "id": "L16",
+      "from": "N_GULF_INFRA",
+      "to": "N_CLOUD_FRAGILITY",
+      "type": "INCREASES",
+      "strength": 0.4,
+      "confidence": "medium",
+      "lag": "hours",
+      "basis": "empirical",
+      "evidence": [
+        "E011"
+      ],
+      "note": ""
+    },
+    {
+      "id": "L17",
+      "from": "N_INFO_OPS",
+      "to": "N_ELECTION_STRESS",
+      "type": "INCREASES",
+      "strength": 0.7,
+      "confidence": "high",
+      "lag": "days",
+      "basis": "empirical",
+      "evidence": [
+        "E013"
+      ],
+      "note": ""
+    },
+    {
+      "id": "L18",
+      "from": "N_FRONTIER_CYBER",
+      "to": "N_INFO_OPS",
+      "type": "ENABLES",
+      "strength": 0.3,
+      "confidence": "low",
+      "lag": "months",
+      "basis": "judgmental",
+      "evidence": [
+        "E013"
+      ],
+      "note": "Cheaper synthetic media; the AP-reported videos used AI manipulation."
+    },
+    {
+      "id": "L19",
+      "from": "N_RANSOMWARE",
+      "to": "N_HEALTHCARE_OPS",
+      "type": "TRIGGERS",
+      "strength": 0.8,
+      "confidence": "high",
+      "lag": "hours",
+      "basis": "empirical",
+      "evidence": [
+        "E016"
+      ],
+      "note": ""
+    },
+    {
+      "id": "L20",
+      "from": "N_AI_SUPPLY_CHAIN",
+      "to": "N_RANSOMWARE",
+      "type": "ENABLES",
+      "strength": 0.3,
+      "confidence": "low",
+      "lag": "weeks",
+      "basis": "theoretical",
+      "evidence": [],
+      "note": "Harvested credentials are sold to and reused by extortion groups."
+    },
+    {
+      "id": "L21",
+      "from": "N_CLOUD_FRAGILITY",
+      "to": "N_HEALTHCARE_OPS",
+      "type": "DEPENDS_ON",
+      "strength": 0.3,
+      "confidence": "low",
+      "lag": "hours",
+      "basis": "theoretical",
+      "evidence": [],
+      "note": "Hospitals rely on cloud-hosted records and scheduling."
+    },
+    {
+      "id": "L22",
+      "from": "N_ENERGY_SHIPPING",
+      "to": "N_CRYPTO_STRESS",
+      "type": "CORRELATED_WITH",
+      "strength": 0.2,
+      "confidence": "low",
+      "lag": "days",
+      "basis": "judgmental",
+      "evidence": [],
+      "note": "Risk-off moves hit crypto alongside oil spikes."
+    },
+    {
+      "id": "L23",
+      "from": "N_TAIWAN",
+      "to": "N_CLOUD_FRAGILITY",
+      "type": "SECOND_ORDER",
+      "strength": 0.15,
+      "confidence": "low",
+      "lag": "months",
+      "basis": "theoretical",
+      "evidence": [
+        "E017"
+      ],
+      "note": "Chip supply and Pacific cable exposure; not modelled further this cycle."
+    },
+    {
+      "id": "L24",
+      "from": "N_GOV_GUIDANCE",
+      "to": "N_AGENT_PRIVILEGE",
+      "type": "MITIGATES",
+      "strength": 0.2,
+      "confidence": "low",
+      "lag": "months",
+      "basis": "judgmental",
+      "evidence": [
+        "E001"
+      ],
+      "note": "Voluntary guidance; slow to change practice."
+    }
+  ]
+}

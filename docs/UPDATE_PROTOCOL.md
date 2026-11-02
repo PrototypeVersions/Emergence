@@ -1,0 +1,38 @@
+# Update protocol
+
+Forecasts change only during an explicit update cycle. Suggested cadence: weekly, plus an extra cycle after any major event touching three or more forecasts.
+
+## 1. Resolve what closed
+
+For each forecast whose window has closed, apply `RESOLUTION_RULES.md` and append an entry to `data/resolutions.json`. Don't touch the old snapshot.
+
+## 2. Research
+
+- Start with the **research questions** on the open forecasts, highest leverage first.
+- Re-check every node whose state is marked low confidence. The **biggest unknown** in `links.json` comes first.
+- Add new records to `data/evidence.json` with the next free ID. Assign an independence cluster. If a new article repeats an existing report, reuse that report's cluster.
+- Check prediction markets for any forecast whose `market.status` is `to-check`.
+
+## 3. Implied-event challenge (mandatory)
+
+Ask: *What important event is not on the list but follows naturally from two or more currently active conditions?* Generate at least 20 candidates. Red-team them. Keep only candidates with a coherent mechanism, real evidence, nontrivial probability, clear newsworthiness and a resolvable condition. Then ask the counter-consensus questions: which heavily covered event is overestimated, and which ignored event is underestimated?
+
+## 4. Update numbers
+
+- Change node states and edges in `world-map.json`.
+- Re-derive each probability: base rate, then adjustments, then result. The validator checks the arithmetic.
+- Append a `history` entry to each changed forecast with a one-sentence reason. Every move must be explainable.
+- Retire closed forecasts from `forecasts.json`. Their snapshots remain the record. Add new ones (aim for 8–15 open in total).
+- Refresh `links.json` signals and paths.
+
+## 5. Publish
+
+1. Set a new `cycle` id (`YYYY-MM-DD-HHMM`) and `published` time in `data/forecasts.json`.
+2. Copy `data/forecasts.json` to `forecasts/<cycle>.json`. That file is now frozen.
+3. Append the snapshot to `data/forecast-index.json` and set `active` to it. Use `change_type` `Forecast update` when only numbers or evidence changed, or `Model engine change` when the method or structure changed.
+4. Run `node scripts/validate.mjs`. Fix every error.
+5. Commit and push to `main`. CI validates again and deploys.
+
+## Keep separate
+
+**Forecast changes** (new evidence moved a number) and **model engine changes** (the method, scoring or structure changed) are recorded separately in the index. Never do both silently in one cycle.
