@@ -8,6 +8,8 @@ Emergence updates itself on a schedule, with no one reviewing each run. These ru
 
 It runs after the 7-day windows close at midnight Sunday, so it scores the week that just ended and publishes the brief for the week ahead.
 
+**Skip rule.** If the most recent snapshot in `data/forecast-index.json` is a full update ("Weekly update" or "Initial publication" change type) published less than four days ago, do nothing. Make no commit, and end with a one-line report saying the run was skipped because a full update was published recently.
+
 The complete `UPDATE_PROTOCOL.md`, in order:
 
 1. Resolve every forecast whose window has closed.
@@ -82,11 +84,7 @@ Ask each one to:
 
 Helpers only research. They don't edit files. The main run merges their reports, de-duplicates sources into independence clusters, verifies anything surprising itself, and then continues the normal protocol.
 
-After the run, set `parallel_runs_remaining` to its value minus 1. If it reaches 0, set `research_mode` back to `standard`. The final report must say which mode ran, plus the counts.
-
-### Coverage line
-
-Every weekly brief records `brief.coverage`: `{ "mode": "standard" | "parallel", "scanned": n, "read": n, "added": n }`. Use honest approximate counts. The site shows it under the brief.
+After the run, set `parallel_runs_remaining` to its value minus 1. If it reaches 0, set `research_mode` back to `standard`. The final run report (not the site) must say which mode ran, with rough counts of items scanned and read.
 
 ## Guardrails (all runs)
 

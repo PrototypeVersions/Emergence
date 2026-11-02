@@ -687,4 +687,3 @@ a.rc:hover { border-color: var(--line-strong); color: var(--ink); }
 .cover .ribbon { background: rgba(13,21,39,.6); backdrop-filter: blur(6px); }
 @media (max-width: 860px) { .cover { margin-top: -1.5rem; padding-top: 1.75rem; } }
 .bar-brand .brand-mark { width: 1.35rem; height: 1.35rem; }
-.coverage { max-width: 40rem; margin-top: 1.25rem; font-size: var(--t-xs); color: var(--mute); }

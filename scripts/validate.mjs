@@ -160,7 +160,6 @@ for (const st of stories.stories) {
 for (const c of links.connections || []) for (const id of c.stories) if (!sIds.has(id)) fail(`${c.id}: story ${id} does not exist`);
 for (const id of stories.brief.stories) if (!sIds.has(id)) fail(`brief: story ${id} does not exist`);
 if (!stories.brief.title || !stories.brief.paragraphs?.length) fail("brief: title and paragraphs are required");
-if (stories.brief.coverage) { const c = stories.brief.coverage; if (!["standard", "parallel"].includes(c.mode) || ![c.scanned, c.read, c.added].every(Number.isInteger)) fail("brief.coverage: needs mode (standard or parallel) and integer scanned, read, added"); }
 const rc = read("data/run-config.json");
 if (rc && (!["standard", "parallel"].includes(rc.research_mode) || !Number.isInteger(rc.parallel_runs_remaining) || rc.parallel_runs_remaining < 0)) fail("run-config: research_mode must be standard or parallel, parallel_runs_remaining a non-negative integer");
 
